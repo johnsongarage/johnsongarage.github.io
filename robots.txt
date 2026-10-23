@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://trafficjourney.github.io/sitemap.xml
+Sitemap: https://johnsongarage.github.io/sitemap.xml
