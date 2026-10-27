@@ -41,7 +41,9 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-
 .brand b{font-weight:700;font-size:18px;letter-spacing:-.01em}
 .brand span{font-size:13px;color:var(--dark-sub)}
 nav .back{font-size:14px;color:var(--dark-sub);text-decoration:none}
-.head{padding:48px 0 56px;display:flex;flex-direction:column;gap:16px}
+.head{padding:48px 0 56px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.head-text{display:flex;flex-direction:column;gap:16px;min-width:0}
+.portrait{width:220px;height:auto;flex:none;opacity:.95}
 .eyebrow{font-size:13px;color:var(--gold-text);letter-spacing:.08em}
 h1{margin:0;font-size:44px;line-height:1.2;letter-spacing:-.03em}
 .role{font-size:18px;color:var(--gold-text);font-weight:600}
@@ -80,12 +82,12 @@ footer{background:var(--dark);color:#9c9583;font-size:13px;line-height:1.8}
 footer .wrap{padding:28px 24px}
 .edu-line{font-size:15px;color:var(--dark-sub)}
 .print-link{margin-top:10px;padding:0;border:0;background:none;color:#9c9583;font:inherit;text-decoration:underline;cursor:pointer}
-@media (max-width:640px){h1{font-size:36px}.head{padding:32px 0 44px}main.wrap{padding-top:52px;padding-bottom:72px;gap:56px}section+section{padding-top:52px}.timeline{gap:44px}.timeline{margin-left:6px;padding-left:18px}}
+@media (max-width:640px){h1{font-size:36px}.head{padding:32px 0 44px;flex-direction:column-reverse;align-items:flex-start;gap:20px}.portrait{width:120px}main.wrap{padding-top:52px;padding-bottom:72px;gap:56px}section+section{padding-top:52px}.timeline{gap:44px}.timeline{margin-left:6px;padding-left:18px}}
 @media print{
   @page{size:A4;margin:14mm}
   body{background:#fff;font-size:12.5px;line-height:1.6}
   .top,footer{background:#fff;color:var(--ink)}
-  nav,.actions,.print-link{display:none}
+  nav,.actions,.print-link,.portrait{display:none}
   .edu-line{color:var(--sub)}
   .head{padding:0 0 16px;border-bottom:2px solid var(--ink);gap:8px}
   .eyebrow,.role{color:#8c7136}
@@ -111,6 +113,7 @@ footer .wrap{padding:28px 24px}
 <a class="back" href="../">← 홈으로</a>
 </nav>
 <header class="head">
+<div class="head-text">
 <div class="eyebrow mono">ABOUT</div>
 <h1>강훈민</h1>
 <div class="role">존슨거라지 대표 · 풀스택 개발자</div>
@@ -121,6 +124,8 @@ footer .wrap{padding:28px 24px}
 <a class="btn btn-gold" href="mailto:johnsongarage.official@gmail.com">상담 문의하기</a>
 <a class="btn btn-line" href="../#work">만든 것 보기</a>
 </div>
+</div>
+<img class="portrait" src="../images/portrait-gold.png" alt="강훈민 선 드로잉 초상" width="521" height="720">
 </header>
 </div>
 </div>
