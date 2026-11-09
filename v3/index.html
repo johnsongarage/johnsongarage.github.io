@@ -25,7 +25,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
+body{margin:0;background:var(--bg) radial-gradient(circle at 1px 1px,rgba(20,20,20,.09) 1px,transparent 1.4px) 0 0/22px 22px;color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
 h1,h2,h3{text-wrap:balance;margin:0;letter-spacing:-.025em}
 p{margin:0;text-wrap:pretty}
 a{color:inherit}
@@ -62,7 +62,7 @@ a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 24px;border-radius:999px;font-weight:700;text-decoration:none;font-size:16px}
 
 /* hero */
-.hero{background:var(--dark);color:#fff;padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:420px}
+.hero{background:radial-gradient(600px 300px at 85% 110%,rgba(201,178,124,.16),transparent 70%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px,var(--dark);color:#fff;padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:420px}
 .hero h1{font-size:64px;line-height:1.12;font-weight:800;letter-spacing:-.04em}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero p{margin-top:18px;font-size:19px;color:var(--dsub)}
@@ -107,7 +107,7 @@ a{color:inherit}
 .ind .q::before{content:"“";color:var(--gold-deep);font-weight:800;margin-right:2px}
 .ind .q::after{content:"”";color:var(--gold-deep);font-weight:800;margin-left:2px}
 .ind .fix{margin-top:12px;font-size:15px;color:var(--sub)}
-.ind .ico{width:44px;height:44px;border-radius:14px;background:#f2f1ec;display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+.ind .ico-old{width:44px;height:44px;border-radius:14px;background:#f2f1ec;display:grid;place-items:center;font-size:22px;margin-bottom:16px}
 
 /* check */
 .check{display:grid;gap:8px;margin-top:18px}
@@ -121,6 +121,8 @@ a{color:inherit}
 .result ul{margin:14px 0 0;padding-left:18px}
 .result .btn{margin-top:auto;align-self:flex-start;background:#fff;color:var(--ink)}
 .result .sp{flex:1;min-height:24px}
+.result::after{content:"?";position:absolute;right:30px;bottom:-56px;font-size:260px;line-height:1;font-weight:800;color:rgba(255,255,255,.055);pointer-events:none}
+.result > *{position:relative;z-index:1}
 
 /* flow */
 .step b{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gold-deep)}
@@ -138,6 +140,44 @@ a{color:inherit}
 .ways a:first-child{background:var(--dark);color:#fff}
 .ways a:first-child span{color:var(--dsub)}
 
+/* 배경 도형 */
+html,body{overflow-x:clip}
+main{position:relative;isolation:isolate}
+.deco{position:absolute;z-index:-1;pointer-events:none}
+.js .deco{animation:bob 7s ease-in-out infinite alternate}
+.js .deco.d2{animation-duration:9s;animation-delay:-3s}.js .deco.d3{animation-duration:11s;animation-delay:-5s}
+@keyframes bob{from{transform:translate(0,0) rotate(0)}to{transform:translate(8px,-12px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.js .deco{animation:none}}
+/* 일러스트 */
+.illo{height:128px;margin:-8px -8px 20px;border-radius:20px;background:#f6f5f1;overflow:hidden}
+.illo svg{display:block;width:100%;height:100%}
+.ind:hover .illo .lift{transform:translateY(-4px)}
+.lift{transition:transform .3s}
+.js .float{animation:float 3.2s ease-in-out infinite alternate}
+@keyframes float{from{transform:translate(0,0)}to{transform:translate(-4px,-5px)}}
+.js .steam path{animation:steam 2.4s ease-in-out infinite}
+.js .steam path:nth-child(2){animation-delay:.4s}.js .steam path:nth-child(3){animation-delay:.8s}
+@keyframes steam{0%{opacity:0;transform:translateY(6px)}40%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+.js .blink{animation:blink 1.6s steps(2,start) infinite}
+@keyframes blink{to{opacity:.15}}
+.press{position:absolute;right:36px;bottom:36px;width:190px;height:190px;pointer-events:none}
+.press .rip{transform-origin:95px 95px}
+.js .press .rip{animation:rip 4s ease-out infinite}
+@keyframes rip{0%,38%{transform:scale(1);opacity:0}40%{opacity:.9}75%,100%{transform:scale(1.55);opacity:0}}
+.js .press .cur{animation:cur 4s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes cur{0%{transform:translate(70px,70px)}30%{transform:translate(0,0)}36%{transform:translate(0,0) scale(.88)}42%{transform:translate(0,0) scale(1)}70%{transform:translate(0,0)}100%{transform:translate(70px,70px)}}
+.js .press .core{animation:core 4s ease-out infinite}
+@keyframes core{0%,34%{fill:#1f1e1c}38%{fill:#c9b27c}60%,100%{fill:#1f1e1c}}
+.watch{position:absolute;right:24px;top:22px;width:96px;height:96px}
+.js .watch .hand{transform-origin:48px 54px;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.step{position:relative}
+.step .si{position:absolute;right:22px;top:22px;width:58px;height:58px}
+.ring-ph{display:block;width:150px;height:96px;margin-top:28px}
+.js .ring-ph .wave{animation:wave 1.8s ease-out infinite}
+.js .ring-ph .wave:nth-of-type(2){animation-delay:.3s}
+@keyframes wave{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.js .float,.js .steam path,.js .blink,.js .press .rip,.js .press .cur,.js .press .core,.js .watch .hand,.js .ring-ph .wave{animation:none}}
 footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 .bar{display:none}
 
@@ -163,6 +203,10 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
   .sec-h h2{font-size:24px}
   .stat b{font-size:34px}
   .contact{grid-template-columns:1fr}
+  .press{display:none}
+  .deco{display:none}
+  .watch{width:76px;height:76px;right:18px;top:16px}
+  .ring-ph{width:120px;height:78px;margin-top:20px}
   .case .mock{margin-left:-22px;margin-right:-22px;margin-bottom:-22px;max-width:none}
   .mock > div{border-radius:0 !important;padding:14px !important;font-size:12px !important}
   .mock .eq{grid-template-columns:44px minmax(0,1fr) 48px 60px !important;gap:6px !important;padding:6px 8px !important}
@@ -186,15 +230,23 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 </div></div></header>
 
 <main class="wrap">
+<svg class="deco" style="left:-70px;top:470px;width:150px;height:150px" viewBox="0 0 150 150" aria-hidden="true"><rect x="20" y="20" width="110" height="110" rx="34" fill="#e2e1dc"/></svg>
+<svg class="deco d2" style="right:-60px;top:760px;width:120px;height:60px" viewBox="0 0 120 60" aria-hidden="true"><path d="M6 40c14-24 28-24 42 0s28 24 42 0 18-20 24-12" fill="none" stroke="#cfcdc6" stroke-width="8" stroke-linecap="round"/></svg>
+<svg class="deco d3" style="left:-50px;top:1500px;width:90px;height:90px" viewBox="0 0 90 90" aria-hidden="true"><path d="M45 10v70M10 45h70" stroke="#d6d4ce" stroke-width="12" stroke-linecap="round"/></svg>
+<svg class="deco" style="right:-80px;top:2050px;width:170px;height:170px" viewBox="0 0 170 170" aria-hidden="true"><circle cx="85" cy="85" r="70" fill="none" stroke="#dcdad4" stroke-width="16" stroke-dasharray="2 26" stroke-linecap="round"/></svg>
+<svg class="deco d2" style="left:-80px;top:2700px;width:160px;height:160px" viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="62" fill="#e2e1dc"/><circle cx="80" cy="80" r="26" fill="#efefec"/></svg>
+<svg class="deco d3" style="right:-50px;top:3250px;width:110px;height:110px" viewBox="0 0 110 110" aria-hidden="true"><path d="M55 8l12 34h36l-29 21 11 35-30-21-30 21 11-35L7 42h36z" fill="#e2e1dc"/></svg>
 
 <section class="sec"><div class="bento">
 <div class="card hero c8 r2">
 <div><h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
 <p>매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p></div>
 <div class="ctas"><a class="btn btn-w" href="#contact">상담하기</a><a class="btn btn-o" href="#cases">사례 보기</a></div>
+<svg class="press" viewBox="0 0 190 190" aria-hidden="true"><circle cx="95" cy="95" r="78" fill="none" stroke="#2e2c29" stroke-width="2"/><circle class="rip" cx="95" cy="95" r="56" fill="none" stroke="#c9b27c" stroke-width="2"/><circle cx="95" cy="99" r="56" fill="#0a0a09"/><circle class="core" cx="95" cy="95" r="56" fill="#1f1e1c" stroke="#3a3833" stroke-width="2"/><text x="95" y="101" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="15" font-weight="600" fill="#8a8578">PUSH</text><g class="cur"><path transform="translate(104 104)" d="M0 0 L0 30 L8 23 L14 36 L20 33 L14 21 L25 21 Z" fill="#fff" stroke="#111" stroke-width="2" stroke-linejoin="round"/></g></svg>
 </div>
 <a class="card accent c4" href="#check">
 <span class="kick">30초 진단</span>
+<svg class="watch" viewBox="0 0 96 96" aria-hidden="true"><rect x="40" y="6" width="16" height="9" rx="3" fill="#141414"/><path d="M72 22l7-7" stroke="#141414" stroke-width="5" stroke-linecap="round"/><circle cx="48" cy="54" r="34" fill="#fff4c4" stroke="#141414" stroke-width="4"/><path d="M48 54 L48 20 A34 34 0 0 1 82 54 Z" fill="#141414" opacity=".12"/><g stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M48 25v5M77 54h-5M48 83v-5M19 54h5"/></g><g class="hand"><path d="M48 54 L48 30" stroke="#141414" stroke-width="4" stroke-linecap="round"/></g><circle cx="48" cy="54" r="4.5" fill="#141414"/></svg>
 <div class="go"><h2>우리 일에도<br>맞을까요?</h2><span class="arrow" aria-hidden="true">→</span></div>
 </a>
 <div class="card who c4">
@@ -221,7 +273,7 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 <p class="d">인터넷 없이 직원 PC에서 열고, 직원마다 볼 수 있는 범위를 나눴어요.</p>
 <div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
 <div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">데이터 뷰어</span><span style="color: #5f5a4e">샘플 데이터 · 8년치 거래 내역</span></div>
-<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e">전체 항목에서 검색</div>
+<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e; white-space: nowrap; overflow: hidden"><span data-k="qt">전체 항목에서 검색</span><span data-k="timer" style="display: none; margin-left: 10px; padding: 1px 9px; border-radius: 999px; background: #0d0d0d; color: #d8c391; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; vertical-align: 1px"></span></div>
 <div style="overflow-x: auto"><div style="min-width: 400px; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
 <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 7px 10px; background: #0d0d0d; color: #ffffff; border-radius: 6px 6px 0 0"><div>거래처</div><div>품목</div><div style="text-align: right">수량</div><div style="text-align: right">판매단가</div><div style="text-align: right">판매금액</div></div>
 <div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
@@ -259,10 +311,10 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 <section class="sec" id="who-for">
 <div class="sec-h"><h2>이런 곳에서 쓰여요</h2><p>가장 가까운 곳을 골라 보세요.</p></div>
 <div class="bento">
-<div class="card ind c3"><div class="ico" aria-hidden="true">📊</div><h3>판매·유통 사무실</h3><div class="q">필터만 걸면 엑셀이 멈춰요</div><p class="fix">쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</p><a class="more" href="#case-sheet">사례 보기 →</a></div>
-<div class="card ind c3"><div class="ico" aria-hidden="true">☕</div><h3>카페·식당·매장</h3><div class="q">사장님, 컵뚜껑 여분 어딨어요?</div><p class="fix">선반 사진 한 장으로 물건 자리 지도</p><a class="more" href="#case-objetdo">사례 보기 →</a></div>
-<div class="card ind c3"><div class="ico" aria-hidden="true">📦</div><h3>집 정리·정리수납 업체</h3><div class="q">정리는 했는데 어디 뒀는지 모르겠어요</div><p class="fix">정리한 수납장을 검색되는 지도로 인계</p><a class="more" href="../price/">가격 보기 →</a></div>
-<div class="card ind c3"><div class="ico" aria-hidden="true">🖥️</div><h3>여러 대 PC로 일하는 곳</h3><div class="q">한 대가 멈춰도 한참 뒤에야 알아요</div><p class="fix">문제가 생길 때만 휴대폰으로 알림</p><a class="more" href="#case-monitor">사례 보기 →</a></div>
+<div class="card ind c3"><div class="illo" aria-hidden="true"><svg viewBox="0 0 240 128"><g class="lift"><rect x="66" y="26" width="104" height="80" rx="8" fill="#e4e2db"/><rect x="56" y="18" width="104" height="80" rx="8" fill="#fff" stroke="#141414" stroke-width="2"/><path d="M57 36h102" stroke="#141414" stroke-width="16"/><path d="M57 52h102M57 66h102M57 82h102M90 44v53M126 44v53" stroke="#dcdad3" stroke-width="1.5"/><rect x="58" y="53" width="100" height="13" fill="#ffd23f"/></g><g class="float"><circle cx="172" cy="74" r="22" fill="#fffdf6" fill-opacity=".85" stroke="#141414" stroke-width="4"/><path d="M188 90l15 15" stroke="#141414" stroke-width="7" stroke-linecap="round"/><text x="172" y="79" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="14" font-weight="800" fill="#141414">2초</text></g></svg></div><h3>판매·유통 사무실</h3><div class="q">필터만 걸면 엑셀이 멈춰요</div><p class="fix">쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</p><a class="more" href="#case-sheet">사례 보기 →</a></div>
+<div class="card ind c3"><div class="illo" aria-hidden="true"><svg viewBox="0 0 240 128"><g class="steam" fill="none" stroke="#b9b6ad" stroke-width="2.5" stroke-linecap="round"><path d="M106 40c-6-7 6-11 0-19"/><path d="M120 40c-6-7 6-11 0-19"/><path d="M134 40c-6-7 6-11 0-19"/></g><g class="lift"><path d="M90 56h60l-7 52a6 6 0 0 1-6 5h-34a6 6 0 0 1-6-5z" fill="#fff" stroke="#141414" stroke-width="2"/><path d="M93 74h54l-2 18h-50z" fill="#ffd23f"/><rect x="86" y="46" width="68" height="11" rx="4" fill="#141414"/></g><g stroke="#141414" stroke-width="1.6"><rect x="28" y="98" width="40" height="8" rx="3" fill="#e4e2db"/><rect x="30" y="90" width="36" height="8" rx="3" fill="#e4e2db"/><rect x="32" y="82" width="32" height="8" rx="3" fill="#fff"/></g><g class="float"><rect x="166" y="26" width="52" height="30" rx="15" fill="#fff" stroke="#141414" stroke-width="2"/><path d="M178 55l-4 9 11-8" fill="#fff" stroke="#141414" stroke-width="2" stroke-linejoin="round"/><text x="192" y="47" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="16" font-weight="800" fill="#141414">?</text></g></svg></div><h3>카페·식당·매장</h3><div class="q">사장님, 컵뚜껑 여분 어딨어요?</div><p class="fix">선반 사진 한 장으로 물건 자리 지도</p><a class="more" href="#case-objetdo">사례 보기 →</a></div>
+<div class="card ind c3"><div class="illo" aria-hidden="true"><svg viewBox="0 0 240 128"><g stroke="#141414" stroke-width="2"><rect x="40" y="62" width="62" height="46" rx="4" fill="#e4e2db"/><rect x="106" y="62" width="62" height="46" rx="4" fill="#fff"/><rect x="172" y="62" width="30" height="46" rx="4" fill="#e4e2db"/><rect x="72" y="18" width="62" height="44" rx="4" fill="#fff"/></g><g font-family="IBM Plex Mono,monospace" font-size="12" font-weight="600" text-anchor="middle" fill="#141414"><rect x="59" y="77" width="24" height="16" rx="3" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="71" y="89">1</text><rect x="125" y="77" width="24" height="16" rx="3" fill="#ffd23f" stroke="#141414" stroke-width="1.5"/><text x="137" y="89">2</text><rect x="91" y="32" width="24" height="16" rx="3" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="103" y="44">3</text></g><g class="float"><path transform="translate(150 16)" d="M0 0c-10 0-16 7-16 15 0 11 16 25 16 25s16-14 16-25C16 7 10 0 0 0z" fill="#ffd23f" stroke="#141414" stroke-width="2"/><circle cx="150" cy="31" r="5" fill="#141414"/></g></svg></div><h3>집 정리·정리수납 업체</h3><div class="q">정리는 했는데 어디 뒀는지 모르겠어요</div><p class="fix">정리한 수납장을 검색되는 지도로 인계</p><a class="more" href="../price/">가격 보기 →</a></div>
+<div class="card ind c3"><div class="illo" aria-hidden="true"><svg viewBox="0 0 240 128"><g stroke="#141414" stroke-width="2" fill="#fff"><rect x="18" y="30" width="58" height="42" rx="5"/><rect x="82" y="30" width="58" height="42" rx="5"/><rect x="146" y="30" width="58" height="42" rx="5"/></g><g stroke="#141414" stroke-width="2" stroke-linecap="round"><path d="M47 72v10M37 84h20M111 72v10M101 84h20M175 72v10M165 84h20"/></g><g stroke="#cfccc4" stroke-width="3" stroke-linecap="round"><path d="M28 44h30M28 54h22M156 44h30M156 54h22"/></g><path d="M92 44h20M92 54h30" stroke="#f0c419" stroke-width="3" stroke-linecap="round"/><g class="blink"><circle cx="134" cy="32" r="9" fill="#ffd23f" stroke="#141414" stroke-width="2"/><text x="134" y="37" text-anchor="middle" font-family="Pretendard,sans-serif" font-size="12" font-weight="800" fill="#141414">!</text></g><g class="float"><rect x="196" y="74" width="28" height="44" rx="6" fill="#141414"/><rect x="200" y="82" width="20" height="10" rx="2" fill="#ffd23f"/></g></svg></div><h3>여러 대 PC로 일하는 곳</h3><div class="q">한 대가 멈춰도 한참 뒤에야 알아요</div><p class="fix">문제가 생길 때만 휴대폰으로 알림</p><a class="more" href="#case-monitor">사례 보기 →</a></div>
 </div></section>
 
 <section class="sec" id="check">
@@ -292,16 +344,17 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 <section class="sec" id="flow">
 <div class="sec-h"><h2>작게 시작하고, 쓰일 만큼만</h2><p>상담은 무료예요.</p></div>
 <div class="bento">
-<div class="card step c3"><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요.</p></div>
-<div class="card step c3"><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
-<div class="card step c3"><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
-<div class="card step c3"><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
+<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><rect x="4" y="8" width="38" height="26" rx="13" fill="#fff" stroke="#141414" stroke-width="2.5"/><path d="M14 33l-3 8 9-7" fill="#fff" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><rect x="20" y="26" width="34" height="22" rx="11" fill="#ffd23f" stroke="#141414" stroke-width="2.5"/><g fill="#141414"><circle cx="30" cy="37" r="2"/><circle cx="37" cy="37" r="2"/><circle cx="44" cy="37" r="2"/></g></svg><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요.</p></div>
+<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><path d="M12 6h34v46l-6-4-5 4-6-4-6 4-5-4-6 4z" fill="#fff" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 17h20M19 25h14" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/><rect x="18" y="32" width="22" height="8" rx="2" fill="#ffd23f"/></svg><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><rect x="4" y="9" width="50" height="40" rx="6" fill="#fff" stroke="#141414" stroke-width="2.5"/><path d="M4 19h50" stroke="#141414" stroke-width="2.5"/><g fill="#141414"><circle cx="11" cy="14" r="1.6"/><circle cx="17" cy="14" r="1.6"/></g><path d="M20 28l-6 6 6 6M38 28l6 6-6 6" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 27l-6 15" stroke="#f0c419" stroke-width="3" stroke-linecap="round"/></svg><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><path d="M38 6a12 12 0 0 0-11 16L8 41a5 5 0 0 0 7 7l19-19a12 12 0 0 0 16-11l-7 4-6-3-1-7z" fill="#ffd23f" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><circle cx="12" cy="44" r="2" fill="#141414"/></svg><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
 </div></section>
 
 <section class="sec" id="contact"><div class="bento">
 <div class="card c12 contact">
 <div><h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
-<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p></div>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+<svg class="ring-ph" viewBox="0 0 150 96" aria-hidden="true"><g fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path class="wave" d="M104 30a20 20 0 0 1 0 36"/><path class="wave" d="M116 20a34 34 0 0 1 0 56"/></g><rect x="40" y="8" width="52" height="82" rx="10" fill="#141414"/><rect x="46" y="18" width="40" height="58" rx="4" fill="#ffd23f"/><path d="M58 40c0 10 8 18 18 18l4-5-6-4-3 3c-4-2-7-5-9-9l3-3-4-6z" fill="#141414"/></svg></div>
 <div class="ways">
 <a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
 <a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
@@ -396,24 +449,41 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 
   var sh=document.getElementById('mock-sheet');
   if(sh&&!reduce){
-    var q=$(sh,'q'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=q.textContent,word='거래처 A';
+    var box=sh.firstElementChild,q=$(sh,'q'),qt=$(sh,'qt'),tm=$(sh,'timer'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=qt.textContent,word='거래처 A';
+    sh.style.overflow='hidden';
+    box.style.position='relative';
+    box.style.transition='transform .8s cubic-bezier(.2,.7,.2,1)';
     rws.concat([sum]).forEach(function(e){e.style.transition='opacity .35s, transform .35s'});
     sel.forEach(function(e){e.style.transition='background .25s'});
-    add(sh,runner(function(at){
-      q.textContent=ph;q.style.color='#5f5a4e';
+    function zoom(on){
+      if(on){box.style.transformOrigin=q.offsetLeft+'px '+(q.offsetTop+q.offsetHeight/2)+'px';box.style.transform='scale('+(box.offsetWidth<420?1.45:1.7)+')'}
+      else box.style.transform='none';
+    }
+    add(sh,runner(function(at,every){
+      zoom(false);
+      qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';
       rws.forEach(function(r){r.style.opacity='0';r.style.transform='translateY(4px)'});
       sel.forEach(function(c){c.style.background='transparent'});
       sum.style.opacity='0';
-      var t=700;
-      for(var i=1;i<=word.length;i++)(function(n){at(t+n*130,function(){q.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
-      t+=word.length*130+400;
-      at(t,function(){q.textContent=word});
+      var t=500;
+      at(t,function(){zoom(true)});
+      t+=900;
+      for(var i=1;i<=word.length;i++)(function(n){at(t+n*140,function(){qt.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
+      t+=word.length*140+350;
+      var t0=0;
+      at(t,function(){qt.textContent=word;t0=Date.now();tm.style.display='inline-block';tm.style.background='#0d0d0d';tm.style.color='#d8c391';tm.textContent='0.0초'});
+      for(var k=1;k<20;k++)(function(k){at(t+k*100,function(){tm.textContent=(k/10).toFixed(1)+'초'})})(k);
+      t+=2000;
+      at(t,function(){tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d'});
+      t+=1300;
+      at(t,function(){zoom(false)});
+      t+=500;
       rws.forEach(function(r,i){at(t+i*120,function(){r.style.opacity='1';r.style.transform='none'})});
       t+=rws.length*120+700;
       sel.forEach(function(c,i){at(t+i*350,function(){c.style.background='#efe6cf'})});
       t+=sel.length*350+200;
       at(t,function(){sum.style.opacity='1'});
-      return t+4500;
+      return t+4000;
     }));
   }
 
@@ -426,5 +496,6 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
   items.forEach(function(it){io.observe(it.el)});
 })();
 </script>
+<script>document.documentElement.classList.add('js')</script>
 </body>
 </html>
