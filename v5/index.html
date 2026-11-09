@@ -53,14 +53,14 @@ b{font-weight:500}
 .hero-l p{font-size:17px;color:var(--sub);line-height:2.1}
 .hero-l .ctas{margin-top:48px;display:flex;gap:36px;font-size:15px}
 .hero-r{display:flex;align-items:flex-start;gap:28px;align-self:flex-start}
-.hero h1{font-size:58px;line-height:1.55;letter-spacing:.08em;font-weight:300;height:560px}
+.hero h1{font-size:58px;line-height:1.32;letter-spacing:0;font-weight:300;height:500px}
 .seal{margin-top:auto;align-self:flex-end;display:grid;place-items:center;width:46px;padding:9px 0;background:var(--red);color:var(--paper);font-family:var(--serif);font-size:15px;line-height:1.25;letter-spacing:.1em;border-radius:3px;transform:rotate(-3deg)}
 
 /* section frame: 세로 제목 + 내용 */
 .sec{padding:140px 0}
 .sec .wrap{display:grid;grid-template-columns:1fr 120px;gap:64px}
 .sec-v{display:flex;gap:18px;justify-content:flex-start;align-items:flex-start;grid-column:2;grid-row:1;justify-self:end}
-.sec-v h2{font-size:30px;line-height:1.6;letter-spacing:.12em;font-weight:300}
+.sec-v h2{font-size:30px;line-height:1.4;letter-spacing:.02em;font-weight:300}
 .sec-v .lbl{padding-top:4px}
 .sec-body{grid-column:1;grid-row:1;min-width:0}
 
@@ -114,7 +114,7 @@ b{font-weight:500}
 /* contact */
 .contact{padding:160px 0 150px}
 .contact .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:60px}
-.contact h2{font-size:40px;line-height:1.65;letter-spacing:.1em;font-weight:300;height:400px}
+.contact h2{font-size:40px;line-height:1.38;letter-spacing:0;font-weight:300;height:360px}
 .contact-l{flex:1;max-width:560px}
 .contact-l p{color:var(--sub);font-size:16px}
 .ways{margin-top:48px}
@@ -125,6 +125,32 @@ b{font-weight:500}
 .ways a:first-child span{color:var(--red)}
 .ways a:hover span{color:var(--ink)}
 
+/* 먹 그림 */
+.ill{position:absolute;pointer-events:none;overflow:visible}
+section{overflow-x:clip}
+.ink{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round}
+.hero-r{position:relative;isolation:isolate}
+.enso{width:520px;height:520px;left:50%;top:44%;transform:translate(-50%,-50%) rotate(-8deg);z-index:-1;opacity:.13}
+.enso path{stroke-width:26;stroke-dasharray:1;stroke-dashoffset:0}
+.js .enso path{animation:draw 2.6s cubic-bezier(.6,.05,.3,1) .3s both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.sec .wrap,.contact .wrap{position:relative}
+.ring{width:190px;height:190px;right:-40px;top:560px;opacity:.5;transform:rotate(18deg)}
+.band{margin:120px 0 -60px;height:200px;position:relative}
+.band svg{position:absolute;inset:0;width:100%;height:100%}
+.branch{width:250px;height:380px;right:-50px;top:250px;transform-origin:92% 2%}
+.js .branch{animation:sway 9s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-1.2deg)}to{transform:rotate(1.4deg)}}
+.stone{display:block;width:92px;height:38px;margin-bottom:26px;fill:var(--ink);opacity:.72;transition:opacity .7s,transform .7s}
+.flow.pre .stone{opacity:0;transform:translateY(8px)}
+.flow.pre.in .stone{opacity:.72;transform:none}
+.flow.in > div:nth-child(2) .stone{transition-delay:.35s}
+.flow.in > div:nth-child(3) .stone{transition-delay:.7s}
+.flow.in > div:nth-child(4) .stone{transition-delay:1.05s}
+.moon{width:300px;height:170px;left:20px;top:-150px}
+.js .moon .birds{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(-18px,6px)}}
+@media (prefers-reduced-motion:reduce){.js .enso path,.js .branch,.js .moon .birds{animation:none}.flow.pre .stone{opacity:.72;transform:none}}
 footer{padding:40px 0 70px;color:var(--mute);font-size:12px;letter-spacing:.06em}
 footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 .bar{display:none}
@@ -136,7 +162,7 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
   .hero{padding:56px 0 110px}
   .hero .wrap{flex-direction:column-reverse;align-items:stretch;min-height:0;gap:56px}
   .hero-r{align-self:flex-end}
-  .hero h1{font-size:38px;height:380px}
+  .hero h1{font-size:38px;height:330px}
   .hero-l .ctas{margin-top:36px}
   .sec{padding:90px 0}
   .sec .wrap{grid-template-columns:1fr 64px;gap:20px}
@@ -154,9 +180,15 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
   .flow{grid-template-columns:1fr 1fr;row-gap:40px}
   .flow > div:nth-child(3){padding-left:0;border-left:0}
   .who{margin-top:76px}
+  .enso{width:330px;height:330px}
+  .ring{width:120px;height:120px;right:70px;top:-10px;opacity:.45}
+  .band{margin:80px 0 -30px;height:120px}
+  .branch{display:none}
+  .stone{width:76px;height:32px;margin-bottom:18px}
+  .moon{width:200px;height:120px;left:0;top:-60px}
   .contact{padding:100px 0 90px}
   .contact .wrap{flex-direction:column-reverse;align-items:stretch;gap:48px}
-  .contact h2{font-size:28px;height:280px;align-self:flex-end}
+  .contact h2{font-size:28px;height:250px;align-self:flex-end}
   body{padding-bottom:60px}
   .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(242,236,225,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:0 0 env(safe-area-inset-bottom)}
   .bar a{display:flex;align-items:center;justify-content:center;height:54px;font-size:14px;letter-spacing:.1em;color:var(--sub)}
@@ -167,6 +199,21 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<filter id="brush" x="-20%" y="-20%" width="140%" height="140%">
+<feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="w"/>
+<feDisplacementMap in="SourceGraphic" in2="w" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+<feTurbulence type="fractalNoise" baseFrequency=".04 .6" numOctaves="2" seed="9" result="g"/>
+<feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.6 0 0 0 1.62" result="m"/>
+<feComposite in="d" in2="m" operator="in"/>
+</filter>
+<filter id="wash" x="-10%" y="-30%" width="120%" height="160%">
+<feTurbulence type="fractalNoise" baseFrequency=".012 .05" numOctaves="3" seed="2" result="w"/>
+<feDisplacementMap in="SourceGraphic" in2="w" scale="18" xChannelSelector="R" yChannelSelector="G" result="d"/>
+<feGaussianBlur in="d" stdDeviation="1.6"/>
+</filter>
+<linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2622" stop-opacity="1"/><stop offset="1" stop-color="#2a2622" stop-opacity="0"/></linearGradient>
+</defs></svg>
 
 <header class="nav"><div class="wrap">
 <a class="brand" href="./">Johnson Garage<span>존슨거라지</span></a>
@@ -179,6 +226,7 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 <div class="ctas"><a class="tl red" href="#contact">상담하기</a><a class="tl" href="#cases">사례 보기</a></div>
 </div>
 <div class="hero-r">
+<svg class="ill enso" viewBox="0 0 400 400" aria-hidden="true"><path class="ink" filter="url(#brush)" pathLength="1" d="M292 92 C356 140 372 252 306 318 C238 386 118 372 66 296 C18 226 44 118 124 74 C168 50 214 50 250 66"/></svg>
 <h1 class="v">손으로 하던 일<br>버튼 하나로</h1>
 <span class="seal" aria-hidden="true">존<br>슨</span>
 </div>
@@ -186,6 +234,7 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 
 <section class="sec" id="cases"><div class="wrap">
 <div class="sec-v"><h2 class="v">써 본 것만</h2><span class="lbl v">사례</span></div>
+<svg class="ill ring" viewBox="0 0 200 200" aria-hidden="true"><g filter="url(#brush)" fill="none" stroke="#8a6a45" stroke-linecap="round"><path stroke-width="7" stroke-opacity=".55" d="M100 22 C146 22 178 56 178 100 C178 146 144 178 100 178 C54 178 22 144 22 100 C22 60 50 28 92 23"/><path stroke-width="2.5" stroke-opacity=".8" d="M40 62 C58 34 92 22 124 28 M170 128 C158 160 128 176 96 176"/><path stroke-width="12" stroke-opacity=".18" d="M60 160 C76 172 104 176 128 168"/></g><circle cx="186" cy="64" r="3" fill="#8a6a45" fill-opacity=".4"/><circle cx="194" cy="74" r="1.6" fill="#8a6a45" fill-opacity=".35"/></svg>
 <div class="sec-body">
 
 <article class="case" id="case-objetdo">
@@ -247,10 +296,13 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 <div class="place"><h3>집 정리·정리수납 업체</h3><div><q>정리는 했는데 어디 뒀는지 모르겠어요</q><p>정리한 수납장을 검색되는 지도로 인계</p></div><a class="tl" href="../price/">가격</a></div>
 <div class="place"><h3>여러 대 PC로 일하는 곳</h3><div><q>한 대가 멈춰도 한참 뒤에야 알아요</q><p>문제가 생길 때만 휴대폰으로 알림</p></div><a class="tl" href="#case-monitor">사례</a></div>
 </div>
-</div></section>
+</div>
+<div class="band" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice"><g filter="url(#wash)"><path fill="url(#mist)" fill-opacity=".07" d="M0 200 L0 120 C80 96 130 60 210 70 C290 80 320 40 400 34 C470 30 520 78 600 82 C680 86 740 30 820 26 C900 22 950 70 1040 76 C1110 80 1160 60 1200 66 L1200 200 Z"/><path fill="url(#mist)" fill-opacity=".12" d="M0 200 L0 150 C70 140 120 110 190 116 C260 122 300 92 360 96 C430 100 470 140 540 138 C620 136 660 104 740 100 C820 96 860 130 930 134 C1010 138 1060 114 1130 118 C1170 120 1190 128 1200 130 L1200 200 Z"/><path fill="url(#mist)" fill-opacity=".2" d="M0 200 L0 182 C90 176 150 160 230 164 C300 168 350 186 430 184 C520 182 560 166 650 168 C740 170 790 186 880 184 C960 182 1020 170 1100 172 C1150 174 1180 180 1200 182 L1200 200 Z"/></g><g class="ink" filter="url(#brush)" stroke-width="2.2" opacity=".5"><path d="M862 60 l10 -7 l10 7 M884 52 l7 -5 l7 5"/></g></svg></div>
+</section>
 
 <section class="sec" id="check"><div class="wrap">
 <div class="sec-v"><h2 class="v">맞을까요</h2><span class="lbl v">삼십 초 진단</span></div>
+<svg class="ill branch" viewBox="0 0 250 380" aria-hidden="true"><g class="ink" filter="url(#brush)"><path stroke-width="9" d="M236 4 C214 40 196 70 186 112 C176 154 150 186 122 214 C98 238 88 276 92 318"/><path stroke-width="4.5" d="M190 104 C168 106 146 96 128 80 M150 190 C124 188 96 196 70 220 M118 222 C132 246 134 270 128 296 M96 300 C80 312 70 332 68 352"/><path stroke-width="2.4" d="M128 80 C118 70 112 58 110 46 M70 220 C58 228 50 242 46 256"/></g><g class="ink" stroke-width="1.6" opacity=".85"><g transform="translate(118 74)"><circle cx="0" cy="-7" r="5.5"/><circle cx="6.7" cy="-2.2" r="5.5"/><circle cx="4.1" cy="5.7" r="5.5"/><circle cx="-4.1" cy="5.7" r="5.5"/><circle cx="-6.7" cy="-2.2" r="5.5"/></g><g transform="translate(64 226) rotate(20)"><circle cx="0" cy="-6" r="4.6"/><circle cx="5.7" cy="-1.9" r="4.6"/><circle cx="3.5" cy="4.9" r="4.6"/><circle cx="-3.5" cy="4.9" r="4.6"/><circle cx="-5.7" cy="-1.9" r="4.6"/></g><g transform="translate(132 292) rotate(-15)"><circle cx="0" cy="-5" r="4"/><circle cx="4.8" cy="-1.5" r="4"/><circle cx="3" cy="4" r="4"/><circle cx="-3" cy="4" r="4"/><circle cx="-4.8" cy="-1.5" r="4"/></g></g><g fill="#2a2622"><circle cx="118" cy="74" r="1.6"/><circle cx="64" cy="226" r="1.4"/><circle cx="132" cy="292" r="1.2"/><circle cx="108" cy="44" r="3"/><circle cx="46" cy="258" r="2.6"/><circle cx="70" cy="354" r="2.6"/><circle cx="182" cy="140" r="2.2"/></g></svg>
 <div class="sec-body">
 <div class="check">
 <div>
@@ -275,17 +327,18 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
 <section class="sec" id="flow"><div class="wrap">
 <div class="sec-v"><h2 class="v">작게 쓰일 만큼</h2><span class="lbl v">진행</span></div>
 <div class="sec-body">
-<div class="flow">
-<div><b>一</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
-<div><b>二</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
-<div><b>三</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
-<div><b>四</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
+<div class="flow" id="flow-stones">
+<div><svg class="stone" viewBox="0 0 120 48" aria-hidden="true"><path filter="url(#brush)" d="M8 30 C4 18 20 8 44 7 C70 6 96 9 108 20 C116 30 98 38 70 40 C40 42 12 40 8 30 Z"/></svg><b>一</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
+<div><svg class="stone" viewBox="0 0 120 48" aria-hidden="true"><path filter="url(#brush)" d="M10 26 C8 14 30 6 56 8 C82 10 112 14 110 26 C108 37 80 41 54 40 C28 39 12 36 10 26 Z"/></svg><b>二</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div><svg class="stone" viewBox="0 0 120 48" aria-hidden="true"><path filter="url(#brush)" d="M6 24 C10 12 34 6 60 6 C88 6 110 16 106 28 C102 38 74 42 48 40 C22 38 4 34 6 24 Z"/></svg><b>三</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div><svg class="stone" viewBox="0 0 120 48" aria-hidden="true"><path filter="url(#brush)" d="M12 28 C6 16 26 9 50 8 C78 7 104 12 110 22 C114 32 92 40 64 41 C38 42 16 38 12 28 Z"/></svg><b>四</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
 </div>
 <div class="who"><p><b>강훈민</b>존슨거라지 대표<br>동국대학교 전자공학과 졸업 · 현대정보기술(현 롯데정보통신) 메디컬개발팀 · 서울아산병원 등 병원 시스템 개발</p><a class="tl" href="../about/">대표 소개</a></div>
 </div>
 </div></section>
 
 <section class="contact" id="contact"><div class="wrap">
+<svg class="ill moon" viewBox="0 0 300 170" aria-hidden="true"><defs><mask id="crescent"><rect width="300" height="170" fill="#fff"/><circle cx="76" cy="70" r="44" fill="#000"/></mask></defs><circle cx="60" cy="80" r="46" fill="#2a2622" fill-opacity=".12" mask="url(#crescent)" filter="url(#wash)"/><g class="birds ink" filter="url(#brush)" stroke-width="2.4" opacity=".55"><path d="M172 70 q9 -9 17 0 q8 -9 17 0"/><path d="M214 92 q7 -7 13 0 q6 -7 13 0"/><path d="M196 116 q5 -5 10 0 q5 -5 10 0"/></g></svg>
 <div class="contact-l">
 <p>구리·남양주는 직접 찾아뵙고,<br>그 밖은 원격으로 이야기 나눠요.</p>
 <div class="ways">
@@ -426,6 +479,17 @@ footer .wrap{border-top:1px solid var(--line);padding-top:32px}
     if(e.isIntersecting)it.start();else it.stop();
   })},{threshold:0.5});
   items.forEach(function(it){io.observe(it.el)});
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var f=document.getElementById('flow-stones');
+  if(!f||!('IntersectionObserver' in window))return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  f.classList.add('pre');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){f.classList.add('in');io.disconnect()}})},{threshold:.4});
+  io.observe(f);
 })();
 </script>
 </body>
