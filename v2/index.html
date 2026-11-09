@@ -45,9 +45,7 @@ a{color:inherit}
 /* hero */
 .hero{position:relative;overflow:hidden;padding:96px 0 80px}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(201,178,124,.16),rgba(201,178,124,0));pointer-events:none}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line2);border-radius:999px;font-size:13px;color:var(--gold2)}
-.badge i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.hero h1{margin-top:22px;font-size:60px;line-height:1.15;letter-spacing:-.035em;font-weight:800}
+.hero h1{margin-top:0;font-size:60px;line-height:1.15;letter-spacing:-.035em;font-weight:800}
 .hero h1 em{font-style:normal;background:linear-gradient(transparent 70%,rgba(201,178,124,.35) 70%)}
 .hero .lead{margin-top:22px;max-width:620px;font-size:19px;color:var(--sub)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
@@ -61,14 +59,9 @@ a{color:inherit}
 .today li i{grid-row:span 2;width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--gold)}
 .today li b{font-size:15px;font-weight:600}
 .today li span{font-size:13px;color:var(--sub)}
-.today small{display:block;margin-top:12px;font-size:12px;color:var(--mute)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px}
 .btn-gold{background:var(--gold);color:#0b0b0b}
 .btn-line{border:1px solid var(--line2);color:var(--ink);font-weight:600}
-.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:64px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.proof div{background:var(--bg2);padding:22px 24px}
-.proof b{display:block;font-size:30px;line-height:1.2;color:var(--gold2);letter-spacing:-.02em}
-.proof span{display:block;margin-top:6px;font-size:14px;color:var(--sub)}
 
 /* light sections */
 .light{background:var(--paper);color:var(--pink)}
@@ -160,7 +153,6 @@ footer .wrap{padding:28px 24px}
   .hero h1{font-size:40px}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .hero .lead{font-size:17px}
-  .proof{grid-template-columns:1fr;margin-top:40px}
   .sec{padding:64px 0}
   .sec h2{font-size:27px}
   .panel,.check{grid-template-columns:1fr}
@@ -192,9 +184,8 @@ footer .wrap{padding:28px 24px}
 
 <section class="hero"><div class="wrap">
 <div class="hero-grid"><div>
-<span class="badge"><i></i>과장은 빼고, 쓰일 만큼만 만들어요</span>
 <h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
-<p class="lead">멈추는 엑셀, 매일 옮겨 적는 입력, 창고에서 물건 찾기. 매일 반복하는 일을 꼭 필요한 만큼만 프로그램으로 바꿔 드려요.</p>
+<p class="lead">매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
 <div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
 </div>
 <div class="today" aria-label="예시 화면">
@@ -204,13 +195,7 @@ footer .wrap{padding:28px 24px}
 <li><i></i><b>“컵뚜껑 여분 어딨어요?”</b><span>3번 칸 위쪽 · 창고 지도</span></li>
 <li><i></i><b>PC-03 작업 멈춤</b><span>휴대폰으로 알림 보냄</span></li>
 </ul>
-<small>실제 만든 프로그램 세 가지를 하루 장면으로 묶은 예시예요.</small>
 </div>
-</div>
-<div class="proof">
-<div><b>8년치 → 2초</b><span>필터만 걸면 멈추던 고객 엑셀</span></div>
-<div><b>8대 · 3년</b><span>사람 없이 돌린 자동화 장비</span></div>
-<div><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span></div>
 </div>
 </div></section>
 
