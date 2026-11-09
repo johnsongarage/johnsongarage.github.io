@@ -121,8 +121,6 @@ a{color:inherit}
 .result ul{margin:14px 0 0;padding-left:18px}
 .result .btn{margin-top:auto;align-self:flex-start;background:#fff;color:var(--ink)}
 .result .sp{flex:1;min-height:24px}
-.result::after{content:"?";position:absolute;right:30px;bottom:-56px;font-size:260px;line-height:1;font-weight:800;color:rgba(255,255,255,.055);pointer-events:none}
-.result > *{position:relative;z-index:1}
 
 /* flow */
 .step b{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gold-deep)}
@@ -230,12 +228,6 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 </div></div></header>
 
 <main class="wrap">
-<svg class="deco" style="left:-70px;top:470px;width:150px;height:150px" viewBox="0 0 150 150" aria-hidden="true"><rect x="20" y="20" width="110" height="110" rx="34" fill="#e2e1dc"/></svg>
-<svg class="deco d2" style="right:-60px;top:760px;width:120px;height:60px" viewBox="0 0 120 60" aria-hidden="true"><path d="M6 40c14-24 28-24 42 0s28 24 42 0 18-20 24-12" fill="none" stroke="#cfcdc6" stroke-width="8" stroke-linecap="round"/></svg>
-<svg class="deco d3" style="left:-50px;top:1500px;width:90px;height:90px" viewBox="0 0 90 90" aria-hidden="true"><path d="M45 10v70M10 45h70" stroke="#d6d4ce" stroke-width="12" stroke-linecap="round"/></svg>
-<svg class="deco" style="right:-80px;top:2050px;width:170px;height:170px" viewBox="0 0 170 170" aria-hidden="true"><circle cx="85" cy="85" r="70" fill="none" stroke="#dcdad4" stroke-width="16" stroke-dasharray="2 26" stroke-linecap="round"/></svg>
-<svg class="deco d2" style="left:-80px;top:2700px;width:160px;height:160px" viewBox="0 0 160 160" aria-hidden="true"><circle cx="80" cy="80" r="62" fill="#e2e1dc"/><circle cx="80" cy="80" r="26" fill="#efefec"/></svg>
-<svg class="deco d3" style="right:-50px;top:3250px;width:110px;height:110px" viewBox="0 0 110 110" aria-hidden="true"><path d="M55 8l12 34h36l-29 21 11 35-30-21-30 21 11-35L7 42h36z" fill="#e2e1dc"/></svg>
 
 <section class="sec"><div class="bento">
 <div class="card hero c8 r2">
@@ -344,17 +336,16 @@ footer{padding:40px 0 48px;color:var(--mute);font-size:13px;text-align:center}
 <section class="sec" id="flow">
 <div class="sec-h"><h2>작게 시작하고, 쓰일 만큼만</h2><p>상담은 무료예요.</p></div>
 <div class="bento">
-<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><rect x="4" y="8" width="38" height="26" rx="13" fill="#fff" stroke="#141414" stroke-width="2.5"/><path d="M14 33l-3 8 9-7" fill="#fff" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><rect x="20" y="26" width="34" height="22" rx="11" fill="#ffd23f" stroke="#141414" stroke-width="2.5"/><g fill="#141414"><circle cx="30" cy="37" r="2"/><circle cx="37" cy="37" r="2"/><circle cx="44" cy="37" r="2"/></g></svg><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요.</p></div>
-<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><path d="M12 6h34v46l-6-4-5 4-6-4-6 4-5-4-6 4z" fill="#fff" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><path d="M19 17h20M19 25h14" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/><rect x="18" y="32" width="22" height="8" rx="2" fill="#ffd23f"/></svg><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
-<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><rect x="4" y="9" width="50" height="40" rx="6" fill="#fff" stroke="#141414" stroke-width="2.5"/><path d="M4 19h50" stroke="#141414" stroke-width="2.5"/><g fill="#141414"><circle cx="11" cy="14" r="1.6"/><circle cx="17" cy="14" r="1.6"/></g><path d="M20 28l-6 6 6 6M38 28l6 6-6 6" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 27l-6 15" stroke="#f0c419" stroke-width="3" stroke-linecap="round"/></svg><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
-<div class="card step c3"><svg class="si" viewBox="0 0 58 58" aria-hidden="true"><path d="M38 6a12 12 0 0 0-11 16L8 41a5 5 0 0 0 7 7l19-19a12 12 0 0 0 16-11l-7 4-6-3-1-7z" fill="#ffd23f" stroke="#141414" stroke-width="2.5" stroke-linejoin="round"/><circle cx="12" cy="44" r="2" fill="#141414"/></svg><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
+<div class="card step c3"><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요.</p></div>
+<div class="card step c3"><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div class="card step c3"><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div class="card step c3"><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
 </div></section>
 
 <section class="sec" id="contact"><div class="bento">
 <div class="card c12 contact">
 <div><h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
-<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
-<svg class="ring-ph" viewBox="0 0 150 96" aria-hidden="true"><g fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path class="wave" d="M104 30a20 20 0 0 1 0 36"/><path class="wave" d="M116 20a34 34 0 0 1 0 56"/></g><rect x="40" y="8" width="52" height="82" rx="10" fill="#141414"/><rect x="46" y="18" width="40" height="58" rx="4" fill="#ffd23f"/><path d="M58 40c0 10 8 18 18 18l4-5-6-4-3 3c-4-2-7-5-9-9l3-3-4-6z" fill="#141414"/></svg></div>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p></div>
 <div class="ways">
 <a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
 <a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
