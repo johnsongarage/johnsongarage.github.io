@@ -275,7 +275,7 @@ footer .wrap{padding:28px 24px}
 <div class="steps"><div><small>상황</small>여러 직원이 쓰는 시트가 필터만 걸면 한참 멈췄어요.</div><div><small>만든 것</small>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요.</div><div><small>결과</small>8년치 고객 엑셀도 2초 안에 나오고, 직원마다 볼 수 있는 범위를 나눴어요.</div></div>
 <div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
 <div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">데이터 뷰어</span><span style="color: #5f5a4e">샘플 데이터 · 8년치 거래 내역</span></div>
-<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e">전체 항목에서 검색</div>
+<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e; white-space: nowrap; overflow: hidden"><span data-k="qt">전체 항목에서 검색</span><span data-k="timer" style="display: none; margin-left: 10px; padding: 1px 9px; border-radius: 999px; background: #0d0d0d; color: #d8c391; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; vertical-align: 1px"></span></div>
 <div style="overflow-x: auto"><div style="min-width: 400px; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
 <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 7px 10px; background: #0d0d0d; color: #ffffff; border-radius: 6px 6px 0 0"><div>거래처</div><div>품목</div><div style="text-align: right">수량</div><div style="text-align: right">판매단가</div><div style="text-align: right">판매금액</div></div>
 <div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
@@ -423,24 +423,41 @@ footer .wrap{padding:28px 24px}
 
   var sh=document.getElementById('mock-sheet');
   if(sh&&!reduce){
-    var q=$(sh,'q'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=q.textContent,word='거래처 A';
+    var box=sh.firstElementChild,q=$(sh,'q'),qt=$(sh,'qt'),tm=$(sh,'timer'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=qt.textContent,word='거래처 A';
+    sh.style.overflow='hidden';
+    box.style.position='relative';
+    box.style.transition='transform .8s cubic-bezier(.2,.7,.2,1)';
     rws.concat([sum]).forEach(function(e){e.style.transition='opacity .35s, transform .35s'});
     sel.forEach(function(e){e.style.transition='background .25s'});
-    add(sh,runner(function(at){
-      q.textContent=ph;q.style.color='#5f5a4e';
+    function zoom(on){
+      if(on){box.style.transformOrigin=q.offsetLeft+'px '+(q.offsetTop+q.offsetHeight/2)+'px';box.style.transform='scale('+(box.offsetWidth<420?1.45:1.7)+')'}
+      else box.style.transform='none';
+    }
+    add(sh,runner(function(at,every){
+      zoom(false);
+      qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';
       rws.forEach(function(r){r.style.opacity='0';r.style.transform='translateY(4px)'});
       sel.forEach(function(c){c.style.background='transparent'});
       sum.style.opacity='0';
-      var t=700;
-      for(var i=1;i<=word.length;i++)(function(n){at(t+n*130,function(){q.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
-      t+=word.length*130+400;
-      at(t,function(){q.textContent=word});
+      var t=500;
+      at(t,function(){zoom(true)});
+      t+=900;
+      for(var i=1;i<=word.length;i++)(function(n){at(t+n*140,function(){qt.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
+      t+=word.length*140+350;
+      var t0=0;
+      at(t,function(){qt.textContent=word;t0=Date.now();tm.style.display='inline-block';tm.style.background='#0d0d0d';tm.style.color='#d8c391';tm.textContent='0.0초'});
+      for(var k=1;k<20;k++)(function(k){at(t+k*100,function(){tm.textContent=(k/10).toFixed(1)+'초'})})(k);
+      t+=2000;
+      at(t,function(){tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d'});
+      t+=1300;
+      at(t,function(){zoom(false)});
+      t+=500;
       rws.forEach(function(r,i){at(t+i*120,function(){r.style.opacity='1';r.style.transform='none'})});
       t+=rws.length*120+700;
       sel.forEach(function(c,i){at(t+i*350,function(){c.style.background='#efe6cf'})});
       t+=sel.length*350+200;
       at(t,function(){sum.style.opacity='1'});
-      return t+4500;
+      return t+4000;
     }));
   }
 
