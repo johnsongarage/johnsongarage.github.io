@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>존슨거라지 Johnson Garage — 손으로 하던 일, 버튼 하나로 (시안 v4)</title>
+<meta name="description" content="엑셀·창고·장비 확인처럼 매일 반복하는 일을 꼭 필요한 만큼만 프로그램으로 바꿔 드려요.">
+<link rel="canonical" href="https://johnsongarage.github.io/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--sub:#6b6b6b;--mute:#a3a3a3;--line:#e6e6e6;--bg:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;font-weight:300;line-height:1.8;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:300;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+b,strong{font-weight:500}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.brand{font-size:15px;font-weight:400;letter-spacing:.02em}
+.brand span{margin-left:10px;color:var(--mute);font-size:13px;letter-spacing:.14em}
+.nav nav{display:flex;gap:32px;font-size:14px;color:var(--sub)}
+.nav nav a:hover,.tl:hover{color:var(--ink)}
+
+/* type */
+.label{font-size:13px;letter-spacing:.16em;color:var(--mute);font-weight:400}
+.tl{display:inline-block;padding-bottom:2px;border-bottom:1px solid currentColor;font-weight:400}
+.tl.s{color:var(--sub);border-bottom-color:var(--line)}
+
+/* hero */
+.hero{padding:180px 0 200px}
+.hero h1{font-size:76px;line-height:1.15;letter-spacing:-.04em;font-weight:200}
+.hero p{margin-top:40px;font-size:20px;color:var(--sub)}
+.hero .ctas{margin-top:64px;display:flex;gap:40px;font-size:16px}
+
+/* sections */
+.sec{padding:140px 0}
+.sec-h{display:grid;grid-template-columns:200px 1fr;gap:40px;margin-bottom:96px}
+.sec-h h2{font-size:40px;line-height:1.3;letter-spacing:-.03em;font-weight:200}
+
+/* cases */
+.case{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:0 0 120px}
+.case + .case{padding-top:120px;border-top:1px solid var(--line)}
+.case .num{font-size:30px;line-height:1.25;letter-spacing:-.03em;font-weight:200}
+.case .num small{display:block;margin-top:10px;font-size:13px;letter-spacing:.04em;color:var(--mute);font-weight:300}
+.case > div{min-width:0}
+.case h3{font-size:26px;letter-spacing:-.02em;font-weight:300}
+.case p{margin-top:16px;color:var(--sub);max-width:560px}
+.case video{display:block;width:100%;height:auto;margin-top:48px;filter:grayscale(1) contrast(1.05)}
+.case .links{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:32px;font-size:15px}
+.mock{margin-top:48px;max-width:100%;filter:grayscale(1)}
+.mock > div{border:0 !important;border-radius:0 !important;background:#fafafa !important;font-weight:400}
+.mock [style*="min-width: 400px"]{min-width:450px !important}
+
+/* places */
+.places{border-top:1px solid var(--line)}
+.place{display:grid;grid-template-columns:200px 1fr 1fr auto;gap:40px;align-items:baseline;padding:36px 0;border-bottom:1px solid var(--line)}
+.place h3{font-size:17px;font-weight:400}
+.place q{color:var(--ink);quotes:"“" "”"}
+.place p{color:var(--sub);font-size:15px}
+.place a{font-size:14px;white-space:nowrap}
+
+/* check */
+.check{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.check label{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check label:first-child{border-top:1px solid var(--line)}
+.check input{appearance:none;-webkit-appearance:none;flex:none;width:16px;height:16px;margin:6px 0 0;border:1px solid var(--ink);border-radius:0;background:#fff;cursor:pointer}
+.check input:checked{background:var(--ink)}
+.check input:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+.result{position:sticky;top:120px;align-self:start}
+.result .n{font-size:13px;letter-spacing:.06em;color:var(--mute)}
+.result h3{margin-top:14px;font-size:30px;letter-spacing:-.02em;font-weight:200}
+.result p{margin-top:14px;color:var(--sub)}
+.result ul{margin:24px 0 0;padding:0;list-style:none}
+.result li{padding:10px 0;border-top:1px solid var(--line)}
+.result .tl{margin-top:40px}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.flow b{display:block;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:400;color:var(--mute)}
+.flow h3{margin-top:28px;font-size:20px;font-weight:400}
+.flow p{margin-top:8px;color:var(--sub);font-size:15px}
+.who{margin-top:120px;display:grid;grid-template-columns:200px 1fr;gap:40px;font-size:15px;color:var(--sub)}
+.who b{color:var(--ink)}
+.who .tl{margin-top:16px;color:var(--ink)}
+
+/* contact */
+.contact{padding:200px 0 160px}
+.contact h2{font-size:56px;line-height:1.25;letter-spacing:-.04em;font-weight:200}
+.contact > .wrap > p{margin-top:28px;color:var(--sub);font-size:17px}
+.ways{margin-top:80px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.ways a{min-width:0;padding:28px 24px 28px 0}
+.ways a b{display:block;font-size:14px;font-weight:400;color:var(--mute);letter-spacing:.06em}
+.ways a span{display:block;margin-top:8px;font-size:16px;overflow-wrap:anywhere}
+
+footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+.bar{display:none}
+
+@media (max-width:820px){
+  .wrap{padding:0 24px}
+  .nav .wrap{height:60px}
+  .nav nav{display:none}
+  .hero{padding:110px 0 120px}
+  .hero h1{font-size:44px}
+  .hero p{margin-top:28px;font-size:17px}
+  .hero .ctas{margin-top:44px;gap:28px}
+  .sec{padding:90px 0}
+  .sec-h,.case,.who{grid-template-columns:1fr;gap:16px}
+  .sec-h{margin-bottom:56px}
+  .sec-h h2{font-size:30px}
+  .case{padding-bottom:80px}
+  .case + .case{padding-top:80px}
+  .case .num{font-size:26px}
+  .case h3{font-size:22px}
+  .case video,.mock{margin-top:32px}
+  .place{grid-template-columns:1fr;gap:6px;padding:28px 0}
+  .check{grid-template-columns:1fr;gap:48px}
+  .result{position:static}
+  .flow{grid-template-columns:1fr 1fr;gap:40px 24px}
+  .who{margin-top:80px}
+  .contact{padding:120px 0 100px}
+  .contact h2{font-size:34px}
+  .ways{grid-template-columns:1fr 1fr}
+  .ways a{border-bottom:1px solid var(--line);padding:22px 12px 22px 0}
+  body{padding-bottom:64px}
+  .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:0 0 env(safe-area-inset-bottom)}
+  .bar a{display:flex;align-items:center;justify-content:center;height:56px;font-size:14px;font-weight:400;color:var(--sub)}
+  .bar a + a{border-left:1px solid var(--line)}
+  .bar a.main{color:var(--ink);font-weight:500}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+<a class="brand" href="./">Johnson Garage<span>존슨거라지</span></a>
+<nav><a href="#cases">사례</a><a href="#who-for">어떤 곳</a><a href="#check">진단</a><a href="#flow">진행</a><a href="#contact">상담</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<h1>손으로 하던 일,<br>버튼 하나로.</h1>
+<p>매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
+<div class="ctas"><a class="tl" href="#contact">상담하기 →</a><a class="tl s" href="#cases">사례 보기</a></div>
+</div></section>
+
+<section class="sec" id="cases"><div class="wrap">
+<div class="sec-h"><div class="label">사례</div><h2>직접 만들고<br>써 본 것만.</h2></div>
+
+<article class="case" id="case-objetdo">
+<div class="num">사진 1장<small>오브젯도 · 매장·집 정리</small></div>
+<div><h3>선반 하나가 물건 자리 지도로</h3>
+<p>선반 사진을 칸으로 나누고 물건을 적어 두면, 이름·초성·말로 찾아 어느 칸인지 바로 알려 줘요. A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</p>
+<video muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
+<div class="links"><a class="tl" href="https://johnsongarage.github.io/objetdo/start/">자세히 보기 →</a><a class="tl s" href="https://johnsongarage.github.io/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a class="tl s" href="https://johnsongarage.github.io/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a class="tl s" href="../price/">가격</a></div>
+</div>
+</article>
+
+<article class="case" id="case-sheet">
+<div class="num">8년치 → 2초<small>판매·유통 · 엑셀 속도 개선</small></div>
+<div><h3>필터만 걸면 멈추던 고객 엑셀</h3>
+<p>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요. 직원마다 볼 수 있는 범위도 나눴어요.</p>
+<div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">데이터 뷰어</span><span style="color: #5f5a4e">샘플 데이터 · 8년치 거래 내역</span></div>
+<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e; white-space: nowrap; overflow: hidden"><span data-k="qt">전체 항목에서 검색</span><span data-k="timer" style="display: none; margin-left: 10px; padding: 1px 9px; border-radius: 999px; background: #0d0d0d; color: #d8c391; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; vertical-align: 1px"></span></div>
+<div style="overflow-x: auto"><div style="min-width: 400px; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 7px 10px; background: #0d0d0d; color: #ffffff; border-radius: 6px 6px 0 0"><div>거래처</div><div>품목</div><div style="text-align: right">수량</div><div style="text-align: right">판매단가</div><div style="text-align: right">판매금액</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-118</div><div>품목-07</div><div style="text-align: right">15</div><div data-k="sel" style="text-align: right; background: #efe6cf">320,000</div><div style="text-align: right">4,800,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-205</div><div>품목-22</div><div style="text-align: right">67</div><div data-k="sel" style="text-align: right; background: #efe6cf">45,000</div><div style="text-align: right">3,015,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px"><div>거래처 A-092</div><div>품목-03</div><div style="text-align: right">8</div><div data-k="sel" style="text-align: right; background: #efe6cf">510,000</div><div style="text-align: right">4,080,000</div></div>
+</div></div>
+<div data-k="sum" style="align-self: flex-end; background: #0d0d0d; color: #ffffff; border-radius: 6px; padding: 6px 12px; display: flex; gap: 12px; flex-wrap: wrap"><span style="color: #d2cbb8">3칸 선택</span><span>평균 291,667</span><span>합계 875,000</span></div>
+</div></div>
+</div>
+</article>
+
+<article class="case" id="case-monitor">
+<div class="num">8대 · 3년<small>여러 대 PC · 대시보드</small></div>
+<div><h3>한 대가 멈춰도 바로 아는 현황판</h3>
+<p>장비마다 상태를 한 화면에 보여 주고, 문제가 생길 때만 텔레그램으로 알려요. 이 시스템으로 8대를 3년 동안 사람 없이 돌렸어요.</p>
+<div class="mock" id="mock-mon"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">장비 현황</span><span style="color: #5f5a4e" data-k="clock">10:42 기준</span></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">전체</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">6</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">작업 중</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #1d4ed8" data-k="run">3</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">완료</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">2</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">오류</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #c2410c" data-k="err">1</div></div>
+</div>
+<div data-k="alert" style="background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 10px"><span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 전송됨</div>
+<div style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-01</div><div>데이터 수집</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:33:45</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-02</div><div>리포트 생성</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:09:51</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-03</div><div>데이터 수집</div><div style="color: #9a3412" data-k="s3">오류</div><div style="text-align: right" data-k="t">0:19:25</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px"><div style="font-weight: 600">PC-04</div><div>파일 백업</div><div style="color: #5f5a4e">완료</div><div style="text-align: right" data-k="t">10:38:15</div></div>
+</div>
+</div></div>
+</div>
+</article>
+</div></section>
+
+<section class="sec" id="who-for"><div class="wrap">
+<div class="sec-h"><div class="label">어떤 곳</div><h2>이런 곳에서 쓰여요.</h2></div>
+<div class="places">
+<div class="place"><h3>판매·유통 사무실</h3><q>필터만 걸면 엑셀이 멈춰요</q><p>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</p><a class="tl s" href="#case-sheet">사례</a></div>
+<div class="place"><h3>카페·식당·매장</h3><q>사장님, 컵뚜껑 여분 어딨어요?</q><p>선반 사진 한 장으로 물건 자리 지도</p><a class="tl s" href="#case-objetdo">사례</a></div>
+<div class="place"><h3>집 정리·정리수납 업체</h3><q>정리는 했는데 어디 뒀는지 모르겠어요</q><p>정리한 수납장을 검색되는 지도로 인계</p><a class="tl s" href="../price/">가격</a></div>
+<div class="place"><h3>여러 대 PC로 일하는 곳</h3><q>한 대가 멈춰도 한참 뒤에야 알아요</q><p>문제가 생길 때만 휴대폰으로 알림</p><a class="tl s" href="#case-monitor">사례</a></div>
+</div>
+</div></section>
+
+<section class="sec" id="check"><div class="wrap">
+<div class="sec-h"><div class="label">30초 진단</div><h2>우리 일에도<br>맞을까요?</h2></div>
+<div class="check">
+<div>
+<label><input type="checkbox" value="sheet">엑셀이나 공용 시트가 느려서 필터 걸기가 무섭다</label>
+<label><input type="checkbox" value="type">매일 같은 내용을 복사해서 다른 곳에 옮겨 적는다</label>
+<label><input type="checkbox" value="find">창고나 수납장에서 물건 찾느라 시간이 간다</label>
+<label><input type="checkbox" value="ask">직원이 "○○ 어디 있어요?"를 자주 묻는다</label>
+<label><input type="checkbox" value="watch">컴퓨터나 장비를 계속 지켜봐야 해서 자리를 못 뜬다</label>
+<label><input type="checkbox" value="none">잘 모르겠지만 뭔가 번거롭다</label>
+</div>
+<div class="result" aria-live="polite">
+<div class="n" id="r-n">아직 고른 게 없어요</div>
+<h3 id="r-h">해당하는 걸 골라 보세요</h3>
+<p id="r-p">하나만 골라도 괜찮아요.</p>
+<ul id="r-l" hidden></ul>
+<a class="tl" href="#contact">이 내용으로 상담하기 →</a>
+</div>
+</div>
+</div></section>
+
+<section class="sec" id="flow"><div class="wrap">
+<div class="sec-h"><div class="label">진행</div><h2>작게 시작하고,<br>쓰일 만큼만.</h2></div>
+<div class="flow">
+<div><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
+<div><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 어디서 문제가 생기는지 알아요.</p></div>
+</div>
+<div class="who"><div class="label">만드는 사람</div><div><p><b>강훈민</b> · 존슨거라지 대표<br>동국대학교 전자공학과 졸업 · 현대정보기술(현 롯데정보통신) 메디컬개발팀 · 서울아산병원 등 병원 시스템 개발</p><a class="tl" href="../about/">대표 소개 →</a></div></div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+<h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+<div class="ways">
+<a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
+<a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
+<a href="https://ig.me/m/johnsongarage_"><b>인스타 DM</b><span>@johnsongarage_</span></a>
+<a href="mailto:johnsongarage.official@gmail.com"><b>메일</b><span>johnsongarage.official@gmail.com</span></a>
+</div>
+</div></section>
+
+<footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
+
+<nav class="bar" aria-label="빠른 연락">
+<a class="main" href="tel:01032706077">전화</a>
+<a href="sms:01032706077">문자</a>
+<a href="https://ig.me/m/johnsongarage_">DM</a>
+<a href="mailto:johnsongarage.official@gmail.com">메일</a>
+</nav>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===t?'true':'false');document.getElementById(x.getAttribute('aria-controls')).hidden=(x!==t);});
+  });});
+  var M={
+    sheet:['엑셀 속도 개선','쓰던 엑셀 그대로, 몇 년치를 2초 안에 찾게'],
+    type:['업무자동화','매일 옮겨 적는 일을 프로그램이 대신'],
+    find:['오브젯도','선반 사진 한 장으로 물건 자리 지도'],
+    ask:['오브젯도','직원이 묻기 전에 지도를 보고 찾아가게'],
+    watch:['대시보드','문제가 생길 때만 휴대폰으로 알림'],
+    none:['무료 상담','하루 일과를 들려주시면 제일 번거로운 곳을 같이 찾아요']
+  };
+  var boxes=[].slice.call(document.querySelectorAll('.check input'));
+  function upd(){
+    var on=boxes.filter(function(b){return b.checked}).map(function(b){return M[b.value]});
+    var n=document.getElementById('r-n'),h=document.getElementById('r-h'),p=document.getElementById('r-p'),l=document.getElementById('r-l');
+    if(!on.length){n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
+    var seen={},items=on.filter(function(x){if(seen[x[0]])return false;seen[x[0]]=1;return true});
+    n.textContent=on.length+'개 골랐어요';
+    h.textContent=items[0][0]+'부터 시작해 보세요';
+    p.textContent=items.length>1?'고르신 것들은 하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요.':'작게 시작해서 써 보시고 늘려도 돼요.';
+    l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+'</li>'}).join('');l.hidden=false;
+  }
+  boxes.forEach(function(b){b.addEventListener('change',upd)});
+})();
+</script>
+<script>
+/* 사례 영상·화면: 화면에 보일 때만 재생 */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $$(r,k){return [].slice.call(r.querySelectorAll('[data-k="'+k+'"]'))}
+  function $(r,k){return r.querySelector('[data-k="'+k+'"]')}
+  function runner(build){
+    var timers=[],on=false;
+    function at(ms,f){timers.push(setTimeout(function(){if(on)f()},ms))}
+    function every(ms,f){timers.push(setInterval(function(){if(on)f()},ms))}
+    function clear(){timers.forEach(function(t){clearTimeout(t);clearInterval(t)});timers=[]}
+    function loop(){clear();var len=build(at,every);at(len,loop)}
+    return {start:function(){if(on)return;on=true;loop()},stop:function(){on=false;clear()}};
+  }
+  function sec(t){var p=t.split(':').map(Number);return p[0]*3600+p[1]*60+p[2]}
+  function fmt(n){var h=Math.floor(n/3600),m=Math.floor(n/60)%60,s=n%60;return h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+  function add(el,r){r.el=el;items.push(r)}
+  var items=[];
+
+  var vid=document.querySelector('#case-objetdo video');
+  if(vid&&!reduce)add(vid,{start:function(){try{vid.currentTime=0}catch(e){}var p=vid.play();if(p&&p.catch)p.catch(function(){})},stop:function(){vid.pause()}});
+
+  var mon=document.getElementById('mock-mon');
+  if(mon&&!reduce){
+    var clock=$(mon,'clock'),run=$(mon,'run'),err=$(mon,'err'),al=$(mon,'alert'),s3=$(mon,'s3'),ts=$$(mon,'t');
+    var rows=[].slice.call(mon.querySelectorAll('.eq'));
+    var base=ts.map(function(t){return sec(t.textContent)});
+    al.style.transition='background .4s,color .4s,border-color .4s';
+    rows.forEach(function(r){r.style.transition='background .4s'});
+    var errHTML='<span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 ';
+    add(mon,runner(function(at,every){
+      var v=[base[0]-6,base[1]-6,base[2]-4],s=0,broken=false;
+      function draw(){ts[0].textContent=fmt(v[0]);ts[1].textContent=fmt(v[1]);ts[2].textContent=fmt(v[2]);clock.textContent='10:42:'+(s<10?'0':'')+s+' 기준'}
+      run.textContent='4';err.textContent='0';s3.textContent='작업 중';s3.style.color='#1e40af';rows[2].style.background='';
+      al.style.background='#f0f7f1';al.style.color='#166534';al.style.borderColor='#c6e9cf';al.textContent='모든 장비 정상 작동 중';
+      draw();
+      every(1000,function(){s++;v[0]++;v[1]++;if(!broken)v[2]++;draw()});
+      at(4000,function(){broken=true;s3.textContent='오류';s3.style.color='#9a3412';rows[2].style.background='#fff7ed';run.textContent='3';err.textContent='1';
+        al.style.background='#fff7ed';al.style.color='#9a3412';al.style.borderColor='#fed7aa';al.innerHTML=errHTML+'보내는 중…'});
+      at(5300,function(){al.innerHTML=errHTML+'전송됨'});
+      return 10000;
+    }));
+  }
+
+  var sh=document.getElementById('mock-sheet');
+  if(sh&&!reduce){
+    var box=sh.firstElementChild,q=$(sh,'q'),qt=$(sh,'qt'),tm=$(sh,'timer'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=qt.textContent,word='거래처 A';
+    sh.style.overflow='hidden';
+    box.style.position='relative';
+    box.style.transition='transform .8s cubic-bezier(.2,.7,.2,1)';
+    rws.concat([sum]).forEach(function(e){e.style.transition='opacity .35s, transform .35s'});
+    sel.forEach(function(e){e.style.transition='background .25s'});
+    function zoom(on){
+      if(on){box.style.transformOrigin=q.offsetLeft+'px '+(q.offsetTop+q.offsetHeight/2)+'px';box.style.transform='scale('+(box.offsetWidth<420?1.45:1.7)+')'}
+      else box.style.transform='none';
+    }
+    add(sh,runner(function(at,every){
+      zoom(false);
+      qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';
+      rws.forEach(function(r){r.style.opacity='0';r.style.transform='translateY(4px)'});
+      sel.forEach(function(c){c.style.background='transparent'});
+      sum.style.opacity='0';
+      var t=500;
+      at(t,function(){zoom(true)});
+      t+=900;
+      for(var i=1;i<=word.length;i++)(function(n){at(t+n*140,function(){qt.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
+      t+=word.length*140+350;
+      var t0=0;
+      at(t,function(){qt.textContent=word;t0=Date.now();tm.style.display='inline-block';tm.style.background='#0d0d0d';tm.style.color='#d8c391';tm.textContent='0.0초'});
+      for(var k=1;k<20;k++)(function(k){at(t+k*100,function(){tm.textContent=(k/10).toFixed(1)+'초'})})(k);
+      t+=2000;
+      at(t,function(){tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d'});
+      t+=1300;
+      at(t,function(){zoom(false)});
+      t+=500;
+      rws.forEach(function(r,i){at(t+i*120,function(){r.style.opacity='1';r.style.transform='none'})});
+      t+=rws.length*120+700;
+      sel.forEach(function(c,i){at(t+i*350,function(){c.style.background='#efe6cf'})});
+      t+=sel.length*350+200;
+      at(t,function(){sum.style.opacity='1'});
+      return t+4000;
+    }));
+  }
+
+  if(!items.length)return;
+  if(!('IntersectionObserver' in window)){items.forEach(function(it){it.start()});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var it=items.filter(function(x){return x.el===e.target})[0];
+    if(e.isIntersecting)it.start();else it.stop();
+  })},{threshold:0.5});
+  items.forEach(function(it){io.observe(it.el)});
+})();
+</script>
+</body>
+</html>
