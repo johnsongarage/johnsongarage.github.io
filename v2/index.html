@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>존슨거라지 Johnson Garage — 손으로 하던 일, 버튼 하나로 (새 시안)</title>
+<meta name="description" content="엑셀·창고·장비 확인처럼 매일 반복하는 일을 꼭 필요한 만큼만 프로그램으로 바꿔 드려요.">
+<link rel="canonical" href="https://johnsongarage.github.io/">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0b;--bg2:#121211;--line:#262420;--line2:#3a362d;
+  --ink:#f4f1ea;--sub:#b9b2a2;--mute:#8a8373;
+  --gold:#c9b27c;--gold2:#d8c391;--gold-deep:#8c7136;
+  --paper:#f7f6f2;--card:#ffffff;--pline:#e3dfd3;--pink:#141414;--psub:#5f5a4e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+.mono{font-family:'IBM Plex Mono',monospace}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.u{color:var(--gold)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(11,11,11,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-size:18px;letter-spacing:-.01em}
+.brand span{font-size:13px;color:var(--sub);letter-spacing:.12em}
+.nav-links{display:flex;gap:22px;font-size:14px;color:var(--sub)}
+.nav-links a{text-decoration:none}
+.nav-cta{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:14px;text-decoration:none}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 80px}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(201,178,124,.16),rgba(201,178,124,0));pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line2);border-radius:999px;font-size:13px;color:var(--gold2)}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero h1{margin-top:22px;font-size:60px;line-height:1.15;letter-spacing:-.035em;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 70%,rgba(201,178,124,.35) 70%)}
+.hero .lead{margin-top:22px;max-width:620px;font-size:19px;color:var(--sub)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+.today{background:linear-gradient(180deg,#171613,#0f0f0e);border:1px solid var(--line2);border-radius:18px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.today-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--sub)}
+.today-h b{color:var(--ink);font-size:15px}
+.today ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.today li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.today li i{grid-row:span 2;width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--gold)}
+.today li b{font-size:15px;font-weight:600}
+.today li span{font-size:13px;color:var(--sub)}
+.today small{display:block;margin-top:12px;font-size:12px;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px}
+.btn-gold{background:var(--gold);color:#0b0b0b}
+.btn-line{border:1px solid var(--line2);color:var(--ink);font-weight:600}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:64px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.proof div{background:var(--bg2);padding:22px 24px}
+.proof b{display:block;font-size:30px;line-height:1.2;color:var(--gold2);letter-spacing:-.02em}
+.proof span{display:block;margin-top:6px;font-size:14px;color:var(--sub)}
+
+/* light sections */
+.light{background:var(--paper);color:var(--pink)}
+.sec{padding:96px 0}
+.sec + .sec{border-top:1px solid var(--pline)}
+.kicker{font-size:13px;font-weight:700;color:var(--gold-deep);letter-spacing:.06em}
+.sec h2{margin-top:10px;font-size:34px;line-height:1.3;letter-spacing:-.025em}
+.sec .desc{margin-top:12px;color:var(--psub);max-width:640px}
+
+/* industries */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.tab{appearance:none;border:1px solid var(--pline);background:var(--card);color:var(--pink);padding:10px 16px;border-radius:999px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{background:#0b0b0b;color:#fff;border-color:#0b0b0b}
+.panel{margin-top:20px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
+.panel[hidden]{display:none}
+.box{background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.box h3{font-size:20px;letter-spacing:-.01em}
+.quotes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.quotes li{padding:12px 14px;border-radius:10px;background:#f3f1ea;color:#3d3a33}
+.quotes li::before{content:"“";color:var(--gold-deep);font-weight:700;margin-right:2px}
+.quotes li::after{content:"”";color:var(--gold-deep);font-weight:700;margin-left:2px}
+.fix{margin-top:14px;display:flex;flex-direction:column;gap:10px;color:#3d3a33}
+.fix div{display:flex;gap:10px}
+.fix div::before{content:"→";color:var(--gold-deep);font-weight:700}
+.box .more{display:inline-flex;margin-top:18px;font-weight:700;color:var(--gold-deep);text-decoration:none}
+
+/* self check */
+.check{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--card);border:1px solid var(--pline);border-radius:12px;cursor:pointer;margin-bottom:10px}
+.check label:has(input:checked){border-color:var(--gold-deep);background:#fbf8ef}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:#8c7136;flex:none}
+.result{position:sticky;top:84px;background:#0b0b0b;color:var(--ink);border-radius:16px;padding:28px}
+.result .n{font-size:13px;color:var(--gold2)}
+.result h3{margin-top:8px;font-size:22px}
+.result p{margin-top:10px;color:var(--sub)}
+.result ul{margin:14px 0 0;padding-left:18px;color:var(--ink)}
+.result .btn{margin-top:20px}
+
+/* cases */
+.cases{margin-top:32px;display:flex;flex-direction:column;gap:20px}
+.case{display:grid;grid-template-columns:220px 1fr;gap:28px;background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.case .num b{display:block;font-size:44px;line-height:1.05;letter-spacing:-.03em;color:#0b0b0b}
+.case .num span{display:block;margin-top:8px;font-size:14px;color:var(--psub)}
+.case h3{font-size:22px;letter-spacing:-.02em}
+.case .tag{display:inline-block;margin-bottom:8px;padding:2px 10px;border-radius:999px;background:#f3eedf;color:#8c7136;font-size:12px;font-weight:700}
+.case .steps{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.case .steps div{border-top:2px solid var(--pline);padding-top:10px;font-size:15px;color:#3d3a33}
+.case .steps small{display:block;font-size:12px;font-weight:700;color:var(--psub);margin-bottom:2px}
+.case video{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--pline);margin-top:16px;background:#fff}
+.case .links{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}
+.case .links a{font-weight:700;color:var(--gold-deep);text-decoration:none}
+
+/* process + about */
+.flow{margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.flow div{background:var(--card);border:1px solid var(--pline);border-radius:14px;padding:20px}
+.flow b{display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold-deep)}
+.flow h3{margin-top:6px;font-size:17px}
+.flow p{margin-top:6px;font-size:14px;color:var(--psub)}
+.who{margin-top:32px;display:flex;gap:24px;align-items:center;background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.who img{width:92px;height:auto;flex:none}
+.who h3{font-size:20px}
+.who h3 span{margin-left:8px;font-size:15px;color:#8c7136}
+.who p{margin-top:4px;color:var(--psub)}
+.who a{display:inline-flex;margin-top:10px;font-weight:700;color:var(--gold-deep);text-decoration:none}
+
+/* contact */
+.contact{padding:96px 0 120px}
+.contact h2{font-size:40px;line-height:1.25;letter-spacing:-.03em}
+.contact p{margin-top:14px;color:var(--sub)}
+.ways{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ways a{display:flex;flex-direction:column;gap:4px;padding:20px;border:1px solid var(--line2);border-radius:14px;text-decoration:none;background:var(--bg2)}
+.ways a{min-width:0}
+.ways a b{font-size:17px}
+.ways a span{overflow-wrap:anywhere}
+.ways a span{font-size:13px;color:var(--sub)}
+.ways a:first-child{background:var(--gold);color:#0b0b0b;border-color:var(--gold)}
+.ways a:first-child span{color:#3a3020}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.8}
+footer .wrap{padding:28px 24px}
+
+/* mobile contact bar */
+.bar{display:none}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .hero{padding:64px 0 56px}
+  .hero h1{font-size:40px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero .lead{font-size:17px}
+  .proof{grid-template-columns:1fr;margin-top:40px}
+  .sec{padding:64px 0}
+  .sec h2{font-size:27px}
+  .panel,.check{grid-template-columns:1fr}
+  .result{position:static}
+  .case{grid-template-columns:1fr;gap:16px;padding:22px}
+  .case .num b{font-size:36px}
+  .case .steps{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .who{flex-direction:column;align-items:flex-start}
+  .contact h2{font-size:30px}
+  .ways{grid-template-columns:1fr 1fr}
+  body{padding-bottom:72px}
+  .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(11,11,11,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+  .bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;text-decoration:none;font-size:12px;color:var(--sub)}
+  .bar a b{font-size:15px;color:var(--ink)}
+  .bar a.main{background:var(--gold);border-radius:10px}
+  .bar a.main b,.bar a.main{color:#0b0b0b}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+<a class="brand" href="./"><b>Johnson Garage<span class="u">_</span></b><span>존슨거라지</span></a>
+<nav class="nav-links"><a href="#who-for">어떤 곳</a><a href="#check">진단</a><a href="#cases">사례</a><a href="#flow">진행</a></nav>
+<a class="nav-cta" href="#contact">상담하기</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<div class="hero-grid"><div>
+<span class="badge"><i></i>과장은 빼고, 쓰일 만큼만 만들어요</span>
+<h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
+<p class="lead">멈추는 엑셀, 매일 옮겨 적는 입력, 창고에서 물건 찾기. 매일 반복하는 일을 꼭 필요한 만큼만 프로그램으로 바꿔 드려요.</p>
+<div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
+</div>
+<div class="today" aria-label="예시 화면">
+<div class="today-h"><b>오늘 대신 해 준 일</b><span class="mono">예시</span></div>
+<ul>
+<li><i></i><b>8년치 고객 엑셀에서 거래처 검색</b><span class="mono">결과까지 2초</span></li>
+<li><i></i><b>“컵뚜껑 여분 어딨어요?”</b><span>3번 칸 위쪽 · 창고 지도</span></li>
+<li><i></i><b>PC-03 작업 멈춤</b><span>휴대폰으로 알림 보냄</span></li>
+</ul>
+<small>실제 만든 프로그램 세 가지를 하루 장면으로 묶은 예시예요.</small>
+</div>
+</div>
+<div class="proof">
+<div><b>8년치 → 2초</b><span>필터만 걸면 멈추던 고객 엑셀</span></div>
+<div><b>8대 · 3년</b><span>사람 없이 돌린 자동화 장비</span></div>
+<div><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span></div>
+</div>
+</div></section>
+
+<div class="light">
+
+<section class="sec" id="who-for"><div class="wrap">
+<div class="kicker">어떤 곳이세요?</div>
+<h2>하시는 일에 맞춰 보여 드릴게요</h2>
+<p class="desc">같은 프로그램도 일하는 곳마다 쓰는 장면이 달라요. 가장 가까운 곳을 골라 보세요.</p>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" aria-selected="true" aria-controls="p-office" id="t-office">판매·유통 사무실</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-store" id="t-store">카페·식당·매장</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-home" id="t-home">집 정리·정리수납 업체</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-pc" id="t-pc">여러 대 PC로 일하는 곳</button>
+</div>
+
+<div class="panel" role="tabpanel" id="p-office" aria-labelledby="t-office">
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>작년 거래 내역 보려면 파일을 몇 개나 열어야 해요</li><li>필터만 걸면 엑셀이 멈춰요</li><li>직원마다 볼 수 있는 범위를 나누고 싶어요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</div><div>인터넷 없이 직원 PC에서 더블클릭으로</div><div>직원별로 볼 수 있는 범위 나누기</div></div><a class="more" href="#case-sheet">사례: 8년치 엑셀, 2초 →</a></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-store" aria-labelledby="t-store" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>사장님, 컵뚜껑 여분 어딨어요?</li><li>새로 온 직원이 창고에서 한참 헤매요</li><li>있는 줄 모르고 또 샀어요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>선반 사진 한 장을 칸으로 나눠 물건 자리 지도로</div><div>이름·초성·말로 찾으면 어느 칸인지 바로</div><div>A4로 뽑아 창고 벽에 붙여 두기</div></div><a class="more" href="#case-objetdo">사례: 오브젯도 →</a></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-home" aria-labelledby="t-home" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>정리는 해 놨는데 어디 뒀는지 모르겠어요</li><li>통이 다 비슷해서 라벨이 있어도 헷갈려요</li><li>정리해 드린 뒤에 고객님이 다시 물어보세요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>정리된 수납장을 사진으로 남겨 검색되는 지도로</div><div>고객님 폰에 넣어 드리고, 인쇄물도 함께</div><div>정리수납 업체는 고객 인계물로 활용</div></div><a class="more" href="../price/">가격 보기 →</a></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-pc" aria-labelledby="t-pc" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>한 대가 멈춰도 한참 뒤에야 알아요</li><li>화면 지키느라 자리를 못 떠요</li><li>밖에 나가면 불안해요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>장비마다 작업 상태를 한 화면에</div><div>문제가 생길 때만 휴대폰으로 알림</div><div>밖에서도 어디까지 됐는지 확인</div></div><a class="more" href="#case-monitor">사례: 8대 · 3년 무인 운영 →</a></div>
+</div>
+</div></section>
+
+<section class="sec" id="check"><div class="wrap">
+<div class="kicker">30초 진단</div>
+<h2>우리 일에도 맞을까요?</h2>
+<p class="desc">해당하는 것을 눌러 보세요. 무엇부터 하면 좋을지 바로 알려 드려요.</p>
+<div class="check">
+<div>
+<label><input type="checkbox" value="sheet">엑셀이나 공용 시트가 느려서 필터 걸기가 무섭다</label>
+<label><input type="checkbox" value="type">매일 같은 내용을 복사해서 다른 곳에 옮겨 적는다</label>
+<label><input type="checkbox" value="find">창고나 수납장에서 물건 찾느라 시간이 간다</label>
+<label><input type="checkbox" value="ask">직원이 "○○ 어디 있어요?"를 자주 묻는다</label>
+<label><input type="checkbox" value="watch">컴퓨터나 장비를 계속 지켜봐야 해서 자리를 못 뜬다</label>
+<label><input type="checkbox" value="none">잘 모르겠지만 뭔가 번거롭다</label>
+</div>
+<div class="result" aria-live="polite">
+<div class="n" id="r-n">아직 고른 게 없어요</div>
+<h3 id="r-h">해당하는 걸 골라 보세요</h3>
+<p id="r-p">하나만 골라도 괜찮아요.</p>
+<ul id="r-l" hidden></ul>
+<a class="btn btn-gold" href="#contact">이 내용으로 상담하기</a>
+</div>
+</div>
+</div></section>
+
+<section class="sec" id="cases"><div class="wrap">
+<div class="kicker">사례</div>
+<h2>이렇게 바뀌었어요</h2>
+<div class="cases">
+
+<article class="case" id="case-sheet">
+<div class="num"><b>8년치<br>→ 2초</b><span>필터를 걸면 결과가 나오기까지</span></div>
+<div><span class="tag">판매·유통 · 엑셀 속도 개선</span><h3>필터만 걸면 멈추던 고객 엑셀</h3>
+<div class="steps"><div><small>상황</small>여러 직원이 쓰는 시트가 필터만 걸면 한참 멈췄어요.</div><div><small>만든 것</small>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요.</div><div><small>결과</small>8년치 고객 엑셀도 2초 안에 나오고, 직원마다 볼 수 있는 범위를 나눴어요.</div></div></div>
+</article>
+
+<article class="case" id="case-monitor">
+<div class="num"><b>8대 · 3년</b><span>사람 없이 돌린 기간</span></div>
+<div><span class="tag">여러 대 PC · 대시보드</span><h3>한 대가 멈춰도 바로 아는 장비 현황판</h3>
+<div class="steps"><div><small>상황</small>여러 대로 작업을 돌리면, 한 대가 멈춰도 한참 뒤에야 알았어요.</div><div><small>만든 것</small>장비마다 상태를 감지해 한 화면에 보여 주고, 오류가 나면 텔레그램으로 알려요.</div><div><small>결과</small>직접 만든 이 시스템으로 8대를 3년 동안 무인으로 운영했어요.</div></div></div>
+</article>
+
+<article class="case" id="case-objetdo">
+<div class="num"><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span></div>
+<div><span class="tag">매장·집 정리 · 오브젯도</span><h3>찾느라 헤매던 창고 물건</h3>
+<div class="steps"><div><small>상황</small>물건이 많을수록 어디 있는지 찾느라 시간이 가고, 새 직원은 더 헤매요.</div><div><small>만든 것</small>선반 사진을 칸으로 나누고 물건을 적어 두면, 검색 한 번으로 자리를 알려 주는 앱이에요.</div><div><small>결과</small>이름·초성·말로 찾고, A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</div></div>
+<video autoplay muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
+<div class="links"><a href="https://johnsongarage.github.io/objetdo/start/">자세히 보기 →</a><a href="https://johnsongarage.github.io/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a href="https://johnsongarage.github.io/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a href="../price/">가격 보기</a></div></div>
+</article>
+
+</div>
+</div></section>
+
+<section class="sec" id="flow"><div class="wrap">
+<div class="kicker">진행 방식</div>
+<h2>작게 시작하고, 쓰일 만큼만</h2>
+<div class="flow">
+<div><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
+<div><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 쓰다 보면 어디서 문제가 생기는지 알아요.</p></div>
+</div>
+<div class="who"><img src="../images/portrait-ink.png" alt="강훈민 선 드로잉 초상" width="521" height="720"><div><h3>강훈민<span>존슨거라지 대표</span></h3><p>동국대학교 전자공학과 졸업 · 현대정보기술(현 롯데정보통신) 메디컬개발팀 · 서울아산병원 등 병원 시스템 개발</p><a href="../about/">대표 소개 →</a></div></div>
+</div></section>
+
+</div>
+
+<section class="contact" id="contact"><div class="wrap">
+<h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+<div class="ways">
+<a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
+<a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
+<a href="https://ig.me/m/johnsongarage_"><b>인스타 DM</b><span>@johnsongarage_</span></a>
+<a href="mailto:johnsongarage.official@gmail.com"><b>메일</b><span>johnsongarage.official@gmail.com</span></a>
+</div>
+</div></section>
+
+<footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
+
+<nav class="bar" aria-label="빠른 연락">
+<a class="main" href="tel:01032706077"><b>전화</b>바로 통화</a>
+<a href="sms:01032706077"><b>문자</b>남기기</a>
+<a href="https://ig.me/m/johnsongarage_"><b>DM</b>인스타</a>
+<a href="mailto:johnsongarage.official@gmail.com"><b>메일</b>보내기</a>
+</nav>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===t?'true':'false');document.getElementById(x.getAttribute('aria-controls')).hidden=(x!==t);});
+  });});
+  var M={
+    sheet:['엑셀 속도 개선','쓰던 엑셀 그대로, 몇 년치를 2초 안에 찾게'],
+    type:['업무자동화','매일 옮겨 적는 일을 프로그램이 대신'],
+    find:['오브젯도','선반 사진 한 장으로 물건 자리 지도'],
+    ask:['오브젯도','직원이 묻기 전에 지도를 보고 찾아가게'],
+    watch:['대시보드','문제가 생길 때만 휴대폰으로 알림'],
+    none:['무료 상담','하루 일과를 들려주시면 제일 번거로운 곳을 같이 찾아요']
+  };
+  var boxes=[].slice.call(document.querySelectorAll('.check input'));
+  function upd(){
+    var on=boxes.filter(function(b){return b.checked}).map(function(b){return M[b.value]});
+    var n=document.getElementById('r-n'),h=document.getElementById('r-h'),p=document.getElementById('r-p'),l=document.getElementById('r-l');
+    if(!on.length){n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
+    var seen={},items=on.filter(function(x){if(seen[x[0]])return false;seen[x[0]]=1;return true});
+    n.textContent=on.length+'개 골랐어요';
+    h.textContent=items[0][0]+'부터 시작해 보세요';
+    p.textContent=items.length>1?'고르신 것들은 하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요.':'작게 시작해서 써 보시고 늘려도 돼요.';
+    l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+'</li>'}).join('');l.hidden=false;
+  }
+  boxes.forEach(function(b){b.addEventListener('change',upd)});
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){[].forEach.call(document.querySelectorAll('video'),function(v){v.removeAttribute('autoplay');v.pause()})}
+})();
+</script>
+</body>
+</html>
