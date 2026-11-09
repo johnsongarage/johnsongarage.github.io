@@ -265,7 +265,7 @@ footer .wrap{padding:28px 24px}
 <div class="num"><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span></div>
 <div><span class="tag">매장·집 정리 · 오브젯도</span><h3>찾느라 헤매던 창고 물건</h3>
 <div class="steps"><div><small>상황</small>물건이 많을수록 어디 있는지 찾느라 시간이 가고, 새 직원은 더 헤매요.</div><div><small>만든 것</small>선반 사진을 칸으로 나누고 물건을 적어 두면, 검색 한 번으로 자리를 알려 주는 앱이에요.</div><div><small>결과</small>이름·초성·말로 찾고, A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</div></div>
-<video autoplay muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
+<video muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
 <div class="links"><a href="https://johnsongarage.github.io/objetdo/start/">자세히 보기 →</a><a href="https://johnsongarage.github.io/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a href="https://johnsongarage.github.io/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a href="../price/">가격 보기</a></div></div>
 </article>
 
@@ -273,20 +273,20 @@ footer .wrap{padding:28px 24px}
 <div class="num"><b>8대 · 3년</b><span>사람 없이 돌린 기간</span></div>
 <div><span class="tag">여러 대 PC · 대시보드</span><h3>한 대가 멈춰도 바로 아는 장비 현황판</h3>
 <div class="steps"><div><small>상황</small>여러 대로 작업을 돌리면, 한 대가 멈춰도 한참 뒤에야 알았어요.</div><div><small>만든 것</small>장비마다 상태를 감지해 한 화면에 보여 주고, 오류가 나면 텔레그램으로 알려요.</div><div><small>결과</small>직접 만든 이 시스템으로 8대를 3년 동안 무인으로 운영했어요.</div></div>
-<div class="mock"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
-<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">장비 현황</span><span style="color: #5f5a4e">10:42 기준</span></div>
+<div class="mock" id="mock-mon"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">장비 현황</span><span style="color: #5f5a4e" data-k="clock">10:42 기준</span></div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
 <div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">전체</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">6</div></div>
-<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">작업 중</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #1d4ed8">3</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">작업 중</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #1d4ed8" data-k="run">3</div></div>
 <div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">완료</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">2</div></div>
-<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">오류</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #c2410c">1</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">오류</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #c2410c" data-k="err">1</div></div>
 </div>
-<div style="background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 10px"><span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 전송됨</div>
+<div data-k="alert" style="background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 10px"><span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 전송됨</div>
 <div style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
-<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-01</div><div>데이터 수집</div><div style="color: #1e40af">작업 중</div><div style="text-align: right">13:33:45</div></div>
-<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-02</div><div>리포트 생성</div><div style="color: #1e40af">작업 중</div><div style="text-align: right">13:09:51</div></div>
-<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-03</div><div>데이터 수집</div><div style="color: #9a3412">오류</div><div style="text-align: right">0:19:25</div></div>
-<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px"><div style="font-weight: 600">PC-04</div><div>파일 백업</div><div style="color: #5f5a4e">완료</div><div style="text-align: right">10:38:15</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-01</div><div>데이터 수집</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:33:45</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-02</div><div>리포트 생성</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:09:51</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-03</div><div>데이터 수집</div><div style="color: #9a3412" data-k="s3">오류</div><div style="text-align: right" data-k="t">0:19:25</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px"><div style="font-weight: 600">PC-04</div><div>파일 백업</div><div style="color: #5f5a4e">완료</div><div style="text-align: right" data-k="t">10:38:15</div></div>
 </div>
 </div></div>
 </div>
@@ -296,17 +296,17 @@ footer .wrap{padding:28px 24px}
 <div class="num"><b>8년치<br>→ 2초</b><span>필터를 걸면 결과가 나오기까지</span></div>
 <div><span class="tag">판매·유통 · 엑셀 속도 개선</span><h3>필터만 걸면 멈추던 고객 엑셀</h3>
 <div class="steps"><div><small>상황</small>여러 직원이 쓰는 시트가 필터만 걸면 한참 멈췄어요.</div><div><small>만든 것</small>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요.</div><div><small>결과</small>8년치 고객 엑셀도 2초 안에 나오고, 직원마다 볼 수 있는 범위를 나눴어요.</div></div>
-<div class="mock"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
 <div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">데이터 뷰어</span><span style="color: #5f5a4e">샘플 데이터 · 8년치 거래 내역</span></div>
-<div style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e">전체 항목에서 검색</div>
+<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e">전체 항목에서 검색</div>
 <div style="overflow-x: auto"><div style="min-width: 400px; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
 <div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 7px 10px; background: #0d0d0d; color: #ffffff; border-radius: 6px 6px 0 0"><div>거래처</div><div>품목</div><div style="text-align: right">수량</div><div style="text-align: right">판매단가</div><div style="text-align: right">판매금액</div></div>
-<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
-<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-118</div><div>품목-07</div><div style="text-align: right">15</div><div style="text-align: right; background: #efe6cf">320,000</div><div style="text-align: right">4,800,000</div></div>
-<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-205</div><div>품목-22</div><div style="text-align: right">67</div><div style="text-align: right; background: #efe6cf">45,000</div><div style="text-align: right">3,015,000</div></div>
-<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px"><div>거래처 A-092</div><div>품목-03</div><div style="text-align: right">8</div><div style="text-align: right; background: #efe6cf">510,000</div><div style="text-align: right">4,080,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-118</div><div>품목-07</div><div style="text-align: right">15</div><div data-k="sel" style="text-align: right; background: #efe6cf">320,000</div><div style="text-align: right">4,800,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-205</div><div>품목-22</div><div style="text-align: right">67</div><div data-k="sel" style="text-align: right; background: #efe6cf">45,000</div><div style="text-align: right">3,015,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px"><div>거래처 A-092</div><div>품목-03</div><div style="text-align: right">8</div><div data-k="sel" style="text-align: right; background: #efe6cf">510,000</div><div style="text-align: right">4,080,000</div></div>
 </div></div>
-<div style="align-self: flex-end; background: #0d0d0d; color: #ffffff; border-radius: 6px; padding: 6px 12px; display: flex; gap: 12px; flex-wrap: wrap"><span style="color: #d2cbb8">3칸 선택</span><span>평균 291,667</span><span>합계 875,000</span></div>
+<div data-k="sum" style="align-self: flex-end; background: #0d0d0d; color: #ffffff; border-radius: 6px; padding: 6px 12px; display: flex; gap: 12px; flex-wrap: wrap"><span style="color: #d2cbb8">3칸 선택</span><span>평균 291,667</span><span>합계 875,000</span></div>
 </div></div>
 </div>
 </article>
@@ -375,7 +375,82 @@ footer .wrap{padding:28px 24px}
     l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+'</li>'}).join('');l.hidden=false;
   }
   boxes.forEach(function(b){b.addEventListener('change',upd)});
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){[].forEach.call(document.querySelectorAll('video'),function(v){v.removeAttribute('autoplay');v.pause()})}
+})();
+</script>
+<script>
+/* 사례 영상·화면: 화면에 보일 때만 재생 */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $$(r,k){return [].slice.call(r.querySelectorAll('[data-k="'+k+'"]'))}
+  function $(r,k){return r.querySelector('[data-k="'+k+'"]')}
+  function runner(build){
+    var timers=[],on=false;
+    function at(ms,f){timers.push(setTimeout(function(){if(on)f()},ms))}
+    function every(ms,f){timers.push(setInterval(function(){if(on)f()},ms))}
+    function clear(){timers.forEach(function(t){clearTimeout(t);clearInterval(t)});timers=[]}
+    function loop(){clear();var len=build(at,every);at(len,loop)}
+    return {start:function(){if(on)return;on=true;loop()},stop:function(){on=false;clear()}};
+  }
+  function sec(t){var p=t.split(':').map(Number);return p[0]*3600+p[1]*60+p[2]}
+  function fmt(n){var h=Math.floor(n/3600),m=Math.floor(n/60)%60,s=n%60;return h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+  function add(el,r){r.el=el;items.push(r)}
+  var items=[];
+
+  var vid=document.querySelector('#case-objetdo video');
+  if(vid&&!reduce)add(vid,{start:function(){try{vid.currentTime=0}catch(e){}var p=vid.play();if(p&&p.catch)p.catch(function(){})},stop:function(){vid.pause()}});
+
+  var mon=document.getElementById('mock-mon');
+  if(mon&&!reduce){
+    var clock=$(mon,'clock'),run=$(mon,'run'),err=$(mon,'err'),al=$(mon,'alert'),s3=$(mon,'s3'),ts=$$(mon,'t');
+    var rows=[].slice.call(mon.querySelectorAll('.eq'));
+    var base=ts.map(function(t){return sec(t.textContent)});
+    al.style.transition='background .4s,color .4s,border-color .4s';
+    rows.forEach(function(r){r.style.transition='background .4s'});
+    var errHTML='<span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 ';
+    add(mon,runner(function(at,every){
+      var v=[base[0]-6,base[1]-6,base[2]-4],s=0,broken=false;
+      function draw(){ts[0].textContent=fmt(v[0]);ts[1].textContent=fmt(v[1]);ts[2].textContent=fmt(v[2]);clock.textContent='10:42:'+(s<10?'0':'')+s+' 기준'}
+      run.textContent='4';err.textContent='0';s3.textContent='작업 중';s3.style.color='#1e40af';rows[2].style.background='';
+      al.style.background='#f0f7f1';al.style.color='#166534';al.style.borderColor='#c6e9cf';al.textContent='모든 장비 정상 작동 중';
+      draw();
+      every(1000,function(){s++;v[0]++;v[1]++;if(!broken)v[2]++;draw()});
+      at(4000,function(){broken=true;s3.textContent='오류';s3.style.color='#9a3412';rows[2].style.background='#fff7ed';run.textContent='3';err.textContent='1';
+        al.style.background='#fff7ed';al.style.color='#9a3412';al.style.borderColor='#fed7aa';al.innerHTML=errHTML+'보내는 중…'});
+      at(5300,function(){al.innerHTML=errHTML+'전송됨'});
+      return 10000;
+    }));
+  }
+
+  var sh=document.getElementById('mock-sheet');
+  if(sh&&!reduce){
+    var q=$(sh,'q'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=q.textContent,word='거래처 A';
+    rws.concat([sum]).forEach(function(e){e.style.transition='opacity .35s, transform .35s'});
+    sel.forEach(function(e){e.style.transition='background .25s'});
+    add(sh,runner(function(at){
+      q.textContent=ph;q.style.color='#5f5a4e';
+      rws.forEach(function(r){r.style.opacity='0';r.style.transform='translateY(4px)'});
+      sel.forEach(function(c){c.style.background='transparent'});
+      sum.style.opacity='0';
+      var t=700;
+      for(var i=1;i<=word.length;i++)(function(n){at(t+n*130,function(){q.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
+      t+=word.length*130+400;
+      at(t,function(){q.textContent=word});
+      rws.forEach(function(r,i){at(t+i*120,function(){r.style.opacity='1';r.style.transform='none'})});
+      t+=rws.length*120+700;
+      sel.forEach(function(c,i){at(t+i*350,function(){c.style.background='#efe6cf'})});
+      t+=sel.length*350+200;
+      at(t,function(){sum.style.opacity='1'});
+      return t+4500;
+    }));
+  }
+
+  if(!items.length)return;
+  if(!('IntersectionObserver' in window)){items.forEach(function(it){it.start()});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var it=items.filter(function(x){return x.el===e.target})[0];
+    if(e.isIntersecting)it.start();else it.stop();
+  })},{threshold:0.5});
+  items.forEach(function(it){io.observe(it.el)});
 })();
 </script>
 </body>
