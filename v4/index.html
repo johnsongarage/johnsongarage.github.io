@@ -105,6 +105,45 @@ b,strong{font-weight:500}
 .ways a b{display:block;font-size:14px;font-weight:400;color:var(--mute);letter-spacing:.06em}
 .ways a span{display:block;margin-top:8px;font-size:16px;overflow-wrap:anywhere}
 
+/* 선 그림 · 배경 */
+html,body{overflow-x:clip}
+.hero,.sec,.contact{position:relative}
+.hero .wrap,.sec .wrap,.contact .wrap{position:relative;z-index:1}
+.ln{fill:none;stroke:var(--ink);stroke-width:1}
+.draw .r1{stroke-dasharray:none !important;stroke-dashoffset:0 !important;transition:none !important}
+.big{position:absolute;z-index:0;right:max(24px,calc(50% - 600px));top:96px;font-size:300px;line-height:.8;font-weight:100;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px #e2e2e2;pointer-events:none;user-select:none}
+/* 히어로: 버튼 원 */
+.btn-o{position:absolute;right:max(32px,calc(50% - 488px));top:50%;width:300px;height:300px;margin-top:-150px;pointer-events:none}
+.btn-o .r1{transform-origin:150px 150px}
+.js .btn-o .r1{animation:ripple 3.6s cubic-bezier(.2,.6,.3,1) 1s infinite}
+@keyframes ripple{0%{transform:scale(.62);opacity:0}12%{opacity:1}100%{transform:scale(1.25);opacity:0}}
+.js .btn-o .dot{animation:pressdot 3.6s ease 1s infinite;transform-origin:150px 150px}
+@keyframes pressdot{0%,6%{transform:scale(1)}10%{transform:scale(.8)}16%,100%{transform:scale(1)}}
+.hero-grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,transparent calc(50% - 520px),#f2f2f2 calc(50% - 520px),#f2f2f2 calc(50% - 519px),transparent calc(50% - 519px),transparent calc(50% + 519px),#f2f2f2 calc(50% + 519px),#f2f2f2 calc(50% + 520px),transparent calc(50% + 520px))}
+/* 선이 그려짐 */
+.draw path,.draw circle,.draw line,.draw rect,.draw polyline{stroke-dasharray:1;stroke-dashoffset:0}
+.js .draw:not(.on) path,.js .draw:not(.on) circle,.js .draw:not(.on) line,.js .draw:not(.on) rect,.js .draw:not(.on) polyline{stroke-dashoffset:1}
+.js .draw path,.js .draw circle,.js .draw line,.js .draw rect,.js .draw polyline{transition:stroke-dashoffset 1.6s cubic-bezier(.6,.05,.3,1)}
+/* 세로 축(척추) */
+.spine{position:absolute;z-index:2;left:calc(50% - 516px);width:1px;background:var(--ink);transform-origin:top;transform:scaleY(0);pointer-events:none}
+.sec-h .label{position:relative}
+.sec-h .label::before{content:"";position:absolute;left:-28px;top:.55em;width:7px;height:7px;margin-left:-3px;border:1px solid var(--ink);border-radius:50%;background:#fff;transition:background .4s}
+.sec-h.on .label::before{background:var(--ink)}
+/* 업종 픽토그램 */
+.place{grid-template-columns:200px 1fr 1fr auto}
+.place h3{display:flex;align-items:center;gap:16px}
+.pic{flex:none;width:44px;height:44px}
+/* 진행 선 */
+.flow{position:relative;padding-top:44px}
+.tline{position:absolute;left:0;right:0;top:0;height:16px;width:100%;overflow:visible}
+/* 연락: 누르는 원 */
+.contact .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+.contact .wrap > .ways{grid-column:1 / -1}
+.callbtn{grid-column:2;grid-row:1 / span 2;align-self:center;display:grid;place-items:center;width:200px;height:200px;border:1px solid var(--ink);border-radius:50%;font-size:15px;font-weight:400;letter-spacing:.1em;transition:background .35s,color .35s}
+.callbtn:hover,.callbtn:focus-visible{background:var(--ink);color:#fff}
+.callbtn small{display:block;margin-top:4px;font-size:11px;letter-spacing:.06em;color:var(--mute);text-align:center}
+@media (max-width:1120px){.spine,.sec-h .label::before{display:none}}
+@media (prefers-reduced-motion:reduce){.js .btn-o .r1,.js .btn-o .dot{animation:none}.js .draw:not(.on) *{stroke-dashoffset:0 !important}}
 footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
 .bar{display:none}
 
@@ -135,6 +174,12 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
   .ways{grid-template-columns:1fr 1fr}
   .ways a{border-bottom:1px solid var(--line);padding:22px 12px 22px 0}
   body{padding-bottom:64px}
+  .btn-o{position:relative;right:auto;top:auto;margin:56px 0 0 auto;width:180px;height:180px;display:block}
+  .big{font-size:170px;top:64px;right:16px}
+  .contact .wrap{grid-template-columns:1fr}
+  .callbtn{grid-column:1;grid-row:auto;justify-self:end;width:150px;height:150px}
+  .place h3{gap:12px}
+  .pic{width:36px;height:36px}
   .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:0 0 env(safe-area-inset-bottom)}
   .bar a{display:flex;align-items:center;justify-content:center;height:56px;font-size:14px;font-weight:400;color:var(--sub)}
   .bar a + a{border-left:1px solid var(--line)}
@@ -150,13 +195,14 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
 <nav><a href="#cases">사례</a><a href="#who-for">어떤 곳</a><a href="#check">진단</a><a href="#flow">진행</a><a href="#contact">상담</a></nav>
 </div></header>
 
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap">
 <h1>손으로 하던 일,<br>버튼 하나로.</h1>
 <p>매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
 <div class="ctas"><a class="tl" href="#contact">상담하기 →</a><a class="tl s" href="#cases">사례 보기</a></div>
+<svg class="btn-o draw" viewBox="0 0 300 300" aria-hidden="true"><circle class="ln" pathLength="1" cx="150" cy="150" r="140"/><circle class="ln" pathLength="1" cx="150" cy="150" r="94"/><circle class="ln r1" cx="150" cy="150" r="94" stroke-dasharray="none"/><circle class="dot" cx="150" cy="150" r="5" fill="#111"/><line class="ln" pathLength="1" x1="150" y1="290" x2="150" y2="300"/><text x="150" y="34" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="2" fill="#a3a3a3">PUSH</text></svg>
 </div></section>
 
-<section class="sec" id="cases"><div class="wrap">
+<section class="sec" id="cases"><span class="big" aria-hidden="true">01</span><div class="wrap">
 <div class="sec-h"><div class="label">사례</div><h2>직접 만들고<br>써 본 것만.</h2></div>
 
 <article class="case" id="case-objetdo">
@@ -211,17 +257,17 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
 </article>
 </div></section>
 
-<section class="sec" id="who-for"><div class="wrap">
+<section class="sec" id="who-for"><span class="big" aria-hidden="true">02</span><div class="wrap">
 <div class="sec-h"><div class="label">어떤 곳</div><h2>이런 곳에서 쓰여요.</h2></div>
 <div class="places">
-<div class="place"><h3>판매·유통 사무실</h3><q>필터만 걸면 엑셀이 멈춰요</q><p>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</p><a class="tl s" href="#case-sheet">사례</a></div>
-<div class="place"><h3>카페·식당·매장</h3><q>사장님, 컵뚜껑 여분 어딨어요?</q><p>선반 사진 한 장으로 물건 자리 지도</p><a class="tl s" href="#case-objetdo">사례</a></div>
-<div class="place"><h3>집 정리·정리수납 업체</h3><q>정리는 했는데 어디 뒀는지 모르겠어요</q><p>정리한 수납장을 검색되는 지도로 인계</p><a class="tl s" href="../price/">가격</a></div>
-<div class="place"><h3>여러 대 PC로 일하는 곳</h3><q>한 대가 멈춰도 한참 뒤에야 알아요</q><p>문제가 생길 때만 휴대폰으로 알림</p><a class="tl s" href="#case-monitor">사례</a></div>
+<div class="place"><h3><svg class="pic draw" viewBox="0 0 44 44" aria-hidden="true"><rect class="ln" pathLength="1" x="4" y="7" width="30" height="26"/><path class="ln" pathLength="1" d="M4 15h30M4 23h30M16 7v26"/><circle class="ln" pathLength="1" cx="31" cy="30" r="7"/><path class="ln" pathLength="1" d="M36 35l5 5"/></svg>판매·유통 사무실</h3><q>필터만 걸면 엑셀이 멈춰요</q><p>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</p><a class="tl s" href="#case-sheet">사례</a></div>
+<div class="place"><h3><svg class="pic draw" viewBox="0 0 44 44" aria-hidden="true"><path class="ln" pathLength="1" d="M10 16h22l-3 24H13z"/><path class="ln" pathLength="1" d="M8 12h26v4H8z"/><path class="ln" pathLength="1" d="M17 8c-2-2 2-3 0-6M25 8c-2-2 2-3 0-6"/></svg>카페·식당·매장</h3><q>사장님, 컵뚜껑 여분 어딨어요?</q><p>선반 사진 한 장으로 물건 자리 지도</p><a class="tl s" href="#case-objetdo">사례</a></div>
+<div class="place"><h3><svg class="pic draw" viewBox="0 0 44 44" aria-hidden="true"><rect class="ln" pathLength="1" x="3" y="22" width="18" height="18"/><rect class="ln" pathLength="1" x="23" y="22" width="18" height="18"/><rect class="ln" pathLength="1" x="13" y="4" width="18" height="18"/><path class="ln" pathLength="1" d="M8 30h8M28 30h8M18 12h8"/></svg>집 정리·정리수납 업체</h3><q>정리는 했는데 어디 뒀는지 모르겠어요</q><p>정리한 수납장을 검색되는 지도로 인계</p><a class="tl s" href="../price/">가격</a></div>
+<div class="place"><h3><svg class="pic draw" viewBox="0 0 44 44" aria-hidden="true"><rect class="ln" pathLength="1" x="2" y="10" width="18" height="13"/><rect class="ln" pathLength="1" x="24" y="10" width="18" height="13"/><rect class="ln" pathLength="1" x="13" y="27" width="18" height="13"/><path class="ln" pathLength="1" d="M11 23v3M33 23v3"/><circle cx="40" cy="8" r="2.5" fill="#111"/></svg>여러 대 PC로 일하는 곳</h3><q>한 대가 멈춰도 한참 뒤에야 알아요</q><p>문제가 생길 때만 휴대폰으로 알림</p><a class="tl s" href="#case-monitor">사례</a></div>
 </div>
 </div></section>
 
-<section class="sec" id="check"><div class="wrap">
+<section class="sec" id="check"><span class="big" aria-hidden="true">03</span><div class="wrap">
 <div class="sec-h"><div class="label">30초 진단</div><h2>우리 일에도<br>맞을까요?</h2></div>
 <div class="check">
 <div>
@@ -242,9 +288,9 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
 </div>
 </div></section>
 
-<section class="sec" id="flow"><div class="wrap">
+<section class="sec" id="flow"><span class="big" aria-hidden="true">04</span><div class="wrap">
 <div class="sec-h"><div class="label">진행</div><h2>작게 시작하고,<br>쓰일 만큼만.</h2></div>
-<div class="flow">
+<div class="flow"><svg class="tline draw" viewBox="0 0 1000 16" preserveAspectRatio="none" aria-hidden="true"><line class="ln" pathLength="1" x1="0" y1="8" x2="1000" y2="8"/></svg>
 <div><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
 <div><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
 <div><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
@@ -253,9 +299,10 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
 <div class="who"><div class="label">만드는 사람</div><div><p><b>강훈민</b> · 존슨거라지 대표<br>동국대학교 전자공학과 졸업 · 현대정보기술(현 롯데정보통신) 메디컬개발팀 · 서울아산병원 등 병원 시스템 개발</p><a class="tl" href="../about/">대표 소개 →</a></div></div>
 </div></section>
 
-<section class="contact" id="contact"><div class="wrap">
+<section class="contact" id="contact"><span class="big" aria-hidden="true">05</span><div class="wrap">
 <h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
 <p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+<a class="callbtn" href="tel:01032706077"><span>전화하기<small>버튼 하나로</small></span></a>
 <div class="ways">
 <a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
 <a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
@@ -264,6 +311,7 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
 </div>
 </div></section>
 
+<div class="spine" id="spine" aria-hidden="true"></div>
 <footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
 
 <nav class="bar" aria-label="빠른 연락">
@@ -392,6 +440,24 @@ footer{padding:48px 0 64px;border-top:1px solid var(--line);color:var(--mute);fo
     if(e.isIntersecting)it.start();else it.stop();
   })},{threshold:0.5});
   items.forEach(function(it){io.observe(it.el)});
+})();
+</script>
+<script>
+(function(){
+  var d=document.documentElement;d.classList.add('js');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var draws=[].slice.call(document.querySelectorAll('.draw'));
+  if(reduce||!('IntersectionObserver' in window)){draws.forEach(function(e){e.classList.add('on')})}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.35});draws.forEach(function(e){io.observe(e)})}
+  var sp=document.getElementById('spine'),hero=document.querySelector('.hero'),ct=document.getElementById('contact');
+  var heads=[].slice.call(document.querySelectorAll('.sec-h'));
+  var top0=0,len=1;
+  function measure(){var y=scrollY;top0=hero.getBoundingClientRect().bottom+y-40;len=Math.max(1,ct.getBoundingClientRect().top+y+40-top0);sp.style.top=top0+'px';sp.style.height=len+'px';upd()}
+  function upd(){var mark=scrollY+innerHeight*.6;var p=Math.min(1,Math.max(0,(mark-top0)/len));sp.style.transform='scaleY('+(reduce?1:p)+')';
+    heads.forEach(function(h){var y=h.getBoundingClientRect().top+scrollY;h.classList.toggle('on',mark>y)})}
+  if(reduce){sp.style.transform='scaleY(1)';}
+  measure();addEventListener('resize',measure);addEventListener('load',measure);
+  if(!reduce)addEventListener('scroll',upd,{passive:true});else heads.forEach(function(h){h.classList.add('on')});
 })();
 </script>
 </body>

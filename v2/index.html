@@ -147,6 +147,36 @@ footer .wrap{padding:28px 24px}
 
 /* mobile contact bar */
 .bar{display:none}
+/* 도면 그림 */
+.hero{background:radial-gradient(900px 500px at 78% 30%,rgba(201,178,124,.07),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px;-webkit-mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent)}
+.hero .wrap{position:relative;z-index:1}
+.g-hero{position:absolute;z-index:0;right:max(-40px,calc(50% - 640px));bottom:-24px;width:560px;height:434px;opacity:.28;pointer-events:none}
+.g-hero .slats{transform:translateY(0)}
+.light{background-image:linear-gradient(#ece8dc 1px,transparent 1px),linear-gradient(90deg,#ece8dc 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px}
+.light .sec .wrap{position:relative}
+.sk{position:absolute;right:24px;top:-8px;pointer-events:none}
+#who-for .sk{width:230px;height:172px}
+#check .sk{width:150px;height:176px;top:-20px}
+#flow .sk{width:200px;height:130px;top:0}
+.ruler{display:block;width:150px;height:14px;margin-top:14px}
+.dwg{display:block;margin-bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--gold-deep)}
+.contact{position:relative;overflow:hidden}
+.contact .wrap{position:relative;z-index:1}
+.g-ct{position:absolute;z-index:0;right:max(-20px,calc(50% - 600px));top:14px;width:310px;height:240px;opacity:.5;pointer-events:none}
+.g-ct .slats{transition:transform 2.4s cubic-bezier(.6,.05,.25,1) .4s}
+.g-ct .light-in{opacity:0;transition:opacity 2s ease .9s}
+.g-ct.open .slats{transform:translateY(-112px)}
+.g-ct.open .light-in{opacity:1}
+.draw path,.draw rect,.draw circle,.draw line{stroke-dasharray:1;stroke-dashoffset:0}
+.js .draw:not(.on) path,.js .draw:not(.on) rect,.js .draw:not(.on) circle,.js .draw:not(.on) line{stroke-dashoffset:1}
+.js .draw path,.js .draw rect,.js .draw circle,.js .draw line{transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.3,1)}
+.draw [fill]:not([fill="none"]),.draw text{transition:opacity .6s 1.2s}
+.js .draw:not(.on) [fill]:not([fill="none"]),.js .draw:not(.on) text{opacity:0}
+.js .g-hero .bp *{stroke-dasharray:1;animation:bpdraw 2.6s cubic-bezier(.6,.05,.3,1) both}
+@keyframes bpdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (max-width:980px){.g-hero{opacity:.16;width:420px;height:326px}.sk{display:none}}
+@media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-hero .bp *{animation:none}.g-ct .slats{transition:none}}
 @media (max-width:760px){
   .nav-links{display:none}
   .hero{padding:64px 0 56px}
@@ -159,6 +189,9 @@ footer .wrap{padding:28px 24px}
   .result{position:static}
   .case{grid-template-columns:1fr;gap:16px;padding:22px}
   .case .num b{font-size:36px}
+  .g-hero{right:-120px;bottom:-40px;opacity:.12}
+  .g-ct{width:240px;height:186px;top:20px;right:-60px;opacity:.35}
+  .ruler{width:120px}
   .case .steps{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr 1fr}
   .who{flex-direction:column;align-items:flex-start}
@@ -182,7 +215,15 @@ footer .wrap{padding:28px 24px}
 <a class="nav-cta" href="#contact">상담하기</a>
 </div></header>
 
-<section class="hero"><div class="wrap">
+<section class="hero"><svg class="g-hero" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-hero"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-hero" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
+<g class="bp" fill="none" stroke="#c9b27c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M0 280 H400"/>
+<path d="M50 298 H350 M50 292 v12 M350 292 v12" stroke-width="1"/><path d="M366 106 V280 M360 106 h12 M360 280 h12" stroke-width="1"/>
+</g>
+<rect x="111" y="151" width="178" height="129" fill="url(#glow-g-hero)" class="light-in"/>
+<g clip-path="url(#door-g-hero)"><g class="slats"><rect x="111" y="151" width="178" height="129" fill="#141310"/><g fill="none" stroke="#c9b27c" stroke-width="1.2" opacity=".75"><line x1="112" y1="166" x2="288" y2="166"/><line x1="112" y1="180" x2="288" y2="180"/><line x1="112" y1="194" x2="288" y2="194"/><line x1="112" y1="208" x2="288" y2="208"/><line x1="112" y1="222" x2="288" y2="222"/><line x1="112" y1="236" x2="288" y2="236"/><line x1="112" y1="250" x2="288" y2="250"/><line x1="112" y1="264" x2="288" y2="264"/><line x1="112" y1="278" x2="288" y2="278"/></g><rect x="186" y="262" width="28" height="6" rx="2" fill="none" stroke="#c9b27c" stroke-width="1.2"/></g></g>
+<g font-family="IBM Plex Mono,monospace" fill="#c9b27c"><text x="200" y="138" text-anchor="middle" font-size="11" letter-spacing="3">JOHNSON GARAGE_</text><text x="200" y="309" text-anchor="middle" font-size="9" letter-spacing="2" opacity=".7">DWG-001 · 1:50</text></g>
+</svg><div class="wrap">
 <div class="hero-grid"><div>
 <h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
 <p class="lead">매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
@@ -202,6 +243,7 @@ footer .wrap{padding:28px 24px}
 <div class="light">
 
 <section class="sec" id="who-for"><div class="wrap">
+<svg class="sk draw" viewBox="0 0 240 180" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 48 H220 L210 78 H30 Z"/><path d="M30 78 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0"/><path d="M50 48 L46 78 M90 48 L88 78 M130 48 V78 M170 48 L172 78 M210 48 L214 78"/><path d="M30 92 V170 H210 V92"/><rect x="48" y="110" width="40" height="60"/><circle cx="80" cy="142" r="2"/><rect x="108" y="102" width="86" height="48"/><path d="M151 102 V150"/><path d="M0 170 H240"/><path d="M132 96 L140 110 M168 96 L160 110"/></g><rect x="128" y="110" width="44" height="16" rx="2" fill="#c9b27c"/><text x="150" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="#0b0b0b">OPEN</text></svg>
 <div class="kicker">어떤 곳이세요?</div>
 <h2>하시는 일에 맞춰 보여 드릴게요</h2>
 <p class="desc">같은 프로그램도 일하는 곳마다 쓰는 장면이 달라요. 가장 가까운 곳을 골라 보세요.</p>
@@ -234,6 +276,7 @@ footer .wrap{padding:28px 24px}
 </div></section>
 
 <section class="sec" id="check"><div class="wrap">
+<svg class="sk draw" viewBox="0 0 170 200" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="122" height="170" rx="8"/><rect x="58" y="10" width="50" height="22" rx="6"/><rect x="42" y="62" width="14" height="14"/><rect x="42" y="102" width="14" height="14"/><rect x="42" y="142" width="14" height="14"/><path d="M68 69 H124 M68 109 H112 M68 149 H120"/></g><g fill="none" stroke="#8c7136" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M44 68 l5 6 l10 -12"/><path d="M44 108 l5 6 l10 -12"/></g><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linejoin="round"><path d="M150 40 l14 8 l-44 76 l-14 -8 z"/><path d="M106 116 l-4 18 l18 -10"/></g></svg>
 <div class="kicker">30초 진단</div>
 <h2>우리 일에도 맞을까요?</h2>
 <p class="desc">해당하는 것을 눌러 보세요. 무엇부터 하면 좋을지 바로 알려 드려요.</p>
@@ -262,7 +305,7 @@ footer .wrap{padding:28px 24px}
 <div class="cases">
 
 <article class="case" id="case-objetdo">
-<div class="num"><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span></div>
+<div class="num"><span class="dwg">DWG-002</span><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#8c7136" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
 <div><span class="tag">매장·집 정리 · 오브젯도</span><h3>찾느라 헤매던 창고 물건</h3>
 <div class="steps"><div><small>상황</small>물건이 많을수록 어디 있는지 찾느라 시간이 가고, 새 직원은 더 헤매요.</div><div><small>만든 것</small>선반 사진을 칸으로 나누고 물건을 적어 두면, 검색 한 번으로 자리를 알려 주는 앱이에요.</div><div><small>결과</small>이름·초성·말로 찾고, A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</div></div>
 <video muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
@@ -270,7 +313,7 @@ footer .wrap{padding:28px 24px}
 </article>
 
 <article class="case" id="case-sheet">
-<div class="num"><b>8년치<br>→ 2초</b><span>필터를 걸면 결과가 나오기까지</span></div>
+<div class="num"><span class="dwg">DWG-003</span><b>8년치<br>→ 2초</b><span>필터를 걸면 결과가 나오기까지</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#8c7136" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
 <div><span class="tag">판매·유통 · 엑셀 속도 개선</span><h3>필터만 걸면 멈추던 고객 엑셀</h3>
 <div class="steps"><div><small>상황</small>여러 직원이 쓰는 시트가 필터만 걸면 한참 멈췄어요.</div><div><small>만든 것</small>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요.</div><div><small>결과</small>8년치 고객 엑셀도 2초 안에 나오고, 직원마다 볼 수 있는 범위를 나눴어요.</div></div>
 <div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
@@ -289,7 +332,7 @@ footer .wrap{padding:28px 24px}
 </article>
 
 <article class="case" id="case-monitor">
-<div class="num"><b>8대 · 3년</b><span>사람 없이 돌린 기간</span></div>
+<div class="num"><span class="dwg">DWG-004</span><b>8대 · 3년</b><span>사람 없이 돌린 기간</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#8c7136" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
 <div><span class="tag">여러 대 PC · 대시보드</span><h3>한 대가 멈춰도 바로 아는 장비 현황판</h3>
 <div class="steps"><div><small>상황</small>여러 대로 작업을 돌리면, 한 대가 멈춰도 한참 뒤에야 알았어요.</div><div><small>만든 것</small>장비마다 상태를 감지해 한 화면에 보여 주고, 오류가 나면 텔레그램으로 알려요.</div><div><small>결과</small>직접 만든 이 시스템으로 8대를 3년 동안 무인으로 운영했어요.</div></div>
 <div class="mock" id="mock-mon"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
@@ -316,6 +359,7 @@ footer .wrap{padding:28px 24px}
 </div></section>
 
 <section class="sec" id="flow"><div class="wrap">
+<svg class="sk draw" viewBox="0 0 230 150" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 62 H210 V138 H20 Z"/><path d="M20 84 H210"/><path d="M84 62 V44 H146 V62"/><rect x="104" y="78" width="22" height="13" rx="2"/><path d="M48 62 L40 18 a9 9 0 0 1 16 -6 l-2 6 6 4 6 -3 a9 9 0 0 1 -10 14 L62 62"/><path d="M168 62 L176 22 M172 22 h8 l-2 -14 h-4 z"/><path d="M0 138 H230"/></g><rect x="30" y="100" width="40" height="8" rx="2" fill="#c9b27c"/></svg>
 <div class="kicker">진행 방식</div>
 <h2>작게 시작하고, 쓰일 만큼만</h2>
 <div class="flow">
@@ -329,7 +373,15 @@ footer .wrap{padding:28px 24px}
 
 </div>
 
-<section class="contact" id="contact"><div class="wrap">
+<section class="contact" id="contact"><svg class="g-ct" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-ct"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
+<g class="bp" fill="none" stroke="#c9b27c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M0 280 H400"/>
+<path d="M50 298 H350 M50 292 v12 M350 292 v12" stroke-width="1"/><path d="M366 106 V280 M360 106 h12 M360 280 h12" stroke-width="1"/>
+</g>
+<rect x="111" y="151" width="178" height="129" fill="url(#glow-g-ct)" class="light-in"/>
+<g clip-path="url(#door-g-ct)"><g class="slats"><rect x="111" y="151" width="178" height="129" fill="#141310"/><g fill="none" stroke="#c9b27c" stroke-width="1.2" opacity=".75"><line x1="112" y1="166" x2="288" y2="166"/><line x1="112" y1="180" x2="288" y2="180"/><line x1="112" y1="194" x2="288" y2="194"/><line x1="112" y1="208" x2="288" y2="208"/><line x1="112" y1="222" x2="288" y2="222"/><line x1="112" y1="236" x2="288" y2="236"/><line x1="112" y1="250" x2="288" y2="250"/><line x1="112" y1="264" x2="288" y2="264"/><line x1="112" y1="278" x2="288" y2="278"/></g><rect x="186" y="262" width="28" height="6" rx="2" fill="none" stroke="#c9b27c" stroke-width="1.2"/></g></g>
+<g font-family="IBM Plex Mono,monospace" fill="#c9b27c"><text x="200" y="138" text-anchor="middle" font-size="11" letter-spacing="3">JOHNSON GARAGE_</text><text x="200" y="309" text-anchor="middle" font-size="9" letter-spacing="2" opacity=".7">DWG-001 · 1:50</text></g>
+</svg><div class="wrap">
 <h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
 <p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
 <div class="ways">
@@ -468,6 +520,18 @@ footer .wrap{padding:28px 24px}
     if(e.isIntersecting)it.start();else it.stop();
   })},{threshold:0.5});
   items.forEach(function(it){io.observe(it.el)});
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [].forEach.call(document.querySelectorAll('.draw path,.draw rect,.draw circle,.draw line,.g-hero .bp *'),function(e){e.setAttribute('pathLength','1')});
+  var els=[].slice.call(document.querySelectorAll('.draw,.g-ct'));
+  function on(e){e.classList.add(e.classList.contains('g-ct')?'open':'on')}
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(on);return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){on(e.target);io.unobserve(e.target)}})},{threshold:.4});
+  els.forEach(function(e){io.observe(e)});
 })();
 </script>
 </body>
