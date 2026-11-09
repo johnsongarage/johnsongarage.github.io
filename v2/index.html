@@ -43,7 +43,7 @@ a{color:inherit}
 .nav-cta{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:14px;text-decoration:none}
 
 /* hero */
-.hero{position:relative;overflow:hidden;padding:96px 0 80px}
+.hero{position:relative;overflow:hidden;padding:150px 0 96px}
 .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(201,178,124,.16),rgba(201,178,124,0));pointer-events:none}
 .hero h1{margin-top:0;font-size:60px;line-height:1.15;letter-spacing:-.035em;font-weight:800}
 .hero h1 em{font-style:normal;background:linear-gradient(transparent 70%,rgba(201,178,124,.35) 70%)}
@@ -151,19 +151,25 @@ footer .wrap{padding:28px 24px}
 .hero{background:radial-gradient(900px 500px at 78% 30%,rgba(201,178,124,.07),transparent 70%)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px;-webkit-mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent)}
 .hero .wrap{position:relative;z-index:1}
-.g-hero{position:absolute;z-index:0;right:max(-40px,calc(50% - 640px));bottom:-24px;width:560px;height:434px;opacity:.28;pointer-events:none}
-.g-hero .slats{transform:translateY(0)}
+.today{position:relative}
+.g-frame{position:absolute;z-index:-1;left:-66px;right:-66px;top:-118px;bottom:-1px;pointer-events:none;opacity:.42}
+.g-frame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.g-frame polyline{stroke-width:1.3;stroke-dasharray:1;stroke-dashoffset:0}
+.js .g-frame polyline{animation:bpdraw 2.4s cubic-bezier(.6,.05,.3,1) both}
+.g-sign{position:absolute;left:0;right:0;top:66px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;color:#c9b27c}
 .light{background-image:linear-gradient(#ece8dc 1px,transparent 1px),linear-gradient(90deg,#ece8dc 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px}
 .light .sec .wrap{position:relative}
-.sk{position:absolute;right:24px;top:-8px;pointer-events:none}
-#who-for .sk{width:230px;height:172px}
-#check .sk{width:150px;height:176px;top:-20px}
-#flow .sk{width:200px;height:130px;top:0}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.sec-hd > div{min-width:0}
+.sk{flex:none;pointer-events:none;margin-bottom:2px}
+#who-for .sk{width:150px;height:112px}
+#check .sk{width:96px;height:113px}
+#flow .sk{width:150px;height:98px}
 .ruler{display:block;width:150px;height:14px;margin-top:14px}
 .dwg{display:block;margin-bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--gold-deep)}
 .contact{position:relative;overflow:hidden}
 .contact .wrap{position:relative;z-index:1}
-.g-ct{position:absolute;z-index:0;right:max(-20px,calc(50% - 600px));top:14px;width:310px;height:240px;opacity:.5;pointer-events:none}
+.g-ct{flex:none;width:230px;height:178px;opacity:.55;pointer-events:none}
 .g-ct .slats{transition:transform 2.4s cubic-bezier(.6,.05,.25,1) .4s}
 .g-ct .light-in{opacity:0;transition:opacity 2s ease .9s}
 .g-ct.open .slats{transform:translateY(-112px)}
@@ -173,10 +179,10 @@ footer .wrap{padding:28px 24px}
 .js .draw path,.js .draw rect,.js .draw circle,.js .draw line{transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.3,1)}
 .draw [fill]:not([fill="none"]),.draw text{transition:opacity .6s 1.2s}
 .js .draw:not(.on) [fill]:not([fill="none"]),.js .draw:not(.on) text{opacity:0}
-.js .g-hero .bp *{stroke-dasharray:1;animation:bpdraw 2.6s cubic-bezier(.6,.05,.3,1) both}
+
 @keyframes bpdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@media (max-width:980px){.g-hero{opacity:.16;width:420px;height:326px}.sk{display:none}}
-@media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-hero .bp *{animation:none}.g-ct .slats{transition:none}}
+@media (max-width:980px){.g-frame{display:none}.sk{display:none}}
+@media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-frame polyline{animation:none}.g-ct .slats{transition:none}}
 @media (max-width:760px){
   .nav-links{display:none}
   .hero{padding:64px 0 56px}
@@ -189,8 +195,7 @@ footer .wrap{padding:28px 24px}
   .result{position:static}
   .case{grid-template-columns:1fr;gap:16px;padding:22px}
   .case .num b{font-size:36px}
-  .g-hero{right:-120px;bottom:-40px;opacity:.12}
-  .g-ct{width:240px;height:186px;top:20px;right:-60px;opacity:.35}
+  .g-ct{display:none}
   .ruler{width:120px}
   .case .steps{grid-template-columns:1fr}
   .flow{grid-template-columns:1fr 1fr}
@@ -215,21 +220,18 @@ footer .wrap{padding:28px 24px}
 <a class="nav-cta" href="#contact">상담하기</a>
 </div></header>
 
-<section class="hero"><svg class="g-hero" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-hero"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-hero" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
-<g class="bp" fill="none" stroke="#c9b27c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M0 280 H400"/>
-<path d="M50 298 H350 M50 292 v12 M350 292 v12" stroke-width="1"/><path d="M366 106 V280 M360 106 h12 M360 280 h12" stroke-width="1"/>
-</g>
-<rect x="111" y="151" width="178" height="129" fill="url(#glow-g-hero)" class="light-in"/>
-<g clip-path="url(#door-g-hero)"><g class="slats"><rect x="111" y="151" width="178" height="129" fill="#141310"/><g fill="none" stroke="#c9b27c" stroke-width="1.2" opacity=".75"><line x1="112" y1="166" x2="288" y2="166"/><line x1="112" y1="180" x2="288" y2="180"/><line x1="112" y1="194" x2="288" y2="194"/><line x1="112" y1="208" x2="288" y2="208"/><line x1="112" y1="222" x2="288" y2="222"/><line x1="112" y1="236" x2="288" y2="236"/><line x1="112" y1="250" x2="288" y2="250"/><line x1="112" y1="264" x2="288" y2="264"/><line x1="112" y1="278" x2="288" y2="278"/></g><rect x="186" y="262" width="28" height="6" rx="2" fill="none" stroke="#c9b27c" stroke-width="1.2"/></g></g>
-<g font-family="IBM Plex Mono,monospace" fill="#c9b27c"><text x="200" y="138" text-anchor="middle" font-size="11" letter-spacing="3">JOHNSON GARAGE_</text><text x="200" y="309" text-anchor="middle" font-size="9" letter-spacing="2" opacity=".7">DWG-001 · 1:50</text></g>
-</svg><div class="wrap">
+<section class="hero"><div class="wrap">
 <div class="hero-grid"><div>
 <h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
 <p class="lead">매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
 <div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
 </div>
-<div class="today" aria-label="예시 화면">
+<div class="today" aria-label="예시 화면"><div class="g-frame" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><g fill="none" stroke="#c9b27c" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round">
+<polyline vector-effect="non-scaling-stroke" points="-20,300 500,10 1020,300"/>
+<polyline vector-effect="non-scaling-stroke" points="20,278 20,1000"/><polyline vector-effect="non-scaling-stroke" points="980,278 980,1000"/>
+<polyline vector-effect="non-scaling-stroke" points="88,1000 88,214 912,214 912,1000"/>
+<polyline vector-effect="non-scaling-stroke" points="-60,1000 1060,1000"/>
+</g></svg><span class="g-sign">JOHNSON GARAGE_</span></div>
 <div class="today-h"><b>오늘 대신 해 준 일</b><span class="mono">예시</span></div>
 <ul>
 <li><i></i><b>8년치 고객 엑셀에서 거래처 검색</b><span class="mono">결과까지 2초</span></li>
@@ -243,10 +245,10 @@ footer .wrap{padding:28px 24px}
 <div class="light">
 
 <section class="sec" id="who-for"><div class="wrap">
-<svg class="sk draw" viewBox="0 0 240 180" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 48 H220 L210 78 H30 Z"/><path d="M30 78 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0"/><path d="M50 48 L46 78 M90 48 L88 78 M130 48 V78 M170 48 L172 78 M210 48 L214 78"/><path d="M30 92 V170 H210 V92"/><rect x="48" y="110" width="40" height="60"/><circle cx="80" cy="142" r="2"/><rect x="108" y="102" width="86" height="48"/><path d="M151 102 V150"/><path d="M0 170 H240"/><path d="M132 96 L140 110 M168 96 L160 110"/></g><rect x="128" y="110" width="44" height="16" rx="2" fill="#c9b27c"/><text x="150" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="#0b0b0b">OPEN</text></svg>
-<div class="kicker">어떤 곳이세요?</div>
+<div class="sec-hd"><div><div class="kicker">어떤 곳이세요?</div>
 <h2>하시는 일에 맞춰 보여 드릴게요</h2>
-<p class="desc">같은 프로그램도 일하는 곳마다 쓰는 장면이 달라요. 가장 가까운 곳을 골라 보세요.</p>
+<p class="desc">같은 프로그램도 일하는 곳마다 쓰는 장면이 달라요. 가장 가까운 곳을 골라 보세요.</p></div>
+<svg class="sk draw" viewBox="0 0 240 180" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 48 H220 L210 78 H30 Z"/><path d="M30 78 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0 q10 14 20 0"/><path d="M50 48 L46 78 M90 48 L88 78 M130 48 V78 M170 48 L172 78 M210 48 L214 78"/><path d="M30 92 V170 H210 V92"/><rect x="48" y="110" width="40" height="60"/><circle cx="80" cy="142" r="2"/><rect x="108" y="102" width="86" height="48"/><path d="M151 102 V150"/><path d="M0 170 H240"/><path d="M132 96 L140 110 M168 96 L160 110"/></g><rect x="128" y="110" width="44" height="16" rx="2" fill="#c9b27c"/><text x="150" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="#0b0b0b">OPEN</text></svg></div>
 <div class="tabs" role="tablist">
 <button class="tab" role="tab" aria-selected="true" aria-controls="p-office" id="t-office">판매·유통 사무실</button>
 <button class="tab" role="tab" aria-selected="false" aria-controls="p-store" id="t-store">카페·식당·매장</button>
@@ -276,10 +278,10 @@ footer .wrap{padding:28px 24px}
 </div></section>
 
 <section class="sec" id="check"><div class="wrap">
-<svg class="sk draw" viewBox="0 0 170 200" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="122" height="170" rx="8"/><rect x="58" y="10" width="50" height="22" rx="6"/><rect x="42" y="62" width="14" height="14"/><rect x="42" y="102" width="14" height="14"/><rect x="42" y="142" width="14" height="14"/><path d="M68 69 H124 M68 109 H112 M68 149 H120"/></g><g fill="none" stroke="#8c7136" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M44 68 l5 6 l10 -12"/><path d="M44 108 l5 6 l10 -12"/></g><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linejoin="round"><path d="M150 40 l14 8 l-44 76 l-14 -8 z"/><path d="M106 116 l-4 18 l18 -10"/></g></svg>
-<div class="kicker">30초 진단</div>
+<div class="sec-hd"><div><div class="kicker">30초 진단</div>
 <h2>우리 일에도 맞을까요?</h2>
-<p class="desc">해당하는 것을 눌러 보세요. 무엇부터 하면 좋을지 바로 알려 드려요.</p>
+<p class="desc">해당하는 것을 눌러 보세요. 무엇부터 하면 좋을지 바로 알려 드려요.</p></div>
+<svg class="sk draw" viewBox="0 0 170 200" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="122" height="170" rx="8"/><rect x="58" y="10" width="50" height="22" rx="6"/><rect x="42" y="62" width="14" height="14"/><rect x="42" y="102" width="14" height="14"/><rect x="42" y="142" width="14" height="14"/><path d="M68 69 H124 M68 109 H112 M68 149 H120"/></g><g fill="none" stroke="#8c7136" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M44 68 l5 6 l10 -12"/><path d="M44 108 l5 6 l10 -12"/></g><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linejoin="round"><path d="M150 40 l14 8 l-44 76 l-14 -8 z"/><path d="M106 116 l-4 18 l18 -10"/></g></svg></div>
 <div class="check">
 <div>
 <label><input type="checkbox" value="sheet">엑셀이나 공용 시트가 느려서 필터 걸기가 무섭다</label>
@@ -359,9 +361,9 @@ footer .wrap{padding:28px 24px}
 </div></section>
 
 <section class="sec" id="flow"><div class="wrap">
-<svg class="sk draw" viewBox="0 0 230 150" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 62 H210 V138 H20 Z"/><path d="M20 84 H210"/><path d="M84 62 V44 H146 V62"/><rect x="104" y="78" width="22" height="13" rx="2"/><path d="M48 62 L40 18 a9 9 0 0 1 16 -6 l-2 6 6 4 6 -3 a9 9 0 0 1 -10 14 L62 62"/><path d="M168 62 L176 22 M172 22 h8 l-2 -14 h-4 z"/><path d="M0 138 H230"/></g><rect x="30" y="100" width="40" height="8" rx="2" fill="#c9b27c"/></svg>
-<div class="kicker">진행 방식</div>
-<h2>작게 시작하고, 쓰일 만큼만</h2>
+<div class="sec-hd"><div><div class="kicker">진행 방식</div>
+<h2>작게 시작하고, 쓰일 만큼만</h2></div>
+<svg class="sk draw" viewBox="0 0 230 150" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 62 H210 V138 H20 Z"/><path d="M20 84 H210"/><path d="M84 62 V44 H146 V62"/><rect x="104" y="78" width="22" height="13" rx="2"/><path d="M48 62 L40 18 a9 9 0 0 1 16 -6 l-2 6 6 4 6 -3 a9 9 0 0 1 -10 14 L62 62"/><path d="M168 62 L176 22 M172 22 h8 l-2 -14 h-4 z"/><path d="M0 138 H230"/></g><rect x="30" y="100" width="40" height="8" rx="2" fill="#c9b27c"/></svg></div>
 <div class="flow">
 <div><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
 <div><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
@@ -373,17 +375,18 @@ footer .wrap{padding:28px 24px}
 
 </div>
 
-<section class="contact" id="contact"><svg class="g-ct" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-ct"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
+<section class="contact" id="contact"><div class="wrap">
+<div class="sec-hd"><div><h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p></div>
+<svg class="g-ct" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-ct"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
 <g class="bp" fill="none" stroke="#c9b27c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M0 280 H400"/>
+<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M30 280 H370"/>
 <path d="M50 298 H350 M50 292 v12 M350 292 v12" stroke-width="1"/><path d="M366 106 V280 M360 106 h12 M360 280 h12" stroke-width="1"/>
 </g>
 <rect x="111" y="151" width="178" height="129" fill="url(#glow-g-ct)" class="light-in"/>
 <g clip-path="url(#door-g-ct)"><g class="slats"><rect x="111" y="151" width="178" height="129" fill="#141310"/><g fill="none" stroke="#c9b27c" stroke-width="1.2" opacity=".75"><line x1="112" y1="166" x2="288" y2="166"/><line x1="112" y1="180" x2="288" y2="180"/><line x1="112" y1="194" x2="288" y2="194"/><line x1="112" y1="208" x2="288" y2="208"/><line x1="112" y1="222" x2="288" y2="222"/><line x1="112" y1="236" x2="288" y2="236"/><line x1="112" y1="250" x2="288" y2="250"/><line x1="112" y1="264" x2="288" y2="264"/><line x1="112" y1="278" x2="288" y2="278"/></g><rect x="186" y="262" width="28" height="6" rx="2" fill="none" stroke="#c9b27c" stroke-width="1.2"/></g></g>
 <g font-family="IBM Plex Mono,monospace" fill="#c9b27c"><text x="200" y="138" text-anchor="middle" font-size="11" letter-spacing="3">JOHNSON GARAGE_</text><text x="200" y="309" text-anchor="middle" font-size="9" letter-spacing="2" opacity=".7">DWG-001 · 1:50</text></g>
-</svg><div class="wrap">
-<h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
-<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+</svg></div>
 <div class="ways">
 <a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
 <a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
@@ -526,7 +529,7 @@ footer .wrap{padding:28px 24px}
 (function(){
   document.documentElement.classList.add('js');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  [].forEach.call(document.querySelectorAll('.draw path,.draw rect,.draw circle,.draw line,.g-hero .bp *'),function(e){e.setAttribute('pathLength','1')});
+  [].forEach.call(document.querySelectorAll('.draw path,.draw rect,.draw circle,.draw line,.g-frame polyline'),function(e){e.setAttribute('pathLength','1')});
   var els=[].slice.call(document.querySelectorAll('.draw,.g-ct'));
   function on(e){e.classList.add(e.classList.contains('g-ct')?'open':'on')}
   if(reduce||!('IntersectionObserver' in window)){els.forEach(on);return}
