@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>존슨거라지 Johnson Garage · 강훈민 — 업무자동화 · 맞춤 프로그램 개발 (시안 v7)</title>
+<meta name="description" content="카페 창고에서 시럽 여분을 찾느라 헤맬 때, 집 정리 후 건전지를 어디 뒀는지 모를 때, 몇 년치 주문 엑셀이 필터만 걸면 멈출 때. 존슨거라지(Johnson Garage)가 버튼 하나로 바로 찾게 만들어 드려요. 구리·남양주 업무자동화·맞춤 프로그램 개발.">
+<link rel="canonical" href="https://johnsongarage.co.kr/">
+<meta property="og:site_name" content="존슨거라지 Johnson Garage">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://johnsongarage.co.kr/">
+<meta property="og:title" content="존슨거라지 Johnson Garage · 강훈민 — 업무자동화 · 맞춤 프로그램 개발">
+<meta property="og:description" content="시럽 여분은 어느 칸? 건전지는 어디 뒀더라? 필터만 걸면 멈추는 주문 엑셀까지, 버튼 하나로 찾게 해 드려요.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://johnsongarage.co.kr/images/og.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0b;--bg2:#121211;--line:#262420;--line2:#3a362d;
+  --ink:#f4f1ea;--sub:#b9b2a2;--mute:#8a8373;
+  --gold:#c9b27c;--gold2:#d8c391;--gold-deep:#7a622d;
+  --paper:#f7f6f2;--card:#ffffff;--pline:#e3dfd3;--pink:#141414;--psub:#5f5a4e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+.mono{font-family:'IBM Plex Mono',monospace}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.u{color:var(--gold)}
+
+/* 키보드 초점 */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.light :focus-visible{outline-color:var(--gold-deep)}
+.check input:focus-visible{outline-offset:2px}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:#0b0b0b;border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-size:18px;letter-spacing:-.01em}
+.brand span{font-size:13px;color:var(--sub);letter-spacing:.12em}
+.nav-links{display:flex;gap:22px;font-size:14px;color:var(--sub)}
+.nav-links a{text-decoration:none}
+.nav-cta{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:14px;text-decoration:none}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:150px 0 96px}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(closest-side,rgba(201,178,124,.16),rgba(201,178,124,0));pointer-events:none}
+.hero h1{margin-top:0;font-size:60px;line-height:1.15;letter-spacing:-.035em;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 70%,rgba(201,178,124,.35) 70%)}
+.hero .lead{margin-top:22px;max-width:620px;font-size:18px;color:var(--sub)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.id-line{margin-top:10px;font-size:15px;color:var(--gold2)}
+.assure{margin-top:14px;font-size:14px;color:var(--sub)}
+.assure::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;border-radius:50%;background:var(--gold)}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+
+.today{background:linear-gradient(180deg,#171613,#0f0f0e);border:1px solid var(--line2);border-radius:16px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.today-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--sub)}
+.today-h b{color:var(--ink);font-size:15px}
+.today ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.today li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02)}
+.today li i{grid-row:span 2;width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--gold)}
+.today li b{font-size:15px;font-weight:600}
+.today li span{font-size:13px;color:var(--sub)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px}
+.btn-gold{background:var(--gold);color:#0b0b0b}
+.btn-line{border:1px solid var(--line2);color:var(--ink);font-weight:600}
+
+/* light sections */
+.light{background:var(--paper);color:var(--pink)}
+.sec{padding:96px 0}
+.sec + .sec{border-top:1px solid var(--pline)}
+.kicker{font-size:13px;font-weight:700;color:var(--gold-deep);letter-spacing:.06em}
+.sec h2{margin-top:10px;font-size:34px;line-height:1.3;letter-spacing:-.025em}
+.sec .desc{margin-top:12px;color:var(--psub);max-width:640px}
+
+/* industries */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.tab{appearance:none;border:1px solid var(--pline);background:var(--card);color:var(--pink);padding:10px 16px;border-radius:999px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{background:#0b0b0b;color:#fff;border-color:#0b0b0b}
+.panel{margin-top:20px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px}
+.panel[hidden]{display:none}
+.box{background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.box h3{font-size:22px;letter-spacing:-.02em}
+.quotes{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.quotes li{padding:12px 14px;border-radius:10px;background:#f3f1ea;color:#3d3a33}
+.quotes li::before{content:"“";color:var(--gold-deep);font-weight:700;margin-right:2px}
+.quotes li::after{content:"”";color:var(--gold-deep);font-weight:700;margin-left:2px}
+.fix{margin-top:14px;display:flex;flex-direction:column;gap:10px;color:#3d3a33}
+.fix div{display:flex;gap:10px}
+.fix div::before{content:"→";color:var(--gold-deep);font-weight:700}
+.box .more{display:inline-flex;margin-top:18px;font-weight:700;color:var(--gold-deep);text-decoration:none}
+.box .mores{display:flex;flex-wrap:wrap;column-gap:22px}
+
+/* self check */
+.check{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--card);border:1px solid var(--pline);border-radius:10px;cursor:pointer;margin-bottom:10px}
+.check label:has(input:checked){border-color:var(--gold-deep);background:#fbf8ef}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:#7a622d;flex:none}
+.result{position:sticky;top:84px;background:#0b0b0b;color:var(--ink);border-radius:16px;padding:28px}
+.result .n{font-size:13px;color:var(--gold2)}
+.result h3{margin-top:8px;font-size:22px}
+.result p{margin-top:10px;color:var(--sub)}
+.result ul{margin:14px 0 0;padding-left:18px;color:var(--ink)}
+.result .btn{margin-top:20px}
+
+/* cases */
+.cases{margin-top:32px;display:flex;flex-direction:column;gap:20px}
+.case{display:grid;grid-template-columns:220px 1fr;gap:28px;background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.case .num b{display:block;font-size:44px;line-height:1.05;letter-spacing:-.03em;color:#0b0b0b}
+.case .num span{display:block;margin-top:8px;font-size:14px;color:var(--psub)}
+.case h3{font-size:22px;letter-spacing:-.02em}
+.case .tag{display:inline-block;margin-bottom:8px;padding:2px 10px;border-radius:999px;background:#f3eedf;color:#7a622d;font-size:12px;font-weight:700}
+.case .steps{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.case .steps div{border-top:2px solid var(--pline);padding-top:10px;font-size:15px;color:#3d3a33}
+.case .steps small{display:block;font-size:12px;font-weight:700;color:var(--psub);margin-bottom:2px}
+.case > div{min-width:0}
+.case .mock{margin-top:16px;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.case .mock > div{border:1px solid var(--pline)}
+.case video{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--pline);margin-top:16px;background:#fff}
+.case .links{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}
+.case .links a{font-weight:700;color:var(--gold-deep);text-decoration:none}
+
+/* process + about */
+.flow{position:relative;margin-top:32px;padding-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.flow::before{content:"";position:absolute;left:0;right:8px;top:10px;height:1px;background:var(--gold-deep)}
+.flow::after{content:"";position:absolute;right:0;top:6px;border:4.5px solid transparent;border-left:8px solid var(--gold-deep);border-right:0}
+.flow > div{position:relative}
+.flow > div::before{content:"";position:absolute;left:20px;top:-25px;width:1px;height:25px;background:var(--gold-deep)}
+.flow > div::after{content:"";position:absolute;left:17px;top:-23px;width:7px;height:7px;border-radius:50%;background:var(--paper);border:1px solid var(--gold-deep)}
+.flow div{background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:20px}
+.flow b{display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold-deep)}
+.flow h3{margin-top:6px;font-size:18px}
+.flow p{margin-top:6px;font-size:14px;color:var(--psub)}
+.who{margin-top:32px;display:flex;gap:40px;align-items:center;background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.who img{width:150px;height:auto;flex:none}
+.pt{position:relative;flex:none;display:block;width:150px}
+.pt img{display:block}
+.js .pt img{-webkit-mask-image:linear-gradient(172deg,#000 42%,transparent 58%);mask-image:linear-gradient(172deg,#000 42%,transparent 58%);-webkit-mask-size:100% 300%;mask-size:100% 300%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 100%;mask-position:0 100%;transition:-webkit-mask-position 2.6s cubic-bezier(.5,.05,.3,1),mask-position 2.6s cubic-bezier(.5,.05,.3,1)}
+.js .pt.on img{-webkit-mask-position:0 0;mask-position:0 0}
+.pt::after{content:"";position:absolute;left:-8px;right:-8px;top:0;height:1.5px;background:#c9b27c;opacity:0;pointer-events:none}
+.js .pt.on::after{animation:pen 2.2s cubic-bezier(.5,.05,.3,1) .1s}
+@keyframes pen{0%{top:0;opacity:0}8%{opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+@media (prefers-reduced-motion:reduce){.js .pt img{-webkit-mask-image:none;mask-image:none}.js .pt.on::after{animation:none}}
+.who h3{font-size:34px;letter-spacing:-.03em;line-height:1.2}
+.who-k{font-size:13px;font-weight:700;color:var(--gold-deep)}
+.who-lead{margin-top:8px;font-size:18px;color:var(--pink) !important;font-weight:600}
+.who-cv{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px}
+.who-cv li{padding-left:16px;position:relative;color:#3d3a33}
+.who-cv li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--gold-deep)}
+.who h3 span{margin-left:10px;font-size:15px;letter-spacing:0;color:#7a622d}
+.who p{margin-top:4px;color:var(--psub)}
+.who a{display:inline-flex;margin-top:10px;font-weight:700;color:var(--gold-deep);text-decoration:none}
+
+/* contact */
+.contact{padding:96px 0 120px}
+.contact h2{font-size:44px;line-height:1.2;letter-spacing:-.03em}
+.contact p{margin-top:14px;color:var(--sub)}
+.ways{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ways a{display:flex;flex-direction:column;gap:4px;padding:20px;border:1px solid var(--line2);border-radius:16px;text-decoration:none;background:var(--bg2)}
+.ways a{min-width:0}
+.ways a b{font-size:18px}
+.ways a span{overflow-wrap:anywhere}
+.ways a span.mail{overflow-wrap:normal;word-break:normal}
+.ways a span{font-size:13px;color:var(--sub)}
+.ways a:first-child{background:var(--gold);color:#0b0b0b;border-color:var(--gold)}
+.ways a:first-child span{color:#3a3020}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.8}
+footer .wrap{padding:28px 24px}
+
+/* mobile contact bar */
+.bar{display:none}
+.r-strip{display:none}
+.r-strip[hidden]{display:none !important}
+.anchor{display:block;position:relative;top:-72px;visibility:hidden;height:0}
+.promo{margin-top:14px;padding:12px 14px;border:1px dashed #c9b27c;border-radius:10px;font-size:14px;color:var(--psub);background:#fbf8ef}
+.promo a{color:#0b0b0b;font-weight:700}
+#cases{background-color:#121211;background-image:linear-gradient(rgba(201,178,124,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,178,124,.06) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);border-top:0 !important}
+#cases .kicker{color:var(--gold)}
+#cases h2{color:var(--ink)}
+#cases .case{color:var(--pink)}
+#cases > .wrap > .sec-hd :focus-visible,#cases .kicker:focus-visible{outline-color:var(--gold)}
+/* 도면 그림 */
+.hero{background:radial-gradient(900px 500px at 78% 30%,rgba(201,178,124,.07),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px;-webkit-mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent)}
+.hero .wrap{position:relative;z-index:1}
+.today{position:relative}
+.g-frame{position:absolute;z-index:-1;left:-66px;right:-66px;top:-118px;bottom:-1px;pointer-events:none;opacity:.42}
+.g-frame svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.g-frame polyline{stroke-width:1.3;stroke-dasharray:1;stroke-dashoffset:0}
+.js .g-frame polyline{animation:bpdraw 2.4s cubic-bezier(.6,.05,.3,1) both}
+.g-sign{position:absolute;left:0;right:0;top:66px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3em;color:#c9b27c}
+.light{background-image:linear-gradient(#ece8dc 1px,transparent 1px),linear-gradient(90deg,#ece8dc 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px}
+.light .sec .wrap{position:relative}
+.sec-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.sec-hd > div{min-width:0}
+.sk{flex:none;pointer-events:none;margin-bottom:2px}
+#who-for .sk{width:156px;height:112px}
+#check .sk{width:90px;height:112px}
+#flow .sk{width:150px;height:96px}
+.ruler{display:block;width:150px;height:14px;margin-top:14px}
+.case .num .dwg{display:block;margin:0 0 10px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--gold-deep)}
+.contact{position:relative;overflow:hidden}
+.contact .wrap{position:relative;z-index:1}
+.g-ct{flex:none;width:230px;height:178px;opacity:.55;pointer-events:none}
+.g-ct .slats{transition:transform 2.4s cubic-bezier(.6,.05,.25,1) .4s}
+.g-ct .light-in{opacity:0;transition:opacity 2s ease .9s}
+.g-ct.open .slats{transform:translateY(-112px)}
+.g-ct.open .light-in{opacity:1}
+.draw path,.draw rect,.draw circle{stroke-dasharray:1;stroke-dashoffset:0}
+.js .draw:not(.on) path,.js .draw:not(.on) rect,.js .draw:not(.on) circle{stroke-dashoffset:1}
+.js .draw path,.js .draw rect,.js .draw circle{transition:stroke-dashoffset 1.8s cubic-bezier(.6,.05,.3,1)}
+.draw [fill]:not([fill="none"]),.draw text{transition:opacity .6s 1.2s}
+.js .draw:not(.on) [fill]:not([fill="none"]),.js .draw:not(.on) text{opacity:0}
+
+@keyframes bpdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (max-width:980px){.g-frame{display:none}}
+@media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-frame polyline{animation:none}.g-ct .slats{transition:none}}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .hero{padding:64px 0 56px}
+  .hero h1{font-size:40px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero .lead{font-size:16px}
+  .sec{padding:64px 0}
+  .sec h2{font-size:28px}
+  .panel,.check{grid-template-columns:1fr}
+  .result{position:static}
+  .case{grid-template-columns:1fr;gap:16px;padding:22px}
+  .case .num b{font-size:36px}
+  .g-ct{display:none}
+  .ruler{width:120px}
+  .sec-hd{gap:16px}
+  #who-for .sk{width:84px;height:60px}
+  #check .sk{width:48px;height:60px}
+  #flow .sk{width:84px;height:54px}
+  .case .steps{grid-template-columns:1fr}
+  #mock-mon > div{padding:12px !important;font-size:12px !important}
+  #mock-mon .eq{grid-template-columns:42px minmax(0,1fr) 44px 58px !important;gap:6px !important;padding:6px 6px !important}
+  #mock-mon .eq > div{white-space:nowrap}
+  #mock-mon .st{padding:6px 8px !important}
+  .flow{grid-template-columns:1fr 1fr;padding-top:0}
+  .flow::before,.flow::after,.flow > div::before,.flow > div::after{display:none}
+  .who{flex-direction:column;align-items:flex-start}
+  .who h3{font-size:28px}
+  .pt,.who img{width:120px}
+  .contact h2{font-size:28px}
+  .ways{grid-template-columns:1fr 1fr}
+  body{padding-bottom:72px}
+  .r-strip{position:fixed;left:12px;right:12px;bottom:calc(80px + env(safe-area-inset-bottom));z-index:31;display:flex;justify-content:center;align-items:center;gap:6px;min-height:46px;border-radius:10px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s}
+  .r-strip.away{opacity:0;transform:translateY(8px);pointer-events:none}
+  .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(11,11,11,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+  .bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;text-decoration:none;font-size:12px;color:var(--sub)}
+  .bar a b{font-size:15px;color:var(--ink)}
+  .bar a.main{background:var(--gold);border-radius:10px}
+  .bar a.main b,.bar a.main{color:#0b0b0b}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* ===== v7 임팩트 ===== */
+html,body{overflow-x:clip}
+.fx-canvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60}
+.weld{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,#8c7136,#c9b27c 70%,#fff3c4);box-shadow:0 0 8px rgba(255,214,120,.8);pointer-events:none}
+.weld::after{content:"";position:absolute;right:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fff6d6;box-shadow:0 0 10px 3px rgba(255,200,90,.9)}
+/* 첫 화면 내려꽂기 */
+.hero h1 .l1,.hero h1 .l2{display:inline-block}
+.js .hero h1 .l1{animation:swipeIn .42s cubic-bezier(.2,.9,.2,1) .1s both}
+.js .hero h1 .l2{animation:slam .5s cubic-bezier(.55,0,.75,.2) .5s both}
+@keyframes swipeIn{from{transform:translateX(-60px);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
+@keyframes slam{0%{transform:translateY(-120px) scale(1.5);opacity:0}70%{opacity:1}100%{transform:none;opacity:1}}
+.js .hero h1 em{background-size:0 100%;background-repeat:no-repeat;transition:background-size .35s cubic-bezier(.2,.9,.2,1)}
+.js .hero.hit h1 em{background-size:100% 100%}
+.shake{animation:shake .38s cubic-bezier(.36,.07,.19,.97)}
+@keyframes shake{10%{transform:translate(-4px,2px)}20%{transform:translate(5px,-3px)}35%{transform:translate(-5px,1px)}50%{transform:translate(4px,2px)}65%{transform:translate(-2px,-1px)}80%{transform:translate(1px,1px)}100%{transform:none}}
+.ring{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2px solid rgba(255,214,120,.9);pointer-events:none;z-index:5;animation:ring .7s cubic-bezier(.1,.7,.2,1) forwards}
+@keyframes ring{from{transform:scale(.2);opacity:1}to{transform:scale(14);opacity:0;border-width:1px}}
+/* 예시 카드: 셔터 */
+.door-clip{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none;z-index:4}
+.door{position:absolute;inset:0;background:repeating-linear-gradient(180deg,#24221d 0 22px,#1a1915 22px 24px,#2c2a24 24px 26px);border-bottom:6px solid #c9b27c;box-shadow:inset 0 -14px 20px rgba(0,0,0,.5)}
+.door::after{content:"JOHNSON GARAGE_";position:absolute;left:0;right:0;bottom:18px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;color:#c9b27c}
+.js .door{animation:doorUp .9s cubic-bezier(.7,0,.25,1) 1.25s forwards}
+@keyframes doorUp{0%{transform:none}12%{transform:translateY(4%)}100%{transform:translateY(-104%)}}
+.door.gone{display:none}
+/* 사례 숫자 도장 */
+.js .case .num b{opacity:0;transform:scale(2.1) rotate(-6deg)}
+.js .case .num b.stamp{animation:stamp .42s cubic-bezier(.5,0,.8,.3) forwards}
+@keyframes stamp{0%{opacity:0;transform:scale(2.1) rotate(-6deg)}75%{opacity:1}100%{opacity:1;transform:none}}
+/* 섹션 제목 기계식 진입 */
+.js .sec h2,.js .contact h2{clip-path:inset(0 100% 0 0);transform:translateX(-24px)}
+.js .sec h2.in,.js .contact h2.in{clip-path:inset(0 0 0 0);transform:none;transition:clip-path .55s cubic-bezier(.77,0,.18,1),transform .55s cubic-bezier(.77,0,.18,1)}
+.h2box{display:block}
+/* 버튼 손맛 */
+.btn,.nav-cta,.ways a,.bar a.main{transition:transform .12s ease,box-shadow .12s ease}
+.btn-gold:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 #8c7136,0 10px 24px rgba(201,178,124,.35)}
+.btn-gold:active,.nav-cta:active,.ways a:active,.bar a.main:active{transform:translateY(3px);box-shadow:0 0 0 #8c7136}
+/* 진행: 톱니 */
+.gear{position:absolute;top:-6px;left:0;width:34px;height:34px;margin-left:-17px;z-index:2;pointer-events:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+.flow > div{transition:border-color .3s,box-shadow .3s,transform .3s}
+.flow > div.lit{border-color:#7a622d;box-shadow:0 0 0 1px #7a622d,0 10px 24px rgba(122,98,45,.15);transform:translateY(-3px)}
+.flow > div.lit::after{background:#7a622d}
+@media (max-width:760px){.gear{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .js .hero h1 .l1,.js .hero h1 .l2,.js .door,.js .case .num b.stamp{animation:none}
+  .js .hero h1 em{background-size:100% 100%}
+  .door-clip{display:none}
+  .js .case .num b{opacity:1;transform:none}
+  .js .sec h2,.js .contact h2{clip-path:none;transform:none}
+  .shake{animation:none}.gear{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+<a class="brand" href=".././"><b>Johnson Garage<span class="u">_</span></b><span>존슨거라지</span></a>
+<nav class="nav-links"><a href="#who-for">업종별</a><a href="#check">30초 진단</a><a href="#cases">사례</a><a href="#flow">진행 방식</a></nav>
+<a class="nav-cta" href="#contact">무료 상담</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<div class="hero-grid"><div>
+<h1><span class="l1">손으로 하던 일,</span><br><em class="l2">버튼 하나로<span class="dot">.</span></em></h1>
+<p class="lead">자영업 사장님이 매일 반복하는 일을,<br>꼭 필요한 만큼만 프로그램으로 바꿔 드려요.</p>
+<p class="id-line">1인 개발자 강훈민이 직접 만들어요 · 구리·남양주는 찾아가고, 그 밖은 원격으로</p>
+<div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
+<p class="assure">상담은 무료예요 · 어디까지 만들지 정한 뒤에 견적을 드려요</p>
+</div>
+<div class="today" aria-label="예시 화면"><div class="g-frame" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><g fill="none" stroke="#c9b27c" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round">
+<polyline vector-effect="non-scaling-stroke" points="-20,300 500,10 1020,300"/>
+<polyline vector-effect="non-scaling-stroke" points="20,278 20,1000"/><polyline vector-effect="non-scaling-stroke" points="980,278 980,1000"/>
+<polyline vector-effect="non-scaling-stroke" points="88,1000 88,214 912,214 912,1000"/>
+<polyline vector-effect="non-scaling-stroke" points="-60,1000 1060,1000"/>
+</g></svg><span class="g-sign">JOHNSON GARAGE_</span></div>
+<div class="today-h"><b>오늘 대신 해 준 일</b><span class="mono">예시</span></div>
+<ul>
+<li><i></i><b>8년치 고객 엑셀에서 거래처 검색</b><span class="mono">결과까지 2초</span></li>
+<li><i></i><b>“컵뚜껑 여분 어딨어요?”</b><span>3번 칸 위쪽 · 창고 지도</span></li>
+<li><i></i><b>PC-03 작업 멈춤</b><span>휴대폰으로 알림 보냄</span></li>
+</ul>
+</div>
+</div>
+</div></section>
+
+<div class="light">
+
+<section class="sec" id="who-for"><div class="wrap">
+<div class="sec-hd"><div><div class="kicker">어떤 곳이세요?</div>
+<h2>하시는 일에 맞춰 보여 드릴게요</h2>
+<p class="desc">같은 프로그램도 일하는 곳마다 쓰는 장면이 달라요. 가장 가까운 곳을 골라 보세요.</p></div>
+<svg class="sk draw" viewBox="0 0 240 172" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M28 79 V160 M212 79 V160"/><path d="M4 160 H236"/><path d="M44 160 V100 H80 V160"/><circle cx="72" cy="132" r="2"/><path d="M104 96 H196 V140 H104 Z M150 96 V108 M150 126 V140"/><path d="M136 96 L132 110 M164 96 L168 110"/><path d="M24 40 H216 L224 72 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 q-13 14 -26 0 Z"/><path d="M48 40 L42 72 M72 40 L68 72 M96 40 L94 72 M120 40 L120 72 M144 40 L146 72 M168 40 L172 72 M192 40 L198 72"/></g><rect x="124" y="110" width="52" height="16" rx="2" fill="#c9b27c"/><text x="150" y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="#0b0b0b">OPEN</text></svg></div>
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" aria-selected="true" aria-controls="p-office" id="t-office">판매·유통 사무실</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-store" id="t-store">카페·식당·매장</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-home" id="t-home">집 정리·정리수납 업체</button>
+<button class="tab" role="tab" aria-selected="false" aria-controls="p-pc" id="t-pc">여러 대 PC로 일하는 곳</button>
+</div>
+
+<div class="panel" role="tabpanel" id="p-office" aria-labelledby="t-office">
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>작년 거래 내역 보려면 파일을 몇 개나 열어야 해요</li><li>필터만 걸면 엑셀이 멈춰요</li><li>직원마다 볼 수 있는 범위를 나누고 싶어요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</div><div>인터넷 없이 직원 PC에서 더블클릭으로</div><div>직원별로 볼 수 있는 범위 나누기</div></div><div class="mores"><a class="more" href="#case-sheet">사례: 8년치 엑셀, 2초 →</a><a class="more" href="https://excel.johnsongarage.co.kr/">체험: 폴더 속 엑셀에서 그 줄 찾기 →</a></div></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-store" aria-labelledby="t-store" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>사장님, 컵뚜껑 여분 어딨어요?</li><li>새로 온 직원이 창고에서 한참 헤매요</li><li>있는 줄 모르고 또 샀어요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>선반 사진 한 장을 칸으로 나눠 물건 자리 지도로</div><div>이름·초성·말로 찾으면 어느 칸인지 바로</div><div>A4로 뽑아 창고 벽에 붙여 두기</div></div><a class="more" href="#case-objetdo">사례: 오브젯도 →</a></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-home" aria-labelledby="t-home" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>정리는 해 놨는데 어디 뒀는지 모르겠어요</li><li>통이 다 비슷해서 라벨이 있어도 헷갈려요</li><li>정리해 드린 뒤에 고객님이 다시 물어보세요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>정리된 수납장을 사진으로 남겨 검색되는 지도로</div><div>고객님 폰에 넣어 드리고, 인쇄물도 함께</div><div>정리수납 업체는 고객 인계물로 활용</div></div><a class="more" href="#case-objetdo">사례: 오브젯도 →</a></div>
+</div>
+
+<div class="panel" role="tabpanel" id="p-pc" aria-labelledby="t-pc" hidden>
+<div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>한 대가 멈춰도 한참 뒤에야 알아요</li><li>화면 지키느라 자리를 못 떠요</li><li>밖에 나가면 불안해요</li></ul></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>장비마다 작업 상태를 한 화면에</div><div>문제가 생길 때만 휴대폰으로 알림</div><div>밖에서도 어디까지 됐는지 확인</div></div><a class="more" href="#case-monitor">사례: 8대 · 3년 무인 운영 →</a></div>
+</div>
+</div></section>
+
+<section class="sec" id="check"><div class="wrap">
+<div class="sec-hd"><div><div class="kicker">30초 진단</div>
+<h2>우리 일에도 맞을까요?</h2>
+<p class="desc">해당하는 것을 눌러 보세요. 무엇부터 하면 좋을지 바로 알려 드려요.</p></div>
+<svg class="sk draw" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38 14 H18 A8 8 0 0 0 10 22 V136 A8 8 0 0 0 18 144 H102 A8 8 0 0 0 110 136 V22 A8 8 0 0 0 102 14 H82"/><path d="M38 22 V10 A4 4 0 0 1 42 6 H78 A4 4 0 0 1 82 10 V22 Z"/><circle cx="60" cy="13" r="2.5"/><rect x="24" y="44" width="13" height="13" rx="2"/><rect x="24" y="74" width="13" height="13" rx="2"/><rect x="24" y="104" width="13" height="13" rx="2"/><path d="M48 50.5 H94 M48 80.5 H86 M48 110.5 H90"/></g><g fill="none" stroke="#7a622d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M27 50 l3.5 3.5 l6 -7"/><path d="M27 80 l3.5 3.5 l6 -7"/></g></svg></div>
+<div class="check">
+<div>
+<label><input type="checkbox" value="sheet">엑셀이나 공용 시트가 느려서 필터 걸기가 무섭다</label>
+<label><input type="checkbox" value="type">매일 같은 내용을 복사해서 다른 곳에 옮겨 적는다</label>
+<label><input type="checkbox" value="find">창고나 수납장에서 물건 찾느라 시간이&nbsp;간다</label>
+<label><input type="checkbox" value="ask">직원이 “○○ 어디 있어요?”를 자주 묻는다</label>
+<label><input type="checkbox" value="watch">컴퓨터나 장비를 계속 지켜봐야 해서 자리를 못 뜬다</label>
+<label><input type="checkbox" value="none">잘 모르겠지만 뭔가 번거롭다</label>
+</div>
+<div class="result" id="r-res" aria-live="polite">
+<div class="n" id="r-n">아직 고른 게 없어요</div>
+<h3 id="r-h">해당하는 걸 골라 보세요</h3>
+<p id="r-p">하나만 골라도 괜찮아요.</p>
+<ul id="r-l" hidden></ul>
+<a class="btn btn-gold" id="r-cta" href="#contact">무료 상담하기</a>
+</div>
+</div>
+</div></section>
+
+<section class="sec" id="cases"><span id="work" class="anchor"></span><div class="wrap">
+<div class="kicker">사례</div>
+<h2>이렇게 바뀌었어요</h2>
+<div class="cases">
+
+<span id="changgo" class="anchor"></span><article class="case" id="case-objetdo">
+<div class="num"><span class="dwg">DWG-002</span><b>사진 1장</b><span>선반 하나가 물건 자리 지도로</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#7a622d" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
+<div><span class="tag">매장·집 정리 · 오브젯도</span><h3>찾느라 헤매던 창고 물건</h3>
+<div class="steps"><div><small>상황</small>물건이 많을수록 어디 있는지 찾느라 시간이 가고, 새 직원은 더 헤매요.</div><div><small>만든 것</small>선반 사진을 칸으로 나누고 물건을 적어 두면, 검색 한 번으로 자리를 알려 주는 앱이에요.</div><div><small>결과</small>이름·초성·말로 찾고, A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</div></div>
+<video muted loop playsinline preload="metadata" poster="../images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="../images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="../images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
+<div class="links"><a href="https://johnsongarage.co.kr/objetdo/start/">자세히 보기 →</a><a href="https://johnsongarage.co.kr/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a href="https://johnsongarage.co.kr/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a href="../price/">가격 보기</a></div>
+<p id="setup-promo" class="promo" data-until="2027-01-01T00:00:00+09:00">오브젯도 지도, 대신 만들어 드려요 · 원격 3곳 ₩19,000부터 · 구리·남양주 방문도 · 정리수납 업체는 샘플 1곳 무료 (선착순 10곳) <a href="https://ig.me/m/johnsongarage_">DM으로 신청하기</a> · <a href="../price/">가격 보기</a></p><script>(function(){var e=document.getElementById('setup-promo');if(e&&Date.now()>=Date.parse(e.dataset.until))e.remove()})()</script></div>
+</article>
+
+<article class="case" id="case-sheet">
+<div class="num"><span class="dwg">DWG-003</span><b>8년치<br>→ 2초</b><span>필터를 걸면 결과가 나오기까지</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#7a622d" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
+<div><span class="tag">판매·유통 · 엑셀 속도 개선</span><h3>필터만 걸면 멈추던 고객 엑셀</h3>
+<div class="steps"><div><small>상황</small>여러 직원이 쓰는 시트가 필터만 걸면 한참 멈췄어요.</div><div><small>만든 것</small>방법 6가지를 견적과 함께 비교해, 인터넷 없이 직원 PC에서 여는 방식으로 정했어요.</div><div><small>결과</small>8년치 고객 엑셀도 2초 안에 나오고, 직원마다 볼 수 있는 범위를 나눴어요.</div></div>
+<div class="mock" id="mock-sheet"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">데이터 뷰어</span><span style="color: #5f5a4e">샘플 데이터 · 8년치 거래 내역</span></div>
+<div data-k="q" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 7px 10px; color: #5f5a4e; white-space: nowrap; overflow: hidden"><span data-k="qt">전체 항목에서 검색</span><span data-k="timer" style="display: none; margin-left: 10px; padding: 1px 9px; border-radius: 999px; background: #0d0d0d; color: #d8c391; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; vertical-align: 1px"></span></div>
+<div style="overflow-x: auto"><div style="min-width: 400px; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
+<div style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 7px 10px; background: #0d0d0d; color: #ffffff; border-radius: 6px 6px 0 0"><div>거래처</div><div>품목</div><div style="text-align: right">수량</div><div style="text-align: right">판매단가</div><div style="text-align: right">판매금액</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-031</div><div>품목-14</div><div style="text-align: right">42</div><div style="text-align: right">180,000</div><div style="text-align: right">7,560,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-118</div><div>품목-07</div><div style="text-align: right">15</div><div data-k="sel" style="text-align: right; background: #efe6cf">320,000</div><div style="text-align: right">4,800,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div>거래처 A-205</div><div>품목-22</div><div style="text-align: right">67</div><div data-k="sel" style="text-align: right; background: #efe6cf">45,000</div><div style="text-align: right">3,015,000</div></div>
+<div data-k="row" style="display: grid; grid-template-columns: 90px minmax(0, 1fr) 44px 80px 88px; gap: 8px; padding: 6px 10px"><div>거래처 A-092</div><div>품목-03</div><div style="text-align: right">8</div><div data-k="sel" style="text-align: right; background: #efe6cf">510,000</div><div style="text-align: right">4,080,000</div></div>
+</div></div>
+<div data-k="sum" style="align-self: flex-end; background: #0d0d0d; color: #ffffff; border-radius: 6px; padding: 6px 12px; display: flex; gap: 12px; flex-wrap: wrap"><span style="color: #d2cbb8">3칸 선택</span><span>평균 291,667</span><span>합계 875,000</span></div>
+</div></div>
+</div>
+</article>
+
+<article class="case" id="case-monitor">
+<div class="num"><span class="dwg">DWG-004</span><b>8대 · 3년</b><span>사람 없이 돌린 기간</span><svg class="ruler draw" viewBox="0 0 160 14" aria-hidden="true"><g fill="none" stroke="#7a622d" stroke-width="1"><path d="M0 2 H160"/><path d="M0 2 V12"/><path d="M10 2 V7"/><path d="M20 2 V7"/><path d="M30 2 V7"/><path d="M40 2 V12"/><path d="M50 2 V7"/><path d="M60 2 V7"/><path d="M70 2 V7"/><path d="M80 2 V12"/><path d="M90 2 V7"/><path d="M100 2 V7"/><path d="M110 2 V7"/><path d="M120 2 V12"/><path d="M130 2 V7"/><path d="M140 2 V7"/><path d="M150 2 V7"/><path d="M160 2 V12"/></g></svg></div>
+<div><span class="tag">여러 대 PC · 대시보드</span><h3>한 대가 멈춰도 바로 아는 장비 현황판</h3>
+<div class="steps"><div><small>상황</small>여러 대로 작업을 돌리면, 한 대가 멈춰도 한참 뒤에야 알았어요.</div><div><small>만든 것</small>장비마다 상태를 감지해 한 화면에 보여 주고, 오류가 나면 텔레그램으로 알려요.</div><div><small>결과</small>직접 만든 이 시스템으로 8대를 3년 동안 무인으로 운영했어요.</div></div>
+<div class="mock" id="mock-mon"><div style="border-radius: 10px; background: #f7f6f2; border: 1px solid #e3dfd3; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span style="font-weight: 600">장비 현황</span><span style="color: #5f5a4e" data-k="clock">10:42 기준</span></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">전체</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">8</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">작업 중</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #1d4ed8" data-k="run">5</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">완료</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600">2</div></div>
+<div class="st" style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px; padding: 8px 10px"><div style="color: #5f5a4e">오류</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: #c2410c" data-k="err">1</div></div>
+</div>
+<div data-k="alert" style="background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; border-radius: 6px; padding: 8px 10px"><span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 전송됨</div>
+<div style="background: #ffffff; border: 1px solid #e3dfd3; border-radius: 6px">
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-01</div><div>데이터 수집</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:33:45</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-02</div><div>리포트 생성</div><div style="color: #1e40af">작업 중</div><div style="text-align: right" data-k="t">13:09:51</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #f0ede5"><div style="font-weight: 600">PC-03</div><div>데이터 수집</div><div style="color: #9a3412" data-k="s3">오류</div><div style="text-align: right" data-k="t">0:19:25</div></div>
+<div class="eq" style="display: grid; grid-template-columns: 60px minmax(0, 1fr) 70px 70px; gap: 8px; padding: 6px 10px"><div style="font-weight: 600">PC-04</div><div>파일 백업</div><div style="color: #5f5a4e">완료</div><div style="text-align: right" data-k="t">10:38:15</div></div>
+</div>
+</div></div>
+</div>
+</article>
+
+
+</div>
+</div></section>
+
+<section class="sec" id="flow"><span id="process" class="anchor"></span><div class="wrap">
+<div class="sec-hd"><div><div class="kicker">진행 방식</div>
+<h2>작게 시작하고, 쓰일 만큼만</h2></div>
+<svg class="sk draw" viewBox="0 0 200 128" aria-hidden="true"><g fill="none" stroke="#0b0b0b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 118 H196"/><path d="M20 54 H180 V118 H20 Z"/><path d="M20 72 H92 M108 72 H180"/><rect x="92" y="66" width="16" height="12" rx="2"/><path d="M78 54 V42 A6 6 0 0 1 84 36 H116 A6 6 0 0 1 122 42 V54"/><path d="M40 54 V28 A9 9 0 0 1 38.5 13 L42 17 H46 L49.5 13 A9 9 0 0 1 48 28 V54"/><path d="M148 54 V36 M152 54 V36"/><rect x="144" y="14" width="12" height="22" rx="4"/></g><rect x="30" y="88" width="36" height="8" rx="2" fill="#c9b27c"/></svg></div>
+<div class="flow">
+<div><b>01</b><h3>상담</h3><p>지금 겪는 일을 편하게 말씀해 주세요. 상담은 무료예요.</p></div>
+<div><b>02</b><h3>견적</h3><p>어디까지 만들지 함께 정하고 견적을 드려요.</p></div>
+<div><b>03</b><h3>개발</h3><p>정한 범위대로 만들고, 중간에 화면을 보여 드려요.</p></div>
+<div><b>04</b><h3>유지보수</h3><p>직접 3년 운영해 봐서, 쓰다 보면 어디서 문제가 생기는지 알아요.</p></div>
+</div>
+<div class="who"><span class="pt"><img src="../images/portrait-ink.png" alt="강훈민 선 드로잉 초상" width="521" height="720" loading="lazy" decoding="async"></span><div><p class="who-k">만드는 사람</p><h3>강훈민<span>존슨거라지 대표</span></h3><p class="who-lead">상담부터 개발, 유지보수까지 직접 맡아요.</p><ul class="who-cv"><li>동국대학교 전자공학과 졸업</li><li>현대정보기술(현 롯데정보통신) 메디컬개발팀</li><li>서울아산병원 등 병원 시스템 개발</li></ul><a href="../about/">대표 소개 →</a></div></div>
+</div></section>
+
+</div>
+
+<section class="contact" id="contact"><div class="wrap">
+<div class="sec-hd"><div><h2>하루 중 제일 번거로운 일,<br>하나만 말씀해 주세요.</h2>
+<p>구리·남양주는 직접 찾아뵙고, 그 밖은 원격으로 이야기 나눠요.</p>
+<p class="assure">상담은 무료예요 · 어디까지 만들지 정한 뒤에 견적을 드려요</p></div>
+<svg class="g-ct" viewBox="0 0 400 310" aria-hidden="true"><defs><clipPath id="door-g-ct"><rect x="111" y="151" width="178" height="129"/></clipPath><linearGradient id="glow-g-ct" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c391" stop-opacity=".05"/><stop offset="1" stop-color="#d8c391" stop-opacity=".55"/></linearGradient></defs>
+<g class="bp" fill="none" stroke="#c9b27c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14 124 L200 30 L386 124"/><path d="M50 106 V280 H350 V106"/><path d="M108 280 V148 H292 V280"/><rect x="316" y="160" width="24" height="34"/><path d="M328 160v34M316 177h24"/><path d="M30 280 H370"/>
+<path d="M50 298 H350 M50 292 v12 M350 292 v12" stroke-width="1"/><path d="M366 106 V280 M360 106 h12 M360 280 h12" stroke-width="1"/>
+</g>
+<rect x="111" y="151" width="178" height="129" fill="url(#glow-g-ct)" class="light-in"/>
+<g clip-path="url(#door-g-ct)"><g class="slats"><rect x="111" y="151" width="178" height="129" fill="#141310"/><g fill="none" stroke="#c9b27c" stroke-width="1.2" opacity=".75"><line x1="112" y1="166" x2="288" y2="166"/><line x1="112" y1="180" x2="288" y2="180"/><line x1="112" y1="194" x2="288" y2="194"/><line x1="112" y1="208" x2="288" y2="208"/><line x1="112" y1="222" x2="288" y2="222"/><line x1="112" y1="236" x2="288" y2="236"/><line x1="112" y1="250" x2="288" y2="250"/><line x1="112" y1="264" x2="288" y2="264"/><line x1="112" y1="278" x2="288" y2="278"/></g><rect x="186" y="262" width="28" height="6" rx="2" fill="none" stroke="#c9b27c" stroke-width="1.2"/></g></g>
+<g font-family="IBM Plex Mono,monospace" fill="#c9b27c"><text x="200" y="138" text-anchor="middle" font-size="11" letter-spacing="3">JOHNSON GARAGE_</text><text x="200" y="309" text-anchor="middle" font-size="9" letter-spacing="2" opacity=".7">DWG-001 · 1:50</text></g>
+</svg></div>
+<div class="ways">
+<a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
+<a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
+<a href="https://ig.me/m/johnsongarage_"><b>인스타 DM</b><span>@johnsongarage_</span></a>
+<a href="mailto:johnsongarage.official@gmail.com"><b>메일</b><span class="mail">johnsongarage.<wbr>official<wbr>@gmail.com</span></a>
+</div>
+</div></section>
+
+<footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
+
+<a class="r-strip" id="r-strip" href="#r-res" hidden>0개 골랐어요 · 결과 보기 <span aria-hidden="true">↓</span></a>
+<nav class="bar" aria-label="빠른 연락">
+<a class="main" href="tel:01032706077"><b>전화</b>바로 통화</a>
+<a href="sms:01032706077"><b>문자</b>남기기</a>
+<a href="https://ig.me/m/johnsongarage_"><b>DM</b>인스타</a>
+<a href="mailto:johnsongarage.official@gmail.com"><b>메일</b>보내기</a>
+</nav>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function pick(t,focus){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.tabIndex=t.getAttribute('aria-selected')==='true'?0:-1;
+    t.addEventListener('click',function(){pick(t)});
+    t.addEventListener('keydown',function(e){
+      var j={ArrowRight:i+1,ArrowDown:i+1,ArrowLeft:i-1,ArrowUp:i-1,Home:0,End:tabs.length-1}[e.key];
+      if(j===undefined)return;e.preventDefault();pick(tabs[(j+tabs.length)%tabs.length],true);
+    });
+  });
+  var M={
+    sheet:['엑셀 속도 개선','쓰던 엑셀 그대로, 몇 년치를 2초 안에 찾게'],
+    type:['업무자동화','매일 옮겨 적는 일을 프로그램이 대신'],
+    find:['오브젯도','선반 사진 한 장으로 물건 자리 지도'],
+    ask:['오브젯도','직원이 묻기 전에 지도를 보고 찾아가게'],
+    watch:['대시보드','문제가 생길 때만 휴대폰으로 알림'],
+    none:['무료 상담','하루 일과를 들려주시면 제일 번거로운 곳을 같이 찾아요']
+  };
+  var boxes=[].slice.call(document.querySelectorAll('.check input'));
+  var strip=document.getElementById('r-strip');
+  if(strip){strip.addEventListener('click',function(e){e.preventDefault();document.getElementById('r-res').scrollIntoView({behavior:'smooth',block:'center'})});
+    var inCheck=false,resSeen=false;function sync(){strip.classList.toggle('away',!inCheck||resSeen)}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){resSeen=e.isIntersecting});sync()},{threshold:.3}).observe(document.getElementById('r-res'));
+      new IntersectionObserver(function(es){es.forEach(function(e){inCheck=e.isIntersecting});sync()},{threshold:0}).observe(document.querySelector('#check .check'));}}
+  var cta=document.getElementById('r-cta'),touch=window.matchMedia&&matchMedia('(pointer: coarse)').matches;
+  function upd(){
+    var on=boxes.filter(function(b){return b.checked}).map(function(b){return M[b.value]});
+    var n=document.getElementById('r-n'),h=document.getElementById('r-h'),p=document.getElementById('r-p'),l=document.getElementById('r-l');
+    if(strip){strip.hidden=!(touch&&on.length);strip.firstChild.nodeValue=on.length+'개 골랐어요 · 결과 보기 ';}
+    if(!on.length){if(cta){cta.href='#contact';cta.textContent='무료 상담하기'}n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
+    var seen={},items=on.filter(function(x){if(seen[x[0]])return false;seen[x[0]]=1;return true});
+    n.textContent=on.length+'개 골랐어요';
+    h.textContent=items.length>1?'고르신 것: '+items.map(function(x){return x[0]}).join(' · '):items[0][0]+'부터 시작해 보세요';
+    p.textContent=items.length>1?'하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요. 무엇부터 할지는 상담에서 같이 정해요.':'작게 시작해서 써 보시고 늘려도 돼요.';
+    l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+'</li>'}).join('');l.hidden=false;
+    if(cta&&touch)cta.textContent='문자로 이 내용 보내기';
+    if(cta&&touch)cta.href='sms:01032706077?body='+encodeURIComponent('홈페이지 30초 진단에서 고른 것: '+items.map(function(x){return x[0]}).join(', ')+' — 상담하고 싶어요');
+  }
+  boxes.forEach(function(b){b.addEventListener('change',upd)});
+})();
+</script>
+<script>
+/* 사례 영상·화면: 화면에 보일 때만 재생 */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $$(r,k){return [].slice.call(r.querySelectorAll('[data-k="'+k+'"]'))}
+  function $(r,k){return r.querySelector('[data-k="'+k+'"]')}
+  function runner(build){
+    var timers=[],on=false;
+    function at(ms,f){timers.push(setTimeout(function(){if(on)f()},ms))}
+    function every(ms,f){timers.push(setInterval(function(){if(on)f()},ms))}
+    function clear(){timers.forEach(function(t){clearTimeout(t);clearInterval(t)});timers=[]}
+    function loop(){clear();var len=build(at,every);at(len,loop)}
+    return {start:function(){if(on)return;on=true;loop()},stop:function(){on=false;clear()}};
+  }
+  function sec(t){var p=t.split(':').map(Number);return p[0]*3600+p[1]*60+p[2]}
+  function fmt(n){var h=Math.floor(n/3600),m=Math.floor(n/60)%60,s=n%60;return h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+  function add(el,r){r.el=el;items.push(r)}
+  var items=[];
+
+  var vid=document.querySelector('#case-objetdo video');
+  if(vid&&!reduce)add(vid,{start:function(){try{vid.currentTime=0}catch(e){}var p=vid.play();if(p&&p.catch)p.catch(function(){})},stop:function(){vid.pause()}});
+
+  var mon=document.getElementById('mock-mon');
+  if(mon&&!reduce){
+    var clock=$(mon,'clock'),run=$(mon,'run'),err=$(mon,'err'),al=$(mon,'alert'),s3=$(mon,'s3'),ts=$$(mon,'t');
+    var rows=[].slice.call(mon.querySelectorAll('.eq'));
+    var base=ts.map(function(t){return sec(t.textContent)});
+    al.style.transition='background .4s,color .4s,border-color .4s';
+    rows.forEach(function(r){r.style.transition='background .4s'});
+    var errHTML='<span style="font-weight: 600">PC-03</span> 데이터 수집 중 오류 · 텔레그램 알림 ';
+    add(mon,runner(function(at,every){
+      var v=[base[0]-6,base[1]-6,base[2]-4],s=0,broken=false;
+      function draw(){ts[0].textContent=fmt(v[0]);ts[1].textContent=fmt(v[1]);ts[2].textContent=fmt(v[2]);clock.textContent='10:42:'+(s<10?'0':'')+s+' 기준'}
+      run.textContent='6';err.textContent='0';s3.textContent='작업 중';s3.style.color='#1e40af';rows[2].style.background='';
+      al.style.background='#f0f7f1';al.style.color='#166534';al.style.borderColor='#c6e9cf';al.textContent='모든 장비 정상 작동 중';
+      draw();
+      every(1000,function(){s++;v[0]++;v[1]++;if(!broken)v[2]++;draw()});
+      at(4000,function(){broken=true;s3.textContent='오류';s3.style.color='#9a3412';rows[2].style.background='#fff7ed';run.textContent='5';err.textContent='1';
+        al.style.background='#fff7ed';al.style.color='#9a3412';al.style.borderColor='#fed7aa';al.innerHTML=errHTML+'보내는 중…'});
+      at(5300,function(){al.innerHTML=errHTML+'전송됨'});
+      return 10000;
+    }));
+  }
+
+  var sh=document.getElementById('mock-sheet');
+  if(sh&&!reduce){
+    var box=sh.firstElementChild,q=$(sh,'q'),qt=$(sh,'qt'),tm=$(sh,'timer'),rws=$$(sh,'row'),sel=$$(sh,'sel'),sum=$(sh,'sum'),ph=qt.textContent,word='거래처 A';
+    sh.style.overflow='hidden';
+    box.style.position='relative';
+    box.style.transition='transform .8s cubic-bezier(.2,.7,.2,1)';
+    rws.concat([sum]).forEach(function(e){e.style.transition='opacity .35s, transform .35s'});
+    sel.forEach(function(e){e.style.transition='background .25s'});
+    function zoom(on){
+      if(on){box.style.transformOrigin=q.offsetLeft+'px '+(q.offsetTop+q.offsetHeight/2)+'px';box.style.transform='scale('+(box.offsetWidth<420?1.45:1.7)+')'}
+      else box.style.transform='none';
+    }
+    add(sh,runner(function(at,every){
+      zoom(false);
+      qt.textContent=word;q.style.color='#0d0d0d';tm.style.display='inline-block';tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d';
+      rws.forEach(function(r){r.style.opacity='1';r.style.transform='none'});
+      sel.forEach(function(c){c.style.background='#efe6cf'});
+      sum.style.opacity='1';
+      var t=1800;
+      at(t,function(){qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';rws.forEach(function(r){r.style.opacity='.18'});sel.forEach(function(c){c.style.background='transparent'});sum.style.opacity='0'});
+      t+=500;
+      at(t,function(){zoom(true)});
+      t+=900;
+      for(var i=1;i<=word.length;i++)(function(n){at(t+n*140,function(){qt.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
+      t+=word.length*140+350;
+      var t0=0;
+      at(t,function(){qt.textContent=word;t0=Date.now();tm.style.display='inline-block';tm.style.background='#0d0d0d';tm.style.color='#d8c391';tm.textContent='0.0초'});
+      for(var k=1;k<20;k++)(function(k){at(t+k*100,function(){tm.textContent=(k/10).toFixed(1)+'초'})})(k);
+      t+=2000;
+      at(t,function(){tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d'});
+      t+=1300;
+      at(t,function(){zoom(false)});
+      t+=500;
+      rws.forEach(function(r,i){at(t+i*120,function(){r.style.opacity='1';r.style.transform='none'})});
+      t+=rws.length*120+700;
+      sel.forEach(function(c,i){at(t+i*350,function(){c.style.background='#efe6cf'})});
+      t+=sel.length*350+200;
+      at(t,function(){sum.style.opacity='1'});
+      return t+4000;
+    }));
+  }
+
+  if(!items.length)return;
+  if(!('IntersectionObserver' in window)){items.forEach(function(it){it.start()});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var it=items.filter(function(x){return x.el===e.target})[0];
+    if(e.isIntersecting)it.start();else it.stop();
+  })},{threshold:0.5});
+  items.forEach(function(it){io.observe(it.el)});
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [].forEach.call(document.querySelectorAll('.draw path,.draw rect,.draw circle,.g-frame polyline'),function(e){e.setAttribute('pathLength','1')});
+  var els=[].slice.call(document.querySelectorAll('.draw,.g-ct,.pt'));
+  function on(e){e.classList.add(e.classList.contains('g-ct')?'open':'on')}
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(on);return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){on(e.target);io.unobserve(e.target)}})},{threshold:.4});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var d=document.documentElement;
+  if(reduce)return;
+  var small=innerWidth<760;
+  /* 불꽃 */
+  var cv=document.createElement('canvas');cv.className='fx-canvas';cv.setAttribute('aria-hidden','true');document.body.appendChild(cv);
+  var cx=cv.getContext('2d'),P=[],run=false,dpr=Math.min(2,window.devicePixelRatio||1);
+  function size(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}size();addEventListener('resize',size);
+  function burst(x,y,n,pow,up){n=small?Math.round(n*.6):n;for(var i=0;i<n;i++){var a=(up?-Math.PI/2:0)+(Math.random()-.5)*(up?Math.PI*1.1:Math.PI*2),s=pow*(.35+Math.random());P.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,decay:.016+Math.random()*.02,w:1+Math.random()*1.6})}if(!run){run=true;requestAnimationFrame(tick)}}
+  function tick(){cx.clearRect(0,0,innerWidth,innerHeight);cx.globalCompositeOperation='lighter';
+    for(var i=P.length-1;i>=0;i--){var p=P[i];p.vy+=.28;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;if(p.life<=0){P.splice(i,1);continue}
+      cx.strokeStyle='rgba(255,'+(170+Math.round(70*p.life))+','+Math.round(90*p.life)+','+p.life+')';cx.lineWidth=p.w;cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(p.x-p.vx*1.8,p.y-p.vy*1.8);cx.stroke()}
+    cx.globalCompositeOperation='source-over';if(P.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,innerWidth,innerHeight)}}
+  function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake')}
+  function ring(host,x,y){var r=document.createElement('span');r.className='ring';var b=host.getBoundingClientRect();r.style.left=(x-b.left)+'px';r.style.top=(y-b.top)+'px';host.appendChild(r);setTimeout(function(){r.remove()},800)}
+  /* 첫 화면 내려꽂기 */
+  var hero=document.querySelector('.hero'),dot=document.querySelector('.hero h1 .dot');
+  setTimeout(function(){
+    if(!dot)return;var r=dot.getBoundingClientRect(),x=r.left+r.width/2,y=r.bottom-r.height*.25;
+    hero.classList.add('hit');shake(hero.querySelector('.wrap'));ring(hero,x,y);burst(x,y,46,9,true);
+  },1000);
+  /* 셔터: JS가 있을 때만 만들어 카드가 가려진 채 남지 않게 */
+  var today=document.querySelector('.today'),door=null;
+  if(today){var dc=document.createElement('div');dc.className='door-clip';dc.setAttribute('aria-hidden','true');door=document.createElement('div');door.className='door';dc.appendChild(door);today.appendChild(dc)}
+  if(door)door.addEventListener('animationend',function(){door.classList.add('gone');var t=document.querySelector('.today');shake(t);var b=t.getBoundingClientRect();burst(b.left+b.width/2,b.top+4,18,5,true)});
+  /* 관찰 */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
+    if(el.matches('.case .num b')){setTimeout(function(){el.classList.add('stamp');setTimeout(function(){var c=el.closest('.case');shake(c);var b=el.getBoundingClientRect();burst(b.left+b.width*.5,b.bottom-6,28,7,true)},400)},120)}
+    else if(el.hp){el.hp.classList.add('in')}
+  })},{threshold:.6});
+  document.querySelectorAll('.case .num b').forEach(function(el){io.observe(el)});
+  /* 잘린(clip-path) 제목은 관찰이 안 잡혀서, 감싸는 박스를 본다 */
+  document.querySelectorAll('.sec h2,.contact h2').forEach(function(h){var w=document.createElement('div');w.className='h2box';h.parentNode.insertBefore(w,h);w.appendChild(h);w.hp=h;io.observe(w)});
+  /* 연락: 차고 문 쾅 */
+  var gct=document.querySelector('.g-ct');
+  if(gct)new MutationObserver(function(){if(gct.classList.contains('open')){setTimeout(function(){var b=gct.getBoundingClientRect();shake(document.querySelector('.contact .wrap'));burst(b.left+b.width/2,b.top+b.height*.82,30,6,true)},900)}}).observe(gct,{attributes:true,attributeFilter:['class']});
+  /* 버튼 불꽃 */
+  document.addEventListener('pointerdown',function(e){var t=e.target.closest('.btn-gold,.nav-cta,.ways a,.bar a.main,.btn-line');if(t)burst(e.clientX,e.clientY,16,5,false)});
+  /* 진행 톱니 + 용접선 */
+  var flow=document.querySelector('.flow'),steps=flow?[].slice.call(flow.children):[],gear=null;
+  if(flow&&!small){gear=document.createElementNS('http://www.w3.org/2000/svg','svg');gear.setAttribute('class','gear');gear.setAttribute('viewBox','0 0 40 40');gear.setAttribute('aria-hidden','true');
+    var g='';for(var k=0;k<10;k++){g+='<rect x="17" y="1" width="6" height="8" rx="1" transform="rotate('+(k*36)+' 20 20)"/>'}
+    gear.innerHTML='<g fill="#7a622d">'+g+'<circle cx="20" cy="20" r="13"/></g><circle cx="20" cy="20" r="5" fill="#f7f6f2"/>';flow.appendChild(gear)}
+  var nav=document.querySelector('.nav'),weld=document.createElement('i');weld.className='weld';weld.setAttribute('aria-hidden','true');nav.appendChild(weld);
+  var lastP=0,lastSpark=0;
+  function onScroll(){var h=d.scrollHeight-innerHeight,p=h>0?scrollY/h:0;weld.style.width=(p*100)+'%';
+    var now=Date.now();if(Math.abs(p-lastP)>.004&&now-lastSpark>90){lastSpark=now;var nb=nav.getBoundingClientRect();burst(nb.left+nb.width*p,nb.bottom,4,3,false)}lastP=p;
+    if(gear){var fb=flow.getBoundingClientRect();var q=Math.min(1,Math.max(0,(innerHeight*.75-fb.top)/(fb.height+innerHeight*.25)));var w=flow.clientWidth;gear.style.left=(q*w)+'px';gear.style.transform='rotate('+(q*720)+'deg)';
+      steps.forEach(function(s,i){if(s===gear)return;s.classList.toggle('lit',q*w>=s.offsetLeft+10)})}}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
