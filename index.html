@@ -74,6 +74,12 @@ a{color:inherit}
 .nav-links{display:flex;gap:22px;font-size:14px;color:var(--sub)}
 .nav-links a{text-decoration:none}
 .nav-cta{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:14px;text-decoration:none}
+/* 좁은 휴대폰에서 메뉴 글자가 두 줄로 꺾이지 않게(375px에서 "Johnson / Garage_", "무료 / 상담"으로 꺾였음) */
+.brand b,.nav-cta{white-space:nowrap}
+.nav-cta{flex:none}
+.brand{min-width:0}
+@media (max-width:420px){.nav .wrap{gap:10px}.brand{gap:6px}.brand > span{font-size:12px;letter-spacing:.04em}.nav-cta{padding:0 12px}}
+@media (max-width:359px){.brand > span{display:none}} /* 한글 이름만 숨김(밑줄 _ 은 그대로) */
 
 /* hero */
 .hero{position:relative;overflow:hidden;padding:150px 0 96px}
