@@ -91,10 +91,12 @@ a{color:inherit}
 .today-h{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--sub)}
 .today-h b{color:var(--ink);font-size:15px}
 .today ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
-.today li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02)}
-.today li i{grid-row:span 2;width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--gold)}
-.today li b{font-size:15px;font-weight:600}
-.today li span{font-size:13px;color:var(--sub)}
+.today ul{gap:0}
+.today li{display:grid;grid-template-columns:76px 1fr;align-items:center;gap:14px;padding:16px 4px;border-top:1px solid var(--line)}
+.today li:first-child{border-top:0}
+.today li .n{font-size:60px;font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--gold);font-variant-numeric:tabular-nums}
+.today li .n small{font-size:22px;font-weight:700;letter-spacing:0;margin-left:3px;color:var(--ink)}
+.today li span{font-size:18px;font-weight:600;line-height:1.35;color:var(--ink)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px}
 .btn-gold{background:var(--gold);color:#0b0b0b}
 .btn-line{border:1px solid var(--line2);color:var(--ink);font-weight:600}
@@ -319,11 +321,11 @@ footer .wrap{padding:28px 24px}
 </g></svg></div><div class="g-walls"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none" data-vb="1000 1000"><g fill="none" stroke="#c9b27c" stroke-linecap="round" stroke-linejoin="round">
 <polyline points="4,0 4,1000"/><polyline points="24,0 24,1000"/><polyline points="976,0 976,1000"/><polyline points="996,0 996,1000"/><polyline points="-60,1000 1060,1000"/>
 </g></svg></div><span class="g-sign">JOHNSON GARAGE_</span></div>
-<div class="today-h"><b>오늘 대신 해 준 일</b><span class="mono">예시</span></div>
+<div class="today-h"><b>버튼 하나로 끝난 일</b><span class="mono">예시</span></div>
 <ul>
-<li><i></i><b>8년치 고객 엑셀에서 거래처 검색</b><span class="mono">결과까지 2초</span></li>
-<li><i></i><b>“컵뚜껑 여분 어딨어요?”</b><span>3번 칸 위쪽 · 창고 지도</span></li>
-<li><i></i><b>PC-03 작업 멈춤</b><span>휴대폰으로 알림 보냄</span></li>
+<li><b class="n">2<small>초</small></b><span>8년치 엑셀에서<br>거래처 찾기</span></li>
+<li><b class="n">1<small>장</small></b><span>선반 사진 한 장이<br>창고 지도로</span></li>
+<li><b class="n">0<small>번</small></b><span>PC 멈췄나<br>보러 가는 일</span></li>
 </ul>
 </div>
 </div>
