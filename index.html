@@ -379,6 +379,16 @@ html,body{overflow-x:clip}
   .js .sec h2,.js .contact h2{clip-path:none;transform:none}
   .shake{animation:none}.gear{display:none}
 }
+/* 휴대폰(2026-11-10 점검, 가르시아 지시): 업종 탭 4개는 2×2로(3줄로 꺾이던 것), 진행 방식은 한 줄에 하나씩(2×2 칸에서 설명이 4줄로 좁았음) */
+@media (max-width:760px){
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tab{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:8px 10px;border-radius:14px;font-size:14px;line-height:1.35;word-break:keep-all}
+  .flow{grid-template-columns:1fr;gap:10px}
+  .flow > div{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:baseline;padding:16px 18px}
+  .flow > div b{grid-column:1;grid-row:1 / span 2}
+  .flow > div h3{grid-column:2;margin-top:0}
+  .flow > div p{grid-column:2;margin-top:4px}
+}
 @media (max-width:359px){#mock-sheet [style*="grid-template-columns: 90px"]{grid-template-columns:minmax(0,1fr) 26px 56px !important}#mock-sheet [style*="grid-template-columns: 90px"] > div:nth-child(2){display:none}} /* 320px 등: 품목 칸도 빼고 3칸 */
 </style>
 </head>
