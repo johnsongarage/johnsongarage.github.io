@@ -196,6 +196,10 @@ a{color:inherit}
 .who h3 span{margin-left:10px;font-size:15px;letter-spacing:0;color:#7a622d}
 .who p{margin-top:4px;color:var(--psub)}
 .who a{display:inline-flex;margin-top:10px;font-weight:700;color:var(--gold-deep);text-decoration:none}
+/* 금색 글자 링크는 밑줄로 링크인 게 보이게(2026-11-10 가르시아 — 휴대폰은 마우스를 올려 볼 수 없고, 화살표 없는 링크도 있음).
+   글자색의 45%로 옅게 긋고, 올리거나(PC) 키보드로 고르면 진하게 */
+.case .links a,.box .more,.who a,.result li a{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent)}
+.case .links a:hover,.box .more:hover,.who a:hover,.result li a:hover,.case .links a:focus-visible,.box .more:focus-visible,.who a:focus-visible,.result li a:focus-visible{text-decoration-color:currentColor}
 
 /* contact */
 .contact{padding:96px 0 120px}
