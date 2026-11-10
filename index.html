@@ -145,6 +145,7 @@ a{color:inherit}
 /* cases */
 .cases{margin-top:32px;display:flex;flex-direction:column;gap:20px}
 .case{display:grid;grid-template-columns:220px 1fr;gap:28px;background:var(--card);border:1px solid var(--pline);border-radius:16px;padding:28px}
+.case{scroll-margin-top:76px} /* 탭의 사례 링크(#case-…)로 오면 위쪽 고정 메뉴에 카드 머리가 가리지 않게 */
 .case .num b{display:block;font-size:44px;line-height:1.05;letter-spacing:-.03em;color:#0b0b0b}
 .case .num span{display:block;margin-top:8px;font-size:14px;color:var(--psub)}
 .case h3{font-size:22px;letter-spacing:-.02em}
@@ -418,7 +419,7 @@ html,body{overflow-x:clip}
 
 <div class="panel" role="tabpanel" id="p-office" aria-labelledby="t-office">
 <div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>작년 거래 내역 보려면 파일을 몇 개나 열어야 해요</li><li>필터만 걸면 엑셀이 멈춰요</li><li>직원마다 볼 수 있는 범위를 나누고 싶어요</li></ul></div>
-<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</div><div>인터넷 없이 직원 PC에서 더블클릭으로</div><div>직원별로 볼 수 있는 범위 나누기</div></div><div class="mores"><a class="more" href="#case-sheet">사례: 8년치 엑셀, 2초 →</a><a class="more" href="https://excel.johnsongarage.co.kr/">체험: 폴더 속 엑셀에서 그 줄 찾기 →</a></div></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>쓰던 엑셀 그대로, 몇 년치를 한 번에 검색</div><div>인터넷 없이 직원 PC에서 더블클릭으로</div><div>직원별로 볼 수 있는 범위 나누기</div></div><div class="mores"><a class="more" href="#case-sheet">사례: 8년치 엑셀, 2초 →</a><a class="more" href="#case-moabogi">체험: 폴더 속 엑셀에서 그 줄 찾기 →</a></div></div>
 </div>
 
 <div class="panel" role="tabpanel" id="p-store" aria-labelledby="t-store" hidden>
