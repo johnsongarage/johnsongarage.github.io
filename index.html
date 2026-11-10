@@ -83,6 +83,7 @@ a{color:inherit}
 .hero .lead{margin-top:22px;max-width:620px;font-size:18px;color:var(--sub)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .id-line{margin-top:10px;font-size:15px;color:var(--gold2)}
+.id-line .m-br{display:none}
 .assure{margin-top:14px;font-size:14px;color:var(--sub)}
 .assure::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;border-radius:50%;background:var(--gold)}
 .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
@@ -129,7 +130,7 @@ a{color:inherit}
 
 /* self check */
 .check{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-.check label{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--card);border:1px solid var(--pline);border-radius:10px;cursor:pointer;margin-bottom:10px}
+.check label{-webkit-tap-highlight-color:transparent;display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--card);border:1px solid var(--pline);border-radius:10px;cursor:pointer;margin-bottom:10px}
 .check label:has(input:checked){border-color:var(--gold-deep);background:#fbf8ef}
 .check input{margin-top:5px;width:18px;height:18px;accent-color:#7a622d;flex:none}
 .result{position:sticky;top:84px;background:#0b0b0b;color:var(--ink);border-radius:16px;padding:28px}
@@ -137,6 +138,8 @@ a{color:inherit}
 .result h3{margin-top:8px;font-size:22px}
 .result p{margin-top:10px;color:var(--sub)}
 .result ul{margin:14px 0 0;padding-left:18px;color:var(--ink)}
+.r-alt{margin-top:12px;font-size:14px;color:var(--sub)}
+.r-alt b{color:var(--ink);font-weight:600;user-select:all}
 .result li a{color:var(--gold);font-weight:700;text-decoration:none;white-space:nowrap}
 .result li a:hover{text-decoration:underline;text-underline-offset:3px}
 .result .btn{margin-top:20px}
@@ -258,7 +261,7 @@ footer .wrap{padding:28px 24px}
 .js .draw:not(.on) [fill]:not([fill="none"]),.js .draw:not(.on) text{opacity:0}
 
 @keyframes bpdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@media (max-width:1120px){.g-frame{left:-22px;right:-22px}}
+@media (min-width:981px) and (max-width:1279px){.g-frame{left:-22px;right:-22px}.today{margin-inline:26px}}
 @media (max-width:980px){.g-frame{display:none}}
 @media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-frame polyline{stroke-dashoffset:0;transition:none!important}.g-ct .slats{transition:none}}
 @media (max-width:760px){
@@ -300,7 +303,12 @@ footer .wrap{padding:28px 24px}
   .bar a.main{background:var(--gold);border-radius:10px}
   .bar a.main b,.bar a.main{color:#0b0b0b}
   .bar{transition:transform .25s ease,opacity .25s ease}
-  .bar.away{transform:translateY(100%);opacity:0;pointer-events:none}
+  .bar.away,.bar.under{transform:translateY(100%);opacity:0;pointer-events:none}
+  .bar.under ~ .r-strip,.r-strip{transition:opacity .2s,transform .2s,bottom .25s}
+  body:has(.bar.under) .r-strip{bottom:calc(12px + env(safe-area-inset-bottom))}
+  #check{padding-bottom:96px}
+  .id-line .m-br{display:inline}
+  .id-line .d-sep{display:none}
   .nav-cta{height:44px}
   .case .links a,.box .more,.who a{display:inline-flex;align-items:center;min-height:44px}
   .case .links{gap:4px 18px}
@@ -316,6 +324,7 @@ html,body{overflow-x:clip}
 .weld::after{content:"";position:absolute;right:-3px;top:-3px;width:8px;height:8px;border-radius:50%;background:#fff6d6;box-shadow:0 0 10px 3px rgba(255,200,90,.9)}
 /* 첫 화면 내려꽂기 */
 .hero h1 .l1,.hero h1 .l2{display:inline-block}
+.hero h1 .l2{transform-origin:left bottom}
 .js .hero h1 .l1{animation:swipeIn .42s cubic-bezier(.2,.9,.2,1) .1s both}
 .js .hero h1 .l2{animation:slam .5s cubic-bezier(.55,0,.75,.2) .5s both}
 @keyframes swipeIn{from{transform:translateX(-60px);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
@@ -379,7 +388,7 @@ html,body{overflow-x:clip}
 <div class="hero-grid"><div>
 <h1><span class="l1">손으로 하던 일,</span><br><em class="l2">버튼 하나로<span class="dot">.</span></em></h1>
 <p class="lead">자영업 사장님이 매일 반복하는 일을,<br>꼭 필요한 만큼만 프로그램으로 바꿔 드려요.</p>
-<p class="id-line">1인 개발자 강훈민이 직접 만들어요 · 구리·남양주는 찾아가고, 그 밖은 원격으로</p>
+<p class="id-line">1인 개발자 강훈민이 직접 만들어요<span class="m-br"><br></span><span class="d-sep"> · </span>구리·남양주는 찾아가고, 그 밖은 원격으로</p>
 <div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
 <p class="assure">상담은 무료예요 · 어디까지 만들지 정한 뒤에 견적을 드려요</p>
 </div>
@@ -452,7 +461,8 @@ html,body{overflow-x:clip}
 <h3 id="r-h">해당하는 걸 골라 보세요</h3>
 <p id="r-p">하나만 골라도 괜찮아요.</p>
 <ul id="r-l" hidden></ul>
-<a class="btn btn-gold" id="r-cta" href="#contact">무료 상담하기</a>
+<a class="btn btn-gold" id="r-cta" href="#contact">무료 상담</a>
+<p class="r-alt" id="r-alt" hidden>또는 전화 <b>010-3270-6077</b> · 인스타 DM <b>@johnsongarage_</b></p>
 </div>
 </div>
 </div></section>
@@ -553,7 +563,7 @@ html,body{overflow-x:clip}
 </div>
 </div></section>
 
-<footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
+<footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 <span style="white-space:nowrap">778-17-02429</span><br>© 2026 강훈민</div></footer>
 
 <a class="r-strip" id="r-strip" href="#r-res" hidden>0개 골랐어요 · 결과 보기 <span aria-hidden="true">↓</span></a>
 <nav class="bar" aria-label="빠른 연락">
@@ -589,20 +599,21 @@ html,body{overflow-x:clip}
   var boxes=[].slice.call(document.querySelectorAll('.check input'));
   var strip=document.getElementById('r-strip');
   if(strip){strip.addEventListener('click',function(e){e.preventDefault();document.getElementById('r-res').scrollIntoView({behavior:'smooth',block:'center'})});
-    var inCheck=false,resSeen=false;function sync(){strip.classList.toggle('away',!inCheck||resSeen)}
+    var inCheck=false,resSeen=false,bar0=document.querySelector('.bar');function sync(){var off=!inCheck||resSeen||strip.hidden;strip.classList.toggle('away',off);if(bar0)bar0.classList.toggle('under',!off)}
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){resSeen=e.isIntersecting});sync()},{threshold:.3}).observe(document.getElementById('r-res'));
       new IntersectionObserver(function(es){es.forEach(function(e){inCheck=e.isIntersecting});sync()},{threshold:0}).observe(document.querySelector('#check .check'));}}
   var cta=document.getElementById('r-cta'),touch=window.matchMedia&&matchMedia('(pointer: coarse)').matches;
   function upd(){
     var on=boxes.filter(function(b){return b.checked}).map(function(b){return M[b.value]});
     var n=document.getElementById('r-n'),h=document.getElementById('r-h'),p=document.getElementById('r-p'),l=document.getElementById('r-l');
-    if(strip){strip.hidden=!(touch&&on.length);strip.firstChild.nodeValue=on.length+'개 골랐어요 · 결과 보기 ';}
-    if(!on.length){if(cta){cta.href='#contact';cta.textContent='무료 상담하기'}n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
+    if(strip){strip.hidden=!(touch&&on.length);strip.firstChild.nodeValue=on.length+'개 골랐어요 · 결과 보기 ';if(typeof sync==='function')sync();}
+    if(!on.length){if(cta){cta.href='#contact';cta.textContent='무료 상담'}var ra=document.getElementById('r-alt');if(ra)ra.hidden=true;n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
     var seen={},items=on.filter(function(x){if(seen[x[0]])return false;seen[x[0]]=1;return true});
     n.textContent=on.length+'개 골랐어요';
-    h.textContent=items.length>1?'고르신 것: '+items.map(function(x){return x[0]}).join(' · '):items[0][0]+'부터 시작해 보세요';
+    h.textContent=items.length>1?'추천: '+items.map(function(x){return x[0]}).join(' · '):items[0][0]+'부터 시작해 보세요';
     p.textContent=items.length>1?'하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요. 무엇부터 할지는 상담에서 같이 정해요.':'작게 시작해서 써 보시고 늘려도 돼요.';
     l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+(x[2]?' <a href="'+x[2]+'">사례 보기 →</a>':'')+'</li>'}).join('');l.hidden=false;
+    var ra2=document.getElementById('r-alt');if(ra2)ra2.hidden=touch;
     if(cta&&!touch){cta.textContent='메일로 이 내용 보내기';cta.href='mailto:johnsongarage.official@gmail.com?subject='+encodeURIComponent('홈페이지 상담 요청')+'&body='+encodeURIComponent('30초 진단에서 고른 것: '+items.map(function(x){return x[0]}).join(', ')+'\n\n하는 일과 지금 번거로운 점:\n')}
     if(cta&&touch)cta.textContent='문자로 이 내용 보내기';
     if(cta&&touch)cta.href='sms:01032706077?body='+encodeURIComponent('홈페이지 30초 진단에서 고른 것: '+items.map(function(x){return x[0]}).join(', ')+' — 상담하고 싶어요');
@@ -753,8 +764,8 @@ html,body{overflow-x:clip}
   if(today){today.classList.add('pending');
     if(!small){var dc=document.createElement('div');dc.className='door-clip';dc.setAttribute('aria-hidden','true');door=document.createElement('div');door.className='door';dc.appendChild(door);today.appendChild(dc);
       door.addEventListener('animationend',function(){door.classList.add('gone');lit()})}
-    /* 카드가 화면에 보일 때 시작 (첫 화면이면 제목이 꽂힌 뒤 0.3초쯤) */
-    var tio=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;tio.disconnect();setTimeout(function(){if(door)door.classList.add('go');else lit()},Math.max(0,300-(Date.now()-t0)))},{threshold:.4});tio.observe(today)}
+    /* 카드가 화면에 보일 때 시작. 첫 화면이면 제목 쾅(1.0초) 뒤 0.3초에 드르륵 */
+    var tio=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;tio.disconnect();setTimeout(function(){if(door)door.classList.add('go');else lit()},Math.max(0,1300-(Date.now()-t0)))},{threshold:.4});tio.observe(today)}
   /* 관찰 */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
     if(el.matches('.case .num b')){setTimeout(function(){el.classList.add('stamp');setTimeout(function(){var c=el.closest('.case');shake(c);var b=el.getBoundingClientRect();burst(b.left+b.width*.5,b.bottom-6,28,7,true)},400)},120)}
