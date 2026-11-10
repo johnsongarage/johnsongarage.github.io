@@ -66,7 +66,7 @@ a{color:inherit}
 .light :focus-visible{outline-color:var(--gold-deep)}
 .check input:focus-visible{outline-offset:2px}
 /* nav */
-.nav{position:sticky;top:0;z-index:20;background:rgba(11,11,11,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:20;background:#0b0b0b;border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:60px}
 .brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
 .brand b{font-size:18px;letter-spacing:-.01em}
@@ -82,6 +82,7 @@ a{color:inherit}
 .hero h1 em{font-style:normal;background:linear-gradient(transparent 70%,rgba(201,178,124,.35) 70%)}
 .hero .lead{margin-top:22px;max-width:620px;font-size:18px;color:var(--sub)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.id-line{margin-top:10px;font-size:15px;color:var(--gold2)}
 .assure{margin-top:14px;font-size:14px;color:var(--sub)}
 .assure::before{content:"";display:inline-block;width:6px;height:6px;margin:0 8px 2px 0;border-radius:50%;background:var(--gold)}
 .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
@@ -201,9 +202,16 @@ footer .wrap{padding:28px 24px}
 
 /* mobile contact bar */
 .bar{display:none}
+.r-strip{display:none}
+.r-strip[hidden]{display:none !important}
 .anchor{display:block;position:relative;top:-72px;visibility:hidden;height:0}
 .promo{margin-top:14px;padding:12px 14px;border:1px dashed #c9b27c;border-radius:10px;font-size:14px;color:var(--psub);background:#fbf8ef}
 .promo a{color:#0b0b0b;font-weight:700}
+#cases{background-color:#121211;background-image:linear-gradient(rgba(201,178,124,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,178,124,.06) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);border-top:0 !important}
+#cases .kicker{color:var(--gold)}
+#cases h2{color:var(--ink)}
+#cases .case{color:var(--pink)}
+#cases > .wrap > .sec-hd :focus-visible,#cases .kicker:focus-visible{outline-color:var(--gold)}
 /* 도면 그림 */
 .hero{background:radial-gradient(900px 500px at 78% 30%,rgba(201,178,124,.07),transparent 70%)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(201,178,124,.07) 1px,transparent 1px) 0 0/40px 40px;-webkit-mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 80% at 70% 40%,#000,transparent)}
@@ -238,7 +246,7 @@ footer .wrap{padding:28px 24px}
 .js .draw:not(.on) [fill]:not([fill="none"]),.js .draw:not(.on) text{opacity:0}
 
 @keyframes bpdraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@media (max-width:980px){.g-frame{display:none}.sk{display:none}}
+@media (max-width:980px){.g-frame{display:none}}
 @media (prefers-reduced-motion:reduce){.js .draw:not(.on) *{stroke-dashoffset:0 !important;opacity:1 !important}.js .g-frame polyline{animation:none}.g-ct .slats{transition:none}}
 @media (max-width:760px){
   .nav-links{display:none}
@@ -254,6 +262,10 @@ footer .wrap{padding:28px 24px}
   .case .num b{font-size:36px}
   .g-ct{display:none}
   .ruler{width:120px}
+  .sec-hd{gap:16px}
+  #who-for .sk{width:84px;height:60px}
+  #check .sk{width:48px;height:60px}
+  #flow .sk{width:84px;height:54px}
   .case .steps{grid-template-columns:1fr}
   #mock-mon > div{padding:12px !important;font-size:12px !important}
   #mock-mon .eq{grid-template-columns:42px minmax(0,1fr) 44px 58px !important;gap:6px !important;padding:6px 6px !important}
@@ -267,6 +279,8 @@ footer .wrap{padding:28px 24px}
   .contact h2{font-size:28px}
   .ways{grid-template-columns:1fr 1fr}
   body{padding-bottom:72px}
+  .r-strip{position:fixed;left:12px;right:12px;bottom:calc(80px + env(safe-area-inset-bottom));z-index:31;display:flex;justify-content:center;align-items:center;gap:6px;min-height:46px;border-radius:10px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s}
+  .r-strip.away{opacity:0;transform:translateY(8px);pointer-events:none}
   .bar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(11,11,11,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
   .bar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;text-decoration:none;font-size:12px;color:var(--sub)}
   .bar a b{font-size:15px;color:var(--ink)}
@@ -281,13 +295,14 @@ footer .wrap{padding:28px 24px}
 <header class="nav"><div class="wrap">
 <a class="brand" href="./"><b>Johnson Garage<span class="u">_</span></b><span>존슨거라지</span></a>
 <nav class="nav-links"><a href="#who-for">업종별</a><a href="#check">30초 진단</a><a href="#cases">사례</a><a href="#flow">진행 방식</a></nav>
-<a class="nav-cta" href="#contact">상담하기</a>
+<a class="nav-cta" href="#contact">무료 상담</a>
 </div></header>
 
 <section class="hero"><div class="wrap">
 <div class="hero-grid"><div>
 <h1>손으로 하던 일,<br><em>버튼 하나로.</em></h1>
-<p class="lead">매일 반복하는 일을, 꼭 필요한 만큼만 프로그램으로.</p>
+<p class="lead">자영업 사장님이 매일 반복하는 일을,<br>꼭 필요한 만큼만 프로그램으로 바꿔 드려요.</p>
+<p class="id-line">1인 개발자 강훈민이 직접 만들어요 · 구리·남양주는 찾아가고, 그 밖은 원격으로</p>
 <div class="ctas"><a class="btn btn-gold" href="#check">우리 일에 맞을지 30초 진단</a><a class="btn btn-line" href="#cases">사례 보기</a></div>
 <p class="assure">상담은 무료예요 · 어디까지 만들지 정한 뒤에 견적을 드려요</p>
 </div>
@@ -333,7 +348,7 @@ footer .wrap{padding:28px 24px}
 
 <div class="panel" role="tabpanel" id="p-home" aria-labelledby="t-home" hidden>
 <div class="box"><h3>이런 말, 자주 하시죠</h3><ul class="quotes"><li>정리는 해 놨는데 어디 뒀는지 모르겠어요</li><li>통이 다 비슷해서 라벨이 있어도 헷갈려요</li><li>정리해 드린 뒤에 고객님이 다시 물어보세요</li></ul></div>
-<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>정리된 수납장을 사진으로 남겨 검색되는 지도로</div><div>고객님 폰에 넣어 드리고, 인쇄물도 함께</div><div>정리수납 업체는 고객 인계물로 활용</div></div><a class="more" href="price/">가격 보기 →</a></div>
+<div class="box"><h3>이렇게 바꿔 드려요</h3><div class="fix"><div>정리된 수납장을 사진으로 남겨 검색되는 지도로</div><div>고객님 폰에 넣어 드리고, 인쇄물도 함께</div><div>정리수납 업체는 고객 인계물로 활용</div></div><a class="more" href="#case-objetdo">사례: 오브젯도 →</a></div>
 </div>
 
 <div class="panel" role="tabpanel" id="p-pc" aria-labelledby="t-pc" hidden>
@@ -356,12 +371,12 @@ footer .wrap{padding:28px 24px}
 <label><input type="checkbox" value="watch">컴퓨터나 장비를 계속 지켜봐야 해서 자리를 못 뜬다</label>
 <label><input type="checkbox" value="none">잘 모르겠지만 뭔가 번거롭다</label>
 </div>
-<div class="result" aria-live="polite">
+<div class="result" id="r-res" aria-live="polite">
 <div class="n" id="r-n">아직 고른 게 없어요</div>
 <h3 id="r-h">해당하는 걸 골라 보세요</h3>
 <p id="r-p">하나만 골라도 괜찮아요.</p>
 <ul id="r-l" hidden></ul>
-<a class="btn btn-gold" id="r-cta" href="#contact">이 내용으로 상담하기</a>
+<a class="btn btn-gold" id="r-cta" href="#contact">무료 상담하기</a>
 </div>
 </div>
 </div></section>
@@ -464,6 +479,7 @@ footer .wrap{padding:28px 24px}
 
 <footer><div class="wrap">개인사업자 존슨거라지 · 대표 강훈민 · 사업자등록번호 778-17-02429<br>© 2026 강훈민</div></footer>
 
+<a class="r-strip" id="r-strip" href="#r-res" hidden>0개 골랐어요 · 결과 보기 <span aria-hidden="true">↓</span></a>
 <nav class="bar" aria-label="빠른 연락">
 <a class="main" href="tel:01032706077"><b>전화</b>바로 통화</a>
 <a href="sms:01032706077"><b>문자</b>남기기</a>
@@ -495,16 +511,23 @@ footer .wrap{padding:28px 24px}
     none:['무료 상담','하루 일과를 들려주시면 제일 번거로운 곳을 같이 찾아요']
   };
   var boxes=[].slice.call(document.querySelectorAll('.check input'));
+  var strip=document.getElementById('r-strip');
+  if(strip){strip.addEventListener('click',function(e){e.preventDefault();document.getElementById('r-res').scrollIntoView({behavior:'smooth',block:'center'})});
+    var inCheck=false,resSeen=false;function sync(){strip.classList.toggle('away',!inCheck||resSeen)}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){resSeen=e.isIntersecting});sync()},{threshold:.3}).observe(document.getElementById('r-res'));
+      new IntersectionObserver(function(es){es.forEach(function(e){inCheck=e.isIntersecting});sync()},{threshold:0}).observe(document.querySelector('#check .check'));}}
   var cta=document.getElementById('r-cta'),touch=window.matchMedia&&matchMedia('(pointer: coarse)').matches;
   function upd(){
     var on=boxes.filter(function(b){return b.checked}).map(function(b){return M[b.value]});
     var n=document.getElementById('r-n'),h=document.getElementById('r-h'),p=document.getElementById('r-p'),l=document.getElementById('r-l');
-    if(!on.length){if(cta)cta.href='#contact';n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
+    if(strip){strip.hidden=!(touch&&on.length);strip.firstChild.nodeValue=on.length+'개 골랐어요 · 결과 보기 ';}
+    if(!on.length){if(cta){cta.href='#contact';cta.textContent='무료 상담하기'}n.textContent='아직 고른 게 없어요';h.textContent='해당하는 걸 골라 보세요';p.textContent='하나만 골라도 괜찮아요.';l.hidden=true;return;}
     var seen={},items=on.filter(function(x){if(seen[x[0]])return false;seen[x[0]]=1;return true});
     n.textContent=on.length+'개 골랐어요';
-    h.textContent=items[0][0]+'부터 시작해 보세요';
-    p.textContent=items.length>1?'고르신 것들은 하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요.':'작게 시작해서 써 보시고 늘려도 돼요.';
+    h.textContent=items.length>1?'고르신 것: '+items.map(function(x){return x[0]}).join(' · '):items[0][0]+'부터 시작해 보세요';
+    p.textContent=items.length>1?'하나의 작은 프로그램으로 같이 풀 수 있는 경우가 많아요. 무엇부터 할지는 상담에서 같이 정해요.':'작게 시작해서 써 보시고 늘려도 돼요.';
     l.innerHTML=items.map(function(x){return '<li><b>'+x[0]+'</b> · '+x[1]+'</li>'}).join('');l.hidden=false;
+    if(cta&&touch)cta.textContent='문자로 이 내용 보내기';
     if(cta&&touch)cta.href='sms:01032706077?body='+encodeURIComponent('홈페이지 30초 진단에서 고른 것: '+items.map(function(x){return x[0]}).join(', ')+' — 상담하고 싶어요');
   }
   boxes.forEach(function(b){b.addEventListener('change',upd)});
@@ -568,11 +591,13 @@ footer .wrap{padding:28px 24px}
     }
     add(sh,runner(function(at,every){
       zoom(false);
-      qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';
-      rws.forEach(function(r){r.style.opacity='.18';r.style.transform='none'});
-      sel.forEach(function(c){c.style.background='transparent'});
-      sum.style.opacity='0';
-      var t=500;
+      qt.textContent=word;q.style.color='#0d0d0d';tm.style.display='inline-block';tm.textContent='2.0초 · 4건';tm.style.background='#c9b27c';tm.style.color='#0d0d0d';
+      rws.forEach(function(r){r.style.opacity='1';r.style.transform='none'});
+      sel.forEach(function(c){c.style.background='#efe6cf'});
+      sum.style.opacity='1';
+      var t=1800;
+      at(t,function(){qt.textContent=ph;q.style.color='#5f5a4e';tm.style.display='none';rws.forEach(function(r){r.style.opacity='.18'});sel.forEach(function(c){c.style.background='transparent'});sum.style.opacity='0'});
+      t+=500;
       at(t,function(){zoom(true)});
       t+=900;
       for(var i=1;i<=word.length;i++)(function(n){at(t+n*140,function(){qt.textContent=word.slice(0,n)+'|';q.style.color='#0d0d0d'})})(i);
