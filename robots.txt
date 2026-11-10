@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://johnsongarage.github.io/sitemap.xml
+Sitemap: https://johnsongarage.co.kr/sitemap.xml

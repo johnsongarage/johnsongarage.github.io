@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-존슨거라지(Johnson Garage) 홈페이지 저장소. 단일 정적 사이트(`index.html`, 대표 소개 `about/`)이며 GitHub Pages로 `https://johnsongarage.github.io/`에 배포된다.
+존슨거라지(Johnson Garage) 홈페이지 저장소. 단일 정적 사이트(`index.html`, 대표 소개 `about/`)이며 GitHub Pages로 배포되며 주소는 `https://johnsongarage.co.kr/`이다 (2026-11-10부터, 가비아 도메인 · 저장소 `CNAME` 파일). 예전 `johnsongarage.github.io`는 GitHub이 새 주소로 넘겨준다.
 
 ## 사업 본부 연동 (kery27/hq)
 
