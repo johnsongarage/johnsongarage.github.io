@@ -318,6 +318,8 @@ footer .wrap{padding:28px 24px}
   #mock-sheet [style*="min-width: 400px"]{min-width:0 !important}
   #mock-sheet [style*="grid-template-columns: 90px"]{grid-template-columns:86px minmax(0,1fr) 30px 72px !important;white-space:nowrap}
   #mock-sheet [style*="grid-template-columns: 90px"] > div:nth-child(5){display:none}
+  /* 412px보다 좁으면 품목 칸이 0~28px로 줄어 "품목-14"가 수량 글자와 겹쳤음 → 칸 폭을 다시 나눔(375px 품목 47px, 2026-11-10 휴대폰 점검) */
+  #mock-sheet [style*="grid-template-columns: 90px"]{grid-template-columns:78px minmax(44px,1fr) 26px 56px !important;gap:6px !important}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 /* ===== 임팩트 ===== */
@@ -377,6 +379,7 @@ html,body{overflow-x:clip}
   .js .sec h2,.js .contact h2{clip-path:none;transform:none}
   .shake{animation:none}.gear{display:none}
 }
+@media (max-width:359px){#mock-sheet [style*="grid-template-columns: 90px"]{grid-template-columns:minmax(0,1fr) 26px 56px !important}#mock-sheet [style*="grid-template-columns: 90px"] > div:nth-child(2){display:none}} /* 320px 등: 품목 칸도 빼고 3칸 */
 </style>
 </head>
 <body>
