@@ -163,6 +163,16 @@ a{color:inherit}
 .case .mock{margin-top:16px;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .case .mock > div{border:1px solid var(--pline)}
 .case video{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--pline);margin-top:16px;background:#fff}
+.case .shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.case .shots a{display:block;color:var(--psub);font-size:12px;text-decoration:none}
+.case .shots img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid var(--pline);background:#fff}
+.case .shots span{display:block;margin-top:5px}
+.case .shots a:hover img,.case .shots a:focus-visible img{border-color:var(--gold-deep)}
+#shotbox{padding:0;border:0;background:transparent;max-width:94vw;max-height:94vh;margin:auto}
+#shotbox::backdrop{background:rgba(11,11,11,.84)}
+#shotbox img{display:block;max-width:min(94vw,1100px);max-height:84vh;width:auto;height:auto;border-radius:8px;background:#fff}
+#shotbox p{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:6px;color:#fff;font-size:14px}
+#shotbox button{min-height:44px;padding:0 4px;border:0;background:none;color:#fff;font:inherit;font-weight:700;cursor:pointer}
 .case .links{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}
 .case .links a{font-weight:700;color:var(--gold-deep);text-decoration:none}
 
@@ -486,6 +496,9 @@ html,body{overflow-x:clip}
 <div><span class="tag">매장·집 정리 · 오브젯도</span><h3>찾느라 헤매던 창고 물건</h3>
 <div class="steps"><div><small>상황</small>물건이 많을수록 어디 있는지 찾느라 시간이 가고, 새 직원은 더 헤매요.</div><div><small>만든 것</small>선반 사진을 칸으로 나누고 물건을 적어 두면, 검색 한 번으로 자리를 알려 주는 앱이에요.</div><div><small>결과</small>이름·초성·말로 찾고, A4로 뽑아 벽에 붙여 두면 휴대폰 없이도 찾아요.</div></div>
 <video muted loop playsinline preload="metadata" poster="images/ai-scan-cafe-800-poster.jpg?v=2" width="800" height="598" aria-label="오브젯도가 선반 사진에서 칸을 찾아 번호를 붙이는 화면"><source src="images/ai-scan-cafe-800.webm?v=2" type='video/webm; codecs="vp9"'><source src="images/ai-scan-cafe-800.mp4?v=2" type='video/mp4; codecs="avc1.64001F"'></video>
+<div class="shots"><a href="images/objetdo/find.jpg" data-cap="찾은 결과 · 사진 위 그 칸이 빨갛게"><img src="images/objetdo/find-t.jpg" width="480" height="480" loading="lazy" alt="원두를 찾으면 바 상부장 사진 위 1번 칸이 빨갛게 표시된 휴대폰 화면"><span>찾은 결과</span></a><a href="images/objetdo/a4.jpg" data-cap="A4 한 장 · 매장 배치도와 가구 사진 4장, 칸마다 물건"><img src="images/objetdo/a4-t.jpg" width="480" height="480" loading="lazy" alt="매장 배치도와 가구 사진 4장을 A4 한 장에 담은 사진 지도 인쇄물"><span>A4 한 장</span></a><a href="images/objetdo/pc.jpg" data-cap="PC 화면 · 칸을 누르면 옆에 물건 창"><img src="images/objetdo/pc-t.jpg" width="480" height="480" loading="lazy" alt="PC에서 선반 사진의 칸을 누르자 오른쪽에 그 칸의 물건 목록이 열린 화면"><span>PC 화면</span></a></div>
+<dialog id="shotbox" aria-label="크게 보기"><img alt=""><p><span></span><button type="button">닫기 ×</button></p></dialog>
+<script>(function(){var d=document.getElementById('shotbox');if(!d||!d.showModal)return;var im=d.querySelector('img'),cap=d.querySelector('span');[].forEach.call(document.querySelectorAll('#case-objetdo .shots a'),function(a){a.addEventListener('click',function(e){e.preventDefault();im.src=a.getAttribute('href');im.alt=a.querySelector('img').alt;cap.textContent=a.dataset.cap||'';d.showModal()})});d.addEventListener('click',function(e){if(e.target===d||e.target.tagName==='BUTTON'||e.target===im)d.close()})})()</script>
 <div class="links"><a href="https://johnsongarage.co.kr/objetdo/start/">자세히 보기 →</a><a href="https://johnsongarage.co.kr/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a href="https://johnsongarage.co.kr/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a href="price/">가격 보기</a></div>
 <p id="setup-promo" class="promo" data-until="2027-01-01T00:00:00+09:00">오브젯도 지도, 대신 만들어 드려요 · 원격 3곳 ₩19,000부터 · 구리·남양주 방문도 · 정리수납 업체는 샘플 1곳 무료 (선착순 10곳) <a href="https://ig.me/m/johnsongarage_">DM으로 신청하기</a> · <a href="price/">가격 보기</a></p><script>(function(){var e=document.getElementById('setup-promo');if(e&&Date.now()>=Date.parse(e.dataset.until))e.remove()})()</script></div>
 </article>
