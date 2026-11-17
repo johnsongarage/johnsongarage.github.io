@@ -215,7 +215,8 @@ a{color:inherit}
 .contact{padding:96px 0 120px}
 .contact h2{font-size:44px;line-height:1.2;letter-spacing:-.03em}
 .contact p{margin-top:14px;color:var(--sub)}
-.ways{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ways{margin-top:28px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media (max-width:1000px){.ways{grid-template-columns:repeat(3,1fr)}} /* 카카오톡이 더해져 5칸 → 좁은 화면에선 3칸(인스타 아이디가 꺾이지 않게) */
 .ways a{display:flex;flex-direction:column;gap:4px;padding:20px;border:1px solid var(--line2);border-radius:16px;text-decoration:none;background:var(--bg2)}
 .ways a{min-width:0}
 .ways a b{font-size:18px}
@@ -312,6 +313,7 @@ footer .wrap{padding:28px 24px}
   .pt,.who img{width:120px}
   .contact h2{font-size:28px}
   .ways{grid-template-columns:1fr 1fr}
+  .ways a:last-child{grid-column:1/-1}
   .r-strip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:31;display:flex;justify-content:center;align-items:center;gap:6px;min-height:46px;border-radius:10px;background:var(--gold);color:#0b0b0b;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s}
   .r-strip.away{opacity:0;transform:translateY(8px);pointer-events:none}
   .r-strip{transition:opacity .2s,transform .2s}
@@ -500,7 +502,7 @@ html,body{overflow-x:clip}
 <dialog id="shotbox" aria-label="크게 보기"><img alt=""><p><span></span><button type="button">닫기 ×</button></p></dialog>
 <script>(function(){var d=document.getElementById('shotbox');if(!d||!d.showModal)return;var im=d.querySelector('img'),cap=d.querySelector('span');[].forEach.call(document.querySelectorAll('#case-objetdo .shots a'),function(a){a.addEventListener('click',function(e){e.preventDefault();im.src=a.getAttribute('href');im.alt=a.querySelector('img').alt;cap.textContent=a.dataset.cap||'';d.showModal()})});d.addEventListener('click',function(e){if(e.target===d||e.target.tagName==='BUTTON'||e.target===im)d.close()})})()</script>
 <div class="links"><a href="https://johnsongarage.co.kr/objetdo/start/">자세히 보기 →</a><a href="https://johnsongarage.co.kr/objetdo/?mode=store&amp;sample=1">매장용 써보기</a><a href="https://johnsongarage.co.kr/objetdo/?mode=home&amp;sample=1">집 정리용 써보기</a><a href="price/">가격 보기</a></div>
-<p id="setup-promo" class="promo" data-until="2027-01-01T00:00:00+09:00">오브젯도 지도, 대신 만들어 드려요 · 원격 3곳 ₩19,000부터 · 구리·남양주 방문도 · 정리수납 업체는 샘플 1곳 무료 (선착순 10곳) <a href="https://ig.me/m/johnsongarage_">DM으로 신청하기</a> · <a href="price/">가격 보기</a></p><script>(function(){var e=document.getElementById('setup-promo');if(e&&Date.now()>=Date.parse(e.dataset.until))e.remove()})()</script></div>
+<p id="setup-promo" class="promo" data-until="2027-01-01T00:00:00+09:00">오브젯도 지도, 대신 만들어 드려요 · 원격 3곳 ₩19,000부터 · 구리·남양주 방문도 · 정리수납 업체는 샘플 1곳 무료 (선착순 10곳) <a href="https://pf.kakao.com/_fdxkNX/chat">카톡으로 신청하기</a> · <a href="https://ig.me/m/johnsongarage_">인스타 DM</a> · <a href="price/">가격 보기</a></p><script>(function(){var e=document.getElementById('setup-promo');if(e&&Date.now()>=Date.parse(e.dataset.until))e.remove()})()</script></div>
 </article>
 
 <article class="case" id="case-sheet">
@@ -597,6 +599,7 @@ html,body{overflow-x:clip}
 <div class="ways">
 <a href="tel:01032706077"><b>전화</b><span>010-3270-6077</span></a>
 <a href="sms:01032706077"><b>문자</b><span>통화가 어려울 때</span></a>
+<a href="https://pf.kakao.com/_fdxkNX/chat"><b>카카오톡</b><span>오브젯도 채널</span></a>
 <a href="https://ig.me/m/johnsongarage_"><b>인스타 DM</b><span>@johnsongarage_</span></a>
 <a href="mailto:johnsongarage.official@gmail.com"><b>메일</b><span class="mail">johnsongarage.<wbr>official<wbr>@gmail.com</span></a>
 </div>
